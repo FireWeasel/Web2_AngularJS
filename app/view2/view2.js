@@ -9,6 +9,25 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
+.controller('View2Ctrl', [ '$scope', function($scope) {
+        
+        $scope.employees = [
+            {"Name":"John Doe",
+             "Occupation":"Developer",
+             "State":"Ohio"        
+            },{"Name":"Catelyn Jones",
+             "Occupation":"Secretary",
+             "State":"Indiana"        
+            },{"Name":"Tyler Lee",
+             "Occupation":"Manager",
+             "State":"Washington"        
+            },{"Name":"Peter Smith",
+             "Occupation":"CEO",
+             "State":"New York"        
+            },{"Name":"Jack Spiker",
+             "Occupation":"Lawyer",
+             "State":"California"        
+            }
+        ];
+        
 }]);

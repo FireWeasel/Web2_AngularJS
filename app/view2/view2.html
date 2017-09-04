@@ -1,4 +1,24 @@
 <p>This is the partial for view 2.</p>
+<hr>
+
+<h4> done by Alex </h4>
+
+<table>
+    <tr class="TopTR">
+        <td>Name</td>
+        <td>Occupation</td>
+        <td>State</td>
+    </tr>
+    <tr ng-repeat="employee in employees">
+        <td>{{employee.Name}}</td>
+        <td>{{employee.Occupation}}</td>
+        <td>{{employee.State}}</td>
+    </tr>
+</table>
+
+
+
+<hr>
 <p>
   Showing of 'interpolate' filter:
   {{ 'Current version is v%VERSION%.' | interpolate }}
