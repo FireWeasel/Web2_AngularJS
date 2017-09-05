@@ -10,10 +10,22 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', [ '$scope', function($scope) {
-    $scope.name = '';
-    $scope.names = [{name:"Chris"}, {name:"Calvin"}];
-    $scope.addName = function() {
-    $scope.names.push( {'name':$scope.name} );
-    $scope.name = '';
-    };
+    $scope.departments = [
+            {   
+                "Name":"Management",
+                "Headquarters":"New York City"
+            },
+            {
+                "Name":"Sales",
+                "Headquarters":"Chicago",
+            },
+            {
+                "Name":"Marketing",
+                "Headquarters":"Boston"
+            },
+            {
+                "Name":"IT",
+                "Headquarters":"Seattle"
+            }
+        ];
 }]);

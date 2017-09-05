@@ -1,9 +1,15 @@
+<p> Assignment 1 Deparments table</p>
+<hr>
 
-<input type="text" ng-model="name" placeholder="Type your name here"/>
-<input type="button" value="Add Name" ng-click="addName()"/>
-<br/>
-<h1>Hello, {{name}}</h1>
-<hr/>
-<ul>
-<li ng-repeat="nm in names">{{nm.name}}</li>
-</ul>
+<table>
+	<tr class="TopRo">
+		<td>Name</td>
+	    <td>Headquarters</td>
+    </tr>
+	    <tr ng-repeat="department in departments" class="dpTable">
+        <td>{{department.Name}}</td>
+        <td>{{department.Headquarters}}</td>
+</table>
+
+<hr>
+<p>done by Marina </p>
