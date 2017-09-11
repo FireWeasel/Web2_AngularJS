@@ -1,20 +1,40 @@
 <p>This is the partial for view 3.</p>
 <hr>
 
-<table>
-    <tr class="TopRo">
-        <td>Task number</td>
-        <td>Task description</td>
-        <td>Completed</td>
-    </tr>
-    <tr ng-repeat="task in tasks">
-        <td>{{task.number}}</td>
-        <td>{{task.description}}</td>
-        <td>{{task.completed}}</td>
-    </tr>
-</table>
+<div id="AddWeek3">
+    <form name="taskForm">
+        <p>
+            <label for="Number">
+            <span>Number:</span>
+            <input id="Number" type="text" name="Number" ng-model="inputNumber" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+
+        <p>
+            <label for="Description">
+            <span>Description:</span>
+            <input id="Description" type="text" name="Description" ng-model="inputDescription" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+
+        <p>
+            <label for="completed">
+            <span>Completed:</span>
+            <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="AddTaskToList()">Add</button>
+    </form>
+</div>
+<br/>
 
 
+<ul ng-repeat="task in tasks">
+  <li>|Task number: {{task.number}} | Description: {{task.description}} | Completed: {{task.completed}} |</li>
+</ul>
 
 <hr>
 <p>done by Lyubomir </p>
