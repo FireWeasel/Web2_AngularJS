@@ -2,7 +2,57 @@
 <hr>
 
 <h4> done by Alex </h4>
-<p>5 + 5 = {{5+5}}</p>
+
+
+<div id="AddWeek3">
+    <form name="employeeForm">  <!--ng-submit="submitForm()">-->
+        <p>
+            <label for="Name">
+            <span>Name:</span>
+            <input id="Name" type="text" name="Name" ng-model="inpName" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        
+        <p>
+            <label for="Occupation">
+            <span>Occupation:</span>
+            <input id="Occupation" type="text" name="Occupation" ng-model="inpOccup" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        
+        <p>
+            <label for="State">
+            <span>State:</span>
+            <input id="State" type="text" name="State" ng-model="inpState" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="AddToList()">Add</button>
+  <!--      <button ng-click="RemoveFromList()">Remove</button>-->
+    </form>
+    
+    <p>You're about to add<br/>{{inpName}} : {{inpOccup}} : {{inpState}}</p>
+</div>
+<br/>
+
+<div id="RemoveWeek3">
+<h3>To Remove</h3>
+    <select ng-model="selectedEmployeeIndex">
+        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
+    </select>
+
+    <button ng-click="ComboBoxRemove()">Remove</button>
+</div>
+
+<!--<input type="radio" name="comboBoxAction">Remove-->
+<!--<input type="radio" name="comboBoxAction" ng-model="my.radioAction" ng-value="action">Update-->
+
+
+<br/>
+
+
 <table>
     <tr class="TopTR">
         <td>Name</td>
@@ -15,6 +65,9 @@
         <td>{{employee.State}}</td>
     </tr>
 </table>
+
+
+
 
 
 
