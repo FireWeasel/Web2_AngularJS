@@ -31,6 +31,15 @@
 </div>
 <br/>
 
+<div id="RemoveTask">
+    <label>To remove: </label>
+    <select ng-model="selectedTaskIndex">
+        <option ng-repeat="task in tasks" value="{{$index}}">{{task.number}}</option>
+    </select>
+
+    <button ng-click="ComboBoxRemove()">Remove</button>
+</div>
+
 
 <ul ng-repeat="task in tasks">
   <li>|Task number: {{task.number}} | Description: {{task.description}} | Completed: {{task.completed}} |</li>
