@@ -29,22 +29,34 @@ angular.module('myApp.view3', ['ngRoute'])
 
         $scope.AddTaskToList = function(){
 
-            if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
-                $scope.tasks.push({
-                        "number": $scope.inputNumber,
-                        "description": $scope.inputDescription,
-                        "completed": $scope.inputCompleted
-                });
-            }
+          if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
+              $scope.tasks.push({
+                      "number": $scope.inputNumber,
+                      "description": $scope.inputDescription,
+                      "completed": $scope.inputCompleted
+              });
+          }
 
         };
 
         $scope.ComboBoxRemove = function() {
            var index = $scope.selectedTaskIndex;
 
-            if (index > -1) {
-               $scope.tasks.splice(index, 1);
-            }
+           if (index > -1) {
+             $scope.tasks.splice(index, 1);
+           }
+        };
+
+        $scope.UpdateTask = function(){
+
+          var index = parseInt($scope.selectedTaskIndexForUpdate) + 1;
+
+          function checkNumber(task) {
+            return task.number == index;
+          }
+
+          $scope.tasks.find(checkNumber).description = $scope.updatedInputDescription;
+          $scope.tasks.find(checkNumber).completed = $scope.updatedInputCompleted;
         };
 
 }]);

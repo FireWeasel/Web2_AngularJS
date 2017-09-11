@@ -1,6 +1,6 @@
 <p>This is the partial for view 3.</p>
 <hr>
-
+<h3>Add task</h3>
 <div id="AddWeek3">
     <form name="taskForm">
         <p>
@@ -30,7 +30,8 @@
     </form>
 </div>
 <br/>
-
+<hr>
+<h3>Remove task</h3>
 <div id="RemoveTask">
     <label>To remove: </label>
     <select ng-model="selectedTaskIndex">
@@ -40,7 +41,39 @@
     <button ng-click="ComboBoxRemove()">Remove</button>
 </div>
 
+<hr>
+<h3>Update taks</h3>
+<div id="UpdateTask">
+    <form name="taskForm">
+        <p>
+            <label for="Number">
+            <span>Number:</span>
+            <select ng-model="selectedTaskIndexForUpdate">
+                <option ng-repeat="task in tasks" value="{{$index}}">{{task.number}}</option>
+            </select>
+            </label>
+        </p>
 
+        <p>
+            <label for="Description">
+            <span>Description:</span>
+            <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+
+        <p>
+            <label for="completed">
+            <span>Completed:</span>
+            <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="UpdateTask()">Update</button>
+    </form>
+</div>
+<hr>
+<h3>Tasks</h3>
 <ul ng-repeat="task in tasks">
   <li>|Task number: {{task.number}} | Description: {{task.description}} | Completed: {{task.completed}} |</li>
 </ul>
