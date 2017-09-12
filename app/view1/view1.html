@@ -1,15 +1,43 @@
 <p> Assignment 1 Deparments table</p>
+<div id="AddWeek3">
+<h3> Add </h3>
+    <form name="departmentForm">
+        <p>
+            <label for="Name">
+            <span>Name:</span>
+            <input id="Name" type="text" name="Name" ng-model="inputName" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        
+        <p>
+            <label for="Headquarters">
+            <span>Headquarters:</span>
+            <input id="Headquarters" type="text" name="Headquarters" ng-model="inputHeadquarters" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="AddDepartmentToList()">Add</button>
+    </form>
+</div>
+<br/>
+<hr>
+<div id="RemoveWeek3">
+<h3>Remove</h3>
+    <select ng-model="selectedDepartmentsIndex">
+        <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+    </select>
+
+    <button ng-click="CBRemove()">Remove</button>
+</div>
 <hr>
 
-<table>
-	<tr class="TopRo">
-		<td>Name</td>
-	    <td>Headquarters</td>
-    </tr>
-	    <tr ng-repeat="department in departments" class="dpTable">
-        <td>{{department.Name}}</td>
-        <td>{{department.Headquarters}}</td>
-</table>
 
+<hr>
+<ul class="TopRo">
+	    <li ng-repeat="department in departments" class="dpTable">
+        Name: {{department.Name}} ,Headquarters: {{department.Headquarters}}
+        </li>
+</ul>
 <hr>
 <p>done by Marina </p>

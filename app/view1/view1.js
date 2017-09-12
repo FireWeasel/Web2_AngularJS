@@ -28,4 +28,20 @@ angular.module('myApp.view1', ['ngRoute'])
                 "Headquarters":"Seattle"
             }
         ];
+        
+        $scope.AddDepartmentToList = function() {
+        if($scope.inputName && $scope.inputHeadquarters) {
+        $scope.departments.push({
+                        "Name": $scope.inputName,
+                        "Headquarters": $scope.inputHeadquarters
+                        })};
+        }
+        
+        $scope.CBRemove = function() {
+           var index = $scope.selectedEmployeeIndex;
+           
+            if (index > -1) {
+               $scope.departments.splice(index, 1);
+            }
+        };
 }]);
