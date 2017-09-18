@@ -1,3 +1,4 @@
+<p>This is the partial for view 1.</p>
 <p> Assignment 1 Deparments table</p>
 <ul class="TopRo">
 	    <li ng-repeat="department in departments" class="dpTable">
@@ -52,7 +53,7 @@
             <label for="Name">
             <span>Name:</span>
             <select ng-model="SelectedDepartmentUpdate">
-                <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+             <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
             </select>
             </label>
         </p>
@@ -84,5 +85,36 @@
     </form>
 </div>
 <hr>
+<h3>View details - departments</h3>
+<div id="ViewDepartment">
+    <form name="departmentForm">
+        <p>
+            <label for="Name">
+            <span>Name:</span>
+            <select ng-model="SelectedDepartmentView">
+             <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+            </select>
+            </label>
+        </p>
+
+        <p>
+            <label for="Id">
+            <span>Id:</span>
+            <input id="viewId" type="text" name="Id" ng-model="viewId" required/>
+            <abbr title="required"></abbr>
+            </label>
+        </p>
+        
+        <p>
+            <label for="headquarters">
+            <span>Headquarters:</span>
+            <input id="viewHeadquarters" type="text" name="Headquarters" ng-model="viewHeadquarters" required/>
+            <abbr title="required"></abbr>
+            </label>
+        </p>
+        <button ng-click="ViewDepartment()">View</button>
+    </form>
+</div>
+
 
 <p>done by Marina </p>

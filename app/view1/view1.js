@@ -52,13 +52,17 @@ angular.module('myApp.view1', ['ngRoute'])
         
         $scope.UpdateDepartment = function(){
 
-          var index = parseInt($scope.SelectedDepartmentUpdate) + 1;
+          var index = $scope.SelectedDepartmentUpdate;
 
-          function checkNumber(department) {
-            return department.id == index;
-          }
-		  $scope.departments.find(checkNumber).id = $scope.updateId;
-          $scope.departments.find(checkNumber).Name = $scope.updatedInputName;
-          $scope.departments.find(checkNumber).Headquarters = $scope.updatedInputHeadquarters;
-        };
+		  $scope.departments[index].id = $scope.updateId;
+          $scope.departments[index].Name = $scope.updatedInputName;
+          $scope.departments[index].Headquarters = $scope.updatedInputHeadquarters;
+        }
+
+        $scope.ViewDepartment = function() {
+            var index = $scope.SelectedDepartmentView;
+
+            $scope.viewId = $scope.departments[index].id;
+            $scope.viewHeadquarters = $scope.departments[index].Headquarters;
+        }
 }]);
