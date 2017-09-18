@@ -2,9 +2,10 @@
 <hr>
 
 <h4> done by Alex </h4>
-
+<hr/>
 
 <div id="AddWeek3">
+    <h3>To Add</h3>
     <form name="employeeForm">  <!--ng-submit="submitForm()">-->
         <p>
             <label for="Name">
@@ -36,33 +37,68 @@
     <p>You're about to add<br/>{{inpName}} : {{inpOccup}} : {{inpState}}</p>
 </div>
 <br/>
+<hr/>
 
 <div id="RemoveWeek3">
 <h3>To Remove</h3>
-    <select ng-model="selectedEmployeeIndex">
+    <select ng-model="selectedEmployeeIndex1">
         <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
     </select>
 
     <button ng-click="ComboBoxRemove()">Remove</button>
 </div>
+<hr/>
 
+<div id="ToUpdate">
+    <h3>To Update</h3>
+    <form name="employeeForm">
+        <p>
+            <label for="Number">
+            <span>Name</span>
+            <select ng-model="selectedEmployeeIndex2">
+                <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
+            </select>
+            </label>
+        </p>
+
+        <p>
+            <label for="Occupation">
+            <span>Occupation</span>
+            <input id="updatedOccupation" type="text" name="Occupation" ng-model="updatedInputDescription" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+
+        <p>
+            <label for="State">
+            <span>State</span>
+            <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="UpdateEmployees()">Update</button>
+    </form>
+</div>
+<hr/>
 <!--<input type="radio" name="comboBoxAction">Remove-->
 <!--<input type="radio" name="comboBoxAction" ng-model="my.radioAction" ng-value="action">Update-->
 
 
 <br/>
 
+<button ng-click="ToggleState()" id="btnToggleState">Show state</button>not yet functional
+<br/><br/>
 
 <table>
     <tr class="TopTR">
         <td>Name</td>
         <td>Occupation</td>
-        <td>State</td>
+        <td class="stateS">State</td>
     </tr>
     <tr ng-repeat="employee in employees">
         <td>{{employee.Name}}</td>
         <td>{{employee.Occupation}}</td>
-        <td>{{employee.State}}</td>
+        <td class="stateS">{{employee.State}}</td>
     </tr>
 </table>
 

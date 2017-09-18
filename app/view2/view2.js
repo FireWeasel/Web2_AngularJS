@@ -53,7 +53,7 @@ angular.module('myApp.view2', ['ngRoute'])
 //        };
         
         $scope.ComboBoxRemove = function() {
-           var index = $scope.selectedEmployeeIndex;
+           var index = $scopve.selectedEmployeeIndex1;
            
             if (index > -1) {
                $scope.employees.splice(index, 1);
@@ -64,6 +64,25 @@ angular.module('myApp.view2', ['ngRoute'])
 //           var index = $scope.selectedEmployeeIndex;
 //           
 //           
+//        };
+
+        $scope.UpdateEmployees = function(){
+
+           var index = $scope.selectedEmployeeIndex2;
+          //var aName = parseInt($scope.selectedEmployeeIndex2) + 1;
+
+//          function checkNumber(employee) {
+//            return employee.Name == aName;
+//          }
+
+          $scope.employees[index].Occupation = $scope.updatedInputDescription;
+          $scope.employees[index].State = $scope.updatedInputState;
+        };
+        
+        //not yet functional
+//        $scope.ToggleState = function() {
+//            //$('#btnToggleState').
+//            $('.stateS').toggle("slide", { direction: "right" }, 1000);
 //        };
         
         
