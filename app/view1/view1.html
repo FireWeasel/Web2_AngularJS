@@ -1,7 +1,21 @@
 <p> Assignment 1 Deparments table</p>
+<ul class="TopRo">
+	    <li ng-repeat="department in departments" class="dpTable">
+        Name: {{department.Name}}
+        </li>
+</ul>
+<hr>
 <div id="AddWeek3">
 <h3> Add </h3>
     <form name="departmentForm">
+    <p>
+            <label for="Id">
+            <span>Id:</span>
+            <input id="Id" type="text" name="Id" ng-model="inputId" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+    
         <p>
             <label for="Name">
             <span>Name:</span>
@@ -24,20 +38,51 @@
 <hr>
 <div id="RemoveWeek3">
 <h3>Remove</h3>
-    <select ng-model="selectedDepartmentsIndex">
+    <select ng-model="selectedDepartmentIndex">
         <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
     </select>
 
     <button ng-click="CBRemove()">Remove</button>
 </div>
 <hr>
+<h3>Update departments</h3>
+<div id="UpdateDepartment">
+    <form name="departmentForm">
+        <p>
+            <label for="Name">
+            <span>Name:</span>
+            <select ng-model="SelectedDepartmentUpdate">
+                <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+            </select>
+            </label>
+        </p>
 
+        <p>
+            <label for="Id">
+            <span>Id:</span>
+            <input id="updateId" type="text" name="Id" ng-model="updateId" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
 
+        <p>
+            <label for="name">
+            <span>Name:</span>
+            <input id="updateName" type="text" name="Name" ng-model="updatedInputName" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        
+        <p>
+            <label for="headquarters">
+            <span>Headquarters:</span>
+            <input id="updateHeadquarters" type="text" name="Headquarters" ng-model="updatedInputHeadquarters" required/>
+            <abbr title="required">*</abbr>
+            </label>
+        </p>
+        <button ng-click="UpdateDepartment()">Update</button>
+    </form>
+</div>
 <hr>
-<ul class="TopRo">
-	    <li ng-repeat="department in departments" class="dpTable">
-        Name: {{department.Name}} ,Headquarters: {{department.Headquarters}}
-        </li>
-</ul>
-<hr>
+
 <p>done by Marina </p>
