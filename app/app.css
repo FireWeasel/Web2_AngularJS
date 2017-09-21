@@ -45,3 +45,21 @@ table, td {
   background-color: #f5f5f5;
 }
 
+#AlexAddANDremove {
+     /*border: 1px solid blue;*/
+     overflow: hidden;
+}
+
+#AlexAddEmployees{
+     float: left;
+}
+
+#AlexRemoveEmployees{
+    float: left;
+    margin-left: 50px;
+}
+
+#AlexUpdateEmployees{
+    float: left;
+    margin-left: 50px;
+}

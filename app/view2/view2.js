@@ -9,26 +9,30 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [ '$scope', function($scope) {
+.controller('View2Ctrl', [  '$scope',
+                            'myEmployees',
+                            function($scope, myEmployees) {
+        //check Factory in app.js
+//        $scope.employees = [
+//            {"Name":"John Doe",
+//             "Occupation":"Developer",
+//             "State":"Ohio"        
+//            },{"Name":"Catelyn Jones",
+//             "Occupation":"Secretary",
+//             "State":"Indiana"        
+//            },{"Name":"Tyler Lee",
+//             "Occupation":"Manager",
+//             "State":"Washington"        
+//            },{"Name":"Peter Smith",
+//             "Occupation":"CEO",
+//             "State":"New York"        
+//            },{"Name":"Jack Spiker",
+//             "Occupation":"Lawyer",
+//             "State":"California"        
+//            }
+//        ];
         
-        $scope.employees = [
-            {"Name":"John Doe",
-             "Occupation":"Developer",
-             "State":"Ohio"        
-            },{"Name":"Catelyn Jones",
-             "Occupation":"Secretary",
-             "State":"Indiana"        
-            },{"Name":"Tyler Lee",
-             "Occupation":"Manager",
-             "State":"Washington"        
-            },{"Name":"Peter Smith",
-             "Occupation":"CEO",
-             "State":"New York"        
-            },{"Name":"Jack Spiker",
-             "Occupation":"Lawyer",
-             "State":"California"        
-            }
-        ];
+        $scope.employees = myEmployees.data;//initializing factory
         
         $scope.AddToList = function(){
             
@@ -53,7 +57,7 @@ angular.module('myApp.view2', ['ngRoute'])
 //        };
         
         $scope.ComboBoxRemove = function() {
-           var index = $scopve.selectedEmployeeIndex1;
+           var index = $scope.selectedEmployeeIndex1;
            
             if (index > -1) {
                $scope.employees.splice(index, 1);
@@ -98,4 +102,24 @@ angular.module('myApp.view2', ['ngRoute'])
 
       };
         
-}]);
+}])
+
+
+
+//the Employee listing is a directive
+.directive('myEmployeesList', function(){
+    return{
+        template: '<table>\n\
+                    <tr class="TopTR">\n\
+                        <td>Name</td>\n\
+                        <td>Occupation</td>\n\
+                        <td class="stateS">State</td>\n\
+                    </tr>\n\
+                    <tr ng-repeat="employee in employees">\n\
+                        <td>{{employee.Name}}</td>\n\
+                        <td>{{employee.Occupation}}</td>\n\
+                        <td class="stateS">{{employee.State}}</td>\n\
+                    </tr>\n\
+                </table>'
+    };
+});

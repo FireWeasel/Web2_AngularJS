@@ -1,10 +1,26 @@
-<p>This is the partial for view 2.</p>
-<hr>
-
+<p>This is the partial for view 2 (Employees).</p>
 <h4> done by Alex </h4>
 <hr/>
 
-<div id="AddWeek3">
+<button ng-click="ToggleState()" id="btnToggleState">Show details</button>not yet functional
+<br/><br/>
+
+<!--<table>
+    <tr class="TopTR">
+        <td>Name</td>
+        <td>Occupation</td>
+        <td class="stateS">State</td>
+    </tr>
+    <tr ng-repeat="employee in employees">
+        <td>{{employee.Name}}</td>
+        <td>{{employee.Occupation}}</td>
+        <td class="stateS">{{employee.State}}</td>
+    </tr>
+</table>-->
+<my-employees-list></my-employees-list>
+<hr/>
+<div id="AlexAddANDremove">
+    <div id="AlexAddEmployees">
     <h3>To Add</h3>
     <form name="employeeForm">  <!--ng-submit="submitForm()">-->
         <p>
@@ -37,9 +53,8 @@
     <p>You're about to add<br/>{{inpName}} : {{inpOccup}} : {{inpState}}</p>
 </div>
 <br/>
-<hr/>
 
-<div id="RemoveWeek3">
+<div id="AlexRemoveEmployees">
 <h3>To Remove</h3>
     <select ng-model="selectedEmployeeIndex1">
         <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
@@ -47,9 +62,9 @@
 
     <button ng-click="ComboBoxRemove()">Remove</button>
 </div>
-<hr/>
 
-<div id="ToUpdate">
+
+<div id="AlexUpdateEmployees">
     <h3>To Update</h3>
     <form name="employeeForm">
         <p>
@@ -79,6 +94,7 @@
         <button ng-click="UpdateEmployees()">Update</button>
     </form>
 </div>
+</div>
 <hr/>
 <!--<input type="radio" name="comboBoxAction">Remove-->
 <!--<input type="radio" name="comboBoxAction" ng-model="my.radioAction" ng-value="action">Update-->
@@ -86,28 +102,14 @@
 
 <br/>
 
-<button ng-click="ToggleState()" id="btnToggleState">Show state</button>not yet functional
-<br/><br/>
-
-<table>
-    <tr class="TopTR">
-        <td>Name</td>
-        <td>Occupation</td>
-        <td class="stateS">State</td>
-    </tr>
-    <tr ng-repeat="employee in employees">
-        <td>{{employee.Name}}</td>
-        <td>{{employee.Occupation}}</td>
-        <td class="stateS">{{employee.State}}</td>
-    </tr>
-</table>
 
 
 
 
 
 
-<hr>
+
+<hr/>
 <p>
   Showing of 'interpolate' filter:
   {{ 'Current version is v%VERSION%.' | interpolate }}
