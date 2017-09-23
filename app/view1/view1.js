@@ -9,29 +9,31 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [ '$scope', function($scope) {
-    $scope.departments = [
-            {   
-            	"id" : "1",
-                "Name":"Management",
-                "Headquarters":"New York City"
-            },
-            {
-            	"id" : "2",
-                "Name":"Sales",
-                "Headquarters":"Chicago",
-            },
-            {
-            	"id" : "3",
-                "Name":"Marketing",
-                "Headquarters":"Boston"
-            },
-            {
-            	"id" : "4", 
-                "Name":"IT",
-                "Headquarters":"Seattle"
-            }
-        ];
+.controller('View1Ctrl', [ '$scope', 'myDepartments', function($scope, myDepartments) {
+//    $scope.departments = [
+//            {   
+//            	"id" : "1",
+//                "Name":"Management",
+//                "Headquarters":"New York City"
+//            },
+//            {
+//            	"id" : "2",
+//                "Name":"Sales",
+//                "Headquarters":"Chicago",
+//            },
+//            {
+//            	"id" : "3",
+//                "Name":"Marketing",
+//                "Headquarters":"Boston"
+//            },
+//            {
+//            	"id" : "4", 
+//                "Name":"IT",
+//                "Headquarters":"Seattle"
+//            }
+//        ];
+        $scope.departments = myDepartments.data;
+        
         
         $scope.AddDepartmentToList = function() {
         if($scope.inputName && $scope.inputHeadquarters && $scope.inputId) {

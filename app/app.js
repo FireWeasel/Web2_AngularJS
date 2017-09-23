@@ -7,8 +7,8 @@ angular.module('myApp', [
   'myApp.view2',
   'myApp.view3',
   'myApp.version'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+])
+.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/view1'});
@@ -16,26 +16,82 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
 
 
-//factory holding all of the employees
-.factory('myEmployees', [function(){
+
+
+//Alex
+//assignment 4.3 factory holding all of the employees
+.factory('myEmployees', ['myDepartments', function(myDepartments){        
         var obj = {};
-        obj.data = [
+
+        obj.data =
+        [
             {"Name":"John Doe",
              "Occupation":"Developer",
-             "State":"Ohio"        
-            },{"Name":"Catelyn Jones",
+             "State":"Ohio"
+//             ,"Department":String(myDepartments.data[0].Name)
+            },
+            {"Name":"Catelyn Jones",
              "Occupation":"Secretary",
-             "State":"Indiana"        
-            },{"Name":"Tyler Lee",
+             "State":"Indiana"
+//             ,"Department":String(myDepartments.data[0].Name)       
+            },
+            {"Name":"Tyler Lee",
              "Occupation":"Manager",
-             "State":"Washington"        
-            },{"Name":"Peter Smith",
+             "State":"Washington"  
+//             ,"Department":String(myDepartments.data[2].Name)     
+            },
+            {"Name":"Peter Smith",
              "Occupation":"CEO",
-             "State":"New York"        
-            },{"Name":"Jack Spiker",
+             "State":"New York"    
+//             ,"Department":String(myDepartments.data[2].Name)    
+            },
+            {"Name":"Jack Spiker",
              "Occupation":"Lawyer",
-             "State":"California"        
+             "State":"California"  
+//             ,"Department":String(myDepartments.data[1].Name)      
             }
         ];
+        
+        //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
+        for (var i = 0; i < obj.data.length; i++) {
+            
+            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+        }
+        
+        return obj;
+}])
+
+
+//Marina
+.factory('myDepartments', [function() {
+        var obj = {};
+
+        obj.data =
+        [
+            {   
+            	"id" : "1",
+                "Name":"Management",
+                "Headquarters":"New York City"
+            },
+            {
+            	"id" : "2",
+                "Name":"Sales",
+                "Headquarters":"Chicago",
+            },
+            {
+            	"id" : "3",
+                "Name":"Marketing",
+                "Headquarters":"Boston"
+            },
+            {
+            	"id" : "4", 
+                "Name":"IT",
+                "Headquarters":"Seattle"
+            }
+        ];
+
         return obj;
 }]);
+
+

@@ -2,8 +2,7 @@
 <h4> done by Alex </h4>
 <hr/>
 
-<button ng-click="ToggleState()" id="btnToggleState">Show details</button>not yet functional
-<br/><br/>
+
 
 <!--<table>
     <tr class="TopTR">
@@ -17,9 +16,13 @@
         <td class="stateS">{{employee.State}}</td>
     </tr>
 </table>-->
-<my-employees-list></my-employees-list>
+<div id="EmployeeList">
+    <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
+    <my-employees-list></my-employees-list>
+</div>
 <hr/>
-<div id="AlexAddANDremove">
+
+<div id="AlexForms">
     <div id="AlexAddEmployees">
     <h3>To Add</h3>
     <form name="employeeForm">  <!--ng-submit="submitForm()">-->
@@ -46,54 +49,75 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
+        
+        <p>
+            <label for="Department">
+            <span>Department:</span>
+            <select ng-model="selectedDepartment" id="Department">
+                <option value="">No department</option>
+                <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
+            </select>
+            </label>
+        </p>
+        
         <button ng-click="AddToList()">Add</button>
   <!--      <button ng-click="RemoveFromList()">Remove</button>-->
     </form>
     
     <p>You're about to add<br/>{{inpName}} : {{inpOccup}} : {{inpState}}</p>
-</div>
-<br/>
+        </div>
+        
 
-<div id="AlexRemoveEmployees">
-<h3>To Remove</h3>
-    <select ng-model="selectedEmployeeIndex1">
-        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
-    </select>
-
-    <button ng-click="ComboBoxRemove()">Remove</button>
-</div>
-
-
-<div id="AlexUpdateEmployees">
-    <h3>To Update</h3>
-    <form name="employeeForm">
-        <p>
-            <label for="Number">
-            <span>Name</span>
-            <select ng-model="selectedEmployeeIndex2">
+        <div id="AlexRemoveEmployees">
+        <h3>To Remove</h3>
+            <select ng-model="selectedEmployeeIndex1">
                 <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
             </select>
-            </label>
-        </p>
 
-        <p>
-            <label for="Occupation">
-            <span>Occupation</span>
-            <input id="updatedOccupation" type="text" name="Occupation" ng-model="updatedInputDescription" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
+            <button ng-click="ComboBoxRemove()">Remove</button>
+        </div>
 
-        <p>
-            <label for="State">
-            <span>State</span>
-            <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-        <button ng-click="UpdateEmployees()">Update</button>
-    </form>
-</div>
+
+        <div id="AlexUpdateEmployees">
+            <h3>To Update</h3>
+            <form name="employeeForm">
+                <p>
+                    <label for="updatedName">
+                    <span>Name</span>
+                    <select ng-model="selectedEmployeeIndex2" id="updatedName">
+                        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
+                    </select>
+                    </label>
+                </p>
+
+                <p>
+                    <label for="updatedOccupation">
+                    <span>Occupation</span>
+                    <input id="updatedOccupation" type="text" name="Occupation" ng-model="updatedInputDescription" required/>
+                    <abbr title="required">*</abbr>
+                    </label>
+                </p>
+
+                <p>
+                    <label for="updatedState">
+                    <span>State</span>
+                    <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
+                    <abbr title="required">*</abbr>
+                    </label>
+                </p>
+                
+                <p>
+                    <label for="Department">
+                    <span>Department:</span>
+                    <select ng-model="updatedDepartment" id="Department">
+                        <option value="">No department</option>
+                        <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
+                    </select>
+                    </label>
+                </p>
+                <button ng-click="UpdateEmployees()">Update</button>
+            </form>
+        </div>
 </div>
 <hr/>
 <!--<input type="radio" name="comboBoxAction">Remove-->

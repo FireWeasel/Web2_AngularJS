@@ -11,28 +11,24 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', [  '$scope',
                             'myEmployees',
-                            function($scope, myEmployees) {
-        //check Factory in app.js
-//        $scope.employees = [
-//            {"Name":"John Doe",
-//             "Occupation":"Developer",
-//             "State":"Ohio"        
-//            },{"Name":"Catelyn Jones",
-//             "Occupation":"Secretary",
-//             "State":"Indiana"        
-//            },{"Name":"Tyler Lee",
-//             "Occupation":"Manager",
-//             "State":"Washington"        
-//            },{"Name":"Peter Smith",
-//             "Occupation":"CEO",
-//             "State":"New York"        
-//            },{"Name":"Jack Spiker",
-//             "Occupation":"Lawyer",
-//             "State":"California"        
-//            }
-//        ];
-        
+                            'myDepartments',
+                            function($scope, myEmployees, myDepartments) {
+                                
+        //employee list in app.js
         $scope.employees = myEmployees.data;//initializing factory
+        
+        $scope.departments = [];
+        for (var i = 0; i < myDepartments.data.length; i++){
+            $scope.departments.push(myDepartments.data[i].Name);    //Adding only the name of each department
+        }
+        //4.6 LOOK in app.js
+                //Made it so a Department is assigned RANDOMLY (on every view2 refresh)
+//                for (var i = 0; i < $scope.employees.length; i++) {
+//                    var randomNumber = Math.floor(Math.random()*$scope.departments.length);
+//                    $scope.employees[i]['Department'] = $scope.departments[randomNumber];
+//                }
+        
+        
         
         $scope.AddToList = function(){
             
@@ -40,21 +36,12 @@ angular.module('myApp.view2', ['ngRoute'])
                 $scope.employees.push({
                         "Name": $scope.inpName,
                         "Occupation": $scope.inpOccup,
-                        "State": $scope.inpState
+                        "State": $scope.inpState,
+                        "Department": $scope.departments[$scope.selectedDepartment]
                 });
             }
             
         };
-        
-        //Use this if you want to remove employees from form(top)
-//        $scope.RemoveFromList = function(){            
-//            var index = $scope.employees.findIndex(i => i.Name === ""+$scope.inpName && i.Occupation === ""+$scope.inpOccup && i.State === ""+$scope.inpState);
-//            
-//            if (index > -1) {
-//               $scope.employees.splice(index, 1);
-//            }
-//            
-//        };
         
         $scope.ComboBoxRemove = function() {
            var index = $scope.selectedEmployeeIndex1;
@@ -63,44 +50,15 @@ angular.module('myApp.view2', ['ngRoute'])
                $scope.employees.splice(index, 1);
             }
         };
-        
-//        $scope.ComboBoxUpdate = function() {
-//           var index = $scope.selectedEmployeeIndex;
-//           
-//           
-//        };
 
         $scope.UpdateEmployees = function(){
 
            var index = $scope.selectedEmployeeIndex2;
-          //var aName = parseInt($scope.selectedEmployeeIndex2) + 1;
-
-//          function checkNumber(employee) {
-//            return employee.Name == aName;
-//          }
 
           $scope.employees[index].Occupation = $scope.updatedInputDescription;
           $scope.employees[index].State = $scope.updatedInputState;
+          $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
         };
-        
-        //not yet functional
-//        $scope.ToggleState = function() {
-//            //$('#btnToggleState').
-//            $('.stateS').toggle("slide", { direction: "right" }, 1000);
-//        };
-        
-        
-        //Assignment week 3
-        $scope.person = {
-          "Name" : "John Seuss",
-          "Age" : 25,
-          "Hobbies" : ["Reading", "Hockey", "Horse Riding"],
-          "Job": {
-                "position": "Developer",
-                "startDate": "01-09-2014"
-          }
-
-      };
         
 }])
 
@@ -111,14 +69,18 @@ angular.module('myApp.view2', ['ngRoute'])
     return{
         template: '<table>\n\
                     <tr class="TopTR">\n\
+                        <td ng-show="alexDetails">Index</td>\n\
                         <td>Name</td>\n\
                         <td>Occupation</td>\n\
-                        <td class="stateS">State</td>\n\
+                        <td>State</td>\n\
+                        <td ng-show="alexDetails">Department</td>\n\
                     </tr>\n\
                     <tr ng-repeat="employee in employees">\n\
+                        <td ng-show="alexDetails">{{$index}}</td>\n\
                         <td>{{employee.Name}}</td>\n\
                         <td>{{employee.Occupation}}</td>\n\
-                        <td class="stateS">{{employee.State}}</td>\n\
+                        <td>{{employee.State}}</td>\n\
+                        <td ng-show="alexDetails">{{employee.Department}}</td>\n\
                     </tr>\n\
                 </table>'
     };
