@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [ '$scope', 'myDepartments', function($scope, myDepartments) {
+.controller('View1Ctrl', [ '$scope', 'myDepartments', 'myEmployees', function($scope, myDepartments, myEmployees) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",

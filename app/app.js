@@ -33,7 +33,7 @@ angular.module('myApp', [
             {"Name":"Catelyn Jones",
              "Occupation":"Secretary",
              "State":"Indiana"
-//             ,"Department":String(myDepartments.data[0].Name)       
+//            ,"Department":String(myDepartments.data[0].Name)       
             },
             {"Name":"Tyler Lee",
              "Occupation":"Manager",
@@ -43,12 +43,12 @@ angular.module('myApp', [
             {"Name":"Peter Smith",
              "Occupation":"CEO",
              "State":"New York"    
-//             ,"Department":String(myDepartments.data[2].Name)    
+//          ,"Department":String(myDepartments.data[2].Name)    
             },
             {"Name":"Jack Spiker",
              "Occupation":"Lawyer",
              "State":"California"  
-//             ,"Department":String(myDepartments.data[1].Name)      
+ //            ,"Department":String(myDepartments.data[1].Name)      
             }
         ];
         
@@ -61,10 +61,29 @@ angular.module('myApp', [
         
         return obj;
 }])
+//dummy classes 
+/*.factory('empD', ['myEmployees' , function(myEmployees){
+ 		var obj = {};
+ 		
+ 		for (var i = 0; i < myEmployees.data.length; i++)
+ 		{
+ 		obj.data.push(myEmployees[i].Name);
+ 		}
+ 		return obj;
 
+}])
 
+.factory('deptE', ['myDepartments', function(myDepartments){
+		var obj = {};
+		for(var i = 0; i < myDepartments.data.length; i++)
+		{
+		obj.data.push(myDepartments[i].Name);
+		}
+		return obj;		
+}])*/
 //Marina
-.factory('myDepartments', [function() {
+.factory('myDepartments', ['myEmployees', function(myEmployees) {
+       	//var myEmployees = $injector.get('myEmployees');
         var obj = {};
 
         obj.data =
@@ -73,21 +92,25 @@ angular.module('myApp', [
             	"id" : "1",
                 "Name":"Management",
                 "Headquarters":"New York City"
+                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "2",
                 "Name":"Sales",
-                "Headquarters":"Chicago",
+                "Headquarters":"Chicago"
+                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "3",
                 "Name":"Marketing",
                 "Headquarters":"Boston"
+                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "4", 
                 "Name":"IT",
                 "Headquarters":"Seattle"
+                ,"Employee" : String(myEmployees.data[1].Name)
             }
         ];
 
