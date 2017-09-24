@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-.controller('View1Ctrl', [ '$scope', 'myDepartments', 'DepEmp', function($scope, myDepartments, DepEmp) {
+.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', function($scope, myDepartments, RelationshipEmpDep) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -67,4 +67,21 @@ angular.module('myApp.view1', ['ngRoute'])
             $scope.viewId = $scope.departments[index].id;
             $scope.viewHeadquarters = $scope.departments[index].Headquarters;
         }
-}]);
+}])
+
+.directive('departmentsTable', function(){
+    return{
+        template: '<table>\n\
+                    <tr class="TableDep">\n\
+                        <td>Name</td>\n\
+                        <td ng-show="viewInfo">Headquarters</td>\n\
+                        <td ng-show="viewInfo">Employees</td>\n\
+                    </tr>\n\
+                    <tr ng-repeat="department in departments">\n\
+                        <td>{{department.Name}}</td>\n\
+                        <td ng-show="viewInfo">{{department.Headquarters}}</td>\n\
+                        <td ng-show="viewInfo">{{department.Employee}}</td>\n\
+                    </tr>\n\
+                </table>'
+    };
+});

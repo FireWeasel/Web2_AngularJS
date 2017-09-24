@@ -72,26 +72,16 @@ angular.module('myApp', [
             
             var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
             myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+            if(!myDepartments.data[randomNumber]['Employee']) 
+            {
+ 				 myDepartments.data[randomNumber]['Employee'] = '';
+ 			}
+            myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;
         }
         
         return obj;
 }])
 
-.factory('DepEmp', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
-
-		var obj = {};
-		obj.data = myEmployees.data;
-
-		for(var i = 0; i < myDepartments.data.length; i++)
-		{
-		var number = Math.floor(Math.random()*myEmployees.data.length);
-		for(var j = 0; j < number; j++)
-		{
-			myDepartments.data[i]['Employee'] += obj.data[j].Name + " " ;
-		}
-		}
-		return obj;
-}])
 
 //Marina                'myEmployees',      myEmployees
 .factory('myDepartments', [function() {
@@ -103,25 +93,21 @@ angular.module('myApp', [
             	"id" : "1",
                 "Name":"Management",
                 "Headquarters":"New York City"
-//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "2",
                 "Name":"Sales",
                 "Headquarters":"Chicago"
-//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "3",
                 "Name":"Marketing",
                 "Headquarters":"Boston"
-//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "4", 
                 "Name":"IT",
                 "Headquarters":"Seattle"
-//                ,"Employee" : String(myEmployees.data[1].Name)
             }
         ];
 
