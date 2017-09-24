@@ -20,7 +20,8 @@ angular.module('myApp', [
 
 //Alex
 //assignment 4.3 factory holding all of the employees
-.factory('myEmployees', ['myDepartments', function(myDepartments){        
+                        //'myDepartments',          myDepartments
+.factory('myEmployees', [function(){        
         var obj = {};
 
         obj.data =
@@ -53,10 +54,24 @@ angular.module('myApp', [
         ];
         
         //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
-        for (var i = 0; i < obj.data.length; i++) {
+//        for (var i = 0; i < obj.data.length; i++) {
+//            
+//            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+//            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+//        }
+        
+        return obj;
+}])
+
+.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
+        
+        var obj = {};
+        obj.data = myDepartments.data;
+        //Assigning a RANDOM department to EACH Employee
+        for (var i = 0; i < myEmployees.data.length; i++) {
             
             var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+            myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
         }
         
         return obj;
@@ -81,8 +96,8 @@ angular.module('myApp', [
 		}
 		return obj;		
 }])*/
-//Marina
-.factory('myDepartments', ['myEmployees', function(myEmployees) {
+//Marina                'myEmployees',      myEmployees
+.factory('myDepartments', [function() {
        	//var myEmployees = $injector.get('myEmployees');
         var obj = {};
 
@@ -92,25 +107,25 @@ angular.module('myApp', [
             	"id" : "1",
                 "Name":"Management",
                 "Headquarters":"New York City"
-                ,"Employee" : String(myEmployees.data[1].Name)
+//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "2",
                 "Name":"Sales",
                 "Headquarters":"Chicago"
-                ,"Employee" : String(myEmployees.data[1].Name)
+//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "3",
                 "Name":"Marketing",
                 "Headquarters":"Boston"
-                ,"Employee" : String(myEmployees.data[1].Name)
+//                ,"Employee" : String(myEmployees.data[1].Name)
             },
             {
             	"id" : "4", 
                 "Name":"IT",
                 "Headquarters":"Seattle"
-                ,"Employee" : String(myEmployees.data[1].Name)
+//                ,"Employee" : String(myEmployees.data[1].Name)
             }
         ];
 

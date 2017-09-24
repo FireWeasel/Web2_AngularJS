@@ -11,16 +11,19 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', [  '$scope',
                             'myEmployees',
-                            'myDepartments',
-                            function($scope, myEmployees, myDepartments) {
+                            'RelationshipEmpDep',
+                            function($scope, myEmployees, RelationshipEmpDep) {
                                 
         //employee list in app.js
         $scope.employees = myEmployees.data;//initializing factory
         
         $scope.departments = [];
-        for (var i = 0; i < myDepartments.data.length; i++){
-            $scope.departments.push(myDepartments.data[i].Name);    //Adding only the name of each department
+        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
+            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
         }
+
+                                
+                                
         //4.6 LOOK in app.js
                 //Made it so a Department is assigned RANDOMLY (on every view2 refresh)
 //                for (var i = 0; i < $scope.employees.length; i++) {
