@@ -76,29 +76,25 @@ angular.module('myApp', [
         
         return obj;
 }])
-//dummy classes 
-/*.factory('empD', ['myEmployees' , function(myEmployees){
- 		var obj = {};
- 		
- 		for (var i = 0; i < myEmployees.data.length; i++)
- 		{
- 		obj.data.push(myEmployees[i].Name);
- 		}
- 		return obj;
 
-}])
+.factory('DepEmp', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
 
-.factory('deptE', ['myDepartments', function(myDepartments){
 		var obj = {};
+		obj.data = myEmployees.data;
+
 		for(var i = 0; i < myDepartments.data.length; i++)
 		{
-		obj.data.push(myDepartments[i].Name);
+		var number = Math.floor(Math.random()*myEmployees.data.length);
+		for(var j = 0; j < number; j++)
+		{
+			myDepartments.data[i]['Employee'] += obj.data[j].Name + " " ;
 		}
-		return obj;		
-}])*/
+		}
+		return obj;
+}])
+
 //Marina                'myEmployees',      myEmployees
 .factory('myDepartments', [function() {
-       	//var myEmployees = $injector.get('myEmployees');
         var obj = {};
 
         obj.data =
