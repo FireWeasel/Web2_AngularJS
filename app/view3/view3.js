@@ -9,7 +9,7 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', [ '$scope', 'myTasks', function($scope, myTasks) {
+.controller('View3Ctrl', [ '$scope', 'myTasks', 'TaskDepartmentEmployees', function($scope, myTasks, TaskDepartmentEmployees) {
 
   $scope.IsVisible = false;
   $scope.UpdateTaskVisible = false;

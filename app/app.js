@@ -38,6 +38,24 @@ angular.module('myApp', [
   return obj;
 }])
 
+.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartments', function(myTasks, myEmployees, myDepartments) {
+        
+  var obj = {};
+  obj.data = myTasks.data;
+
+  for (var i = 0; i < myTasks.data.length; i++) {           
+    var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+    myDepartments.data[randomNumber]['task'] = myTasks.data[i].description;
+    myTasks.data[i]['department'] = myDepartments.data[randomNumber].Name;
+    myTasks.data[i]['employees'] = [];
+    var n = Math.floor((Math.random()*myEmployees.data.length-1)+0);
+    for(var k = 0; k < n; k++) {
+      myTasks.data[i]['employees'] += myEmployees.data[Math.floor(Math.random()*myEmployees.data.length)].Name;      
+    }
+  }
+
+  return obj;
+}])
 
 //Alex
 //assignment 4.3 factory holding all of the employees
