@@ -12,6 +12,7 @@ angular.module('myApp.view3', ['ngRoute'])
 .controller('View3Ctrl', [ '$scope', function($scope) {
 
   $scope.IsVisible = false;
+  $scope.UpdateTaskVisible = false;
 
   $scope.tasks = [
       {"number":"1",
@@ -51,7 +52,7 @@ angular.module('myApp.view3', ['ngRoute'])
 
   $scope.UpdateTask = function(){
 
-    var index = parseInt($scope.selectedTaskIndexForUpdate) + 1;
+    var index = parseInt($scope.updatedInputNumber);
 
     function checkNumber(task) {
       return task.number == index;
@@ -59,6 +60,7 @@ angular.module('myApp.view3', ['ngRoute'])
 
     $scope.tasks.find(checkNumber).description = $scope.updatedInputDescription;
     $scope.tasks.find(checkNumber).completed = $scope.updatedInputCompleted;
+    $scope.UpdateTaskVisible = false;
   };
 
   $scope.ShowInfo = function(task) {
@@ -66,5 +68,13 @@ angular.module('myApp.view3', ['ngRoute'])
     $scope.IsVisible = true;
     myEl.html("Completed: " + task.completed);
   };
+
+  $scope.EditTask = function(task) {
+    var myEl = angular.element(document.querySelector('#UpdateTask'));
+    $scope.UpdateTaskVisible = true;
+    $scope.updatedInputNumber = task.number;
+    $scope.updatedInputDescription = task.description;
+    $scope.updatedInputCompleted = task.completed;
+  }
 
 }]);
