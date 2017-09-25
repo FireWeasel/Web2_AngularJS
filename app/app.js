@@ -15,7 +15,28 @@ angular.module('myApp', [
 }])
 
 
+.factory('myTasks', [function() {
+  var obj = {};
 
+  obj.data =
+  [
+      {"number":"1",
+       "description":"Clean the kitchen",
+       "completed":"Yes"
+      }, {"number":"2",
+       "description":"Clean the living room",
+       "completed":"No"
+      }, {"number":"3",
+       "description":"Clean the room",
+       "completed":"No"
+      }, {"number":"4",
+       "description":"Do the WEB2 homework",
+       "completed":"Yes"
+      }
+  ];
+
+  return obj;
+}])
 
 
 //Alex
@@ -113,5 +134,3 @@ angular.module('myApp', [
 
         return obj;
 }]);
-
-

@@ -9,26 +9,12 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', [ '$scope', function($scope) {
+.controller('View3Ctrl', [ '$scope', 'myTasks', function($scope, myTasks) {
 
   $scope.IsVisible = false;
   $scope.UpdateTaskVisible = false;
 
-  $scope.tasks = [
-      {"number":"1",
-       "description":"Clean the kitchen",
-       "completed":"Yes"
-      }, {"number":"2",
-       "description":"Clean the living room",
-       "completed":"No"
-      }, {"number":"3",
-       "description":"Clean the room",
-       "completed":"No"
-      }, {"number":"4",
-       "description":"Do the WEB2 homework",
-       "completed":"Yes"
-      }
-  ];
+  $scope.tasks = myTasks.data;
 
   $scope.AddTaskToList = function(){
     if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
