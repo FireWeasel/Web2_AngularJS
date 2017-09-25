@@ -31,7 +31,6 @@ angular.module('myApp.view3', ['ngRoute'])
   ];
 
   $scope.AddTaskToList = function(){
-
     if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
         $scope.tasks.push({
                 "number": $scope.inputNumber,
@@ -39,15 +38,11 @@ angular.module('myApp.view3', ['ngRoute'])
                 "completed": $scope.inputCompleted
         });
     }
-
   };
 
-  $scope.ComboBoxRemove = function() {
-     var index = $scope.selectedTaskIndex;
-
-     if (index > -1) {
-       $scope.tasks.splice(index, 1);
-     }
+  $scope.DeleteTask = function(task) {
+    var index = $scope.tasks.indexOf(task);
+    $scope.tasks.splice(index, 1); 
   };
 
   $scope.UpdateTask = function(){
