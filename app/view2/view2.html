@@ -16,6 +16,14 @@
         <td class="stateS">{{employee.State}}</td>
     </tr>
 </table>-->
+<div id="alexSearch">
+    <p>
+        <label for="nameSearch"> Search for Employee
+        <input type="text" id="nameSearch" ng-model="filterValue" />
+        </label>
+    </p>
+</div>
+
 <div id="EmployeeList">
     <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
     <my-employees-list></my-employees-list>
