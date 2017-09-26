@@ -1,0 +1,18 @@
+<p>This is the partial for dashboard.</p>
+<h3>Tasks</h3>
+<ul ng-repeat="task in tasks">
+  <li>Task number: {{task.number}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>
+</ul>
+<div id="showTask" ng-show="TaskVisible"></div>
+
+<h3>Employees</h3>
+<ul ng-repeat="employee in employees">
+  <li>Name: {{employee.Name}} <a href="" ng-click="ShowEmployeeInfo(employee)">View</a> </li>
+</ul>
+<div id="showEmployee" ng-show="EmployeeVisible"></div>
+
+<h3>Departments</h3>
+<ul ng-repeat="department in departments">
+  <li>Name: {{department.Name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
+</ul>
+<div id="showDepartment" ng-show="DepartmentVisible"></div>
