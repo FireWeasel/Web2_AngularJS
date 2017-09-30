@@ -77,7 +77,7 @@ angular.module('myApp.view1', ['ngRoute'])
                         <td ng-show="viewInfo">Headquarters</td>\n\
                         <td ng-show="viewInfo">Employees</td>\n\
                     </tr>\n\
-                    <tr ng-repeat="department in departments">\n\
+					<tr ng-repeat="department in departments | filter: filterValue">\n\
                         <td>{{department.Name}}</td>\n\
                         <td ng-show="viewInfo">{{department.Headquarters}}</td>\n\
                         <td ng-show="viewInfo">{{department.Employee}}</td>\n\

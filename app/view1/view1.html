@@ -1,5 +1,13 @@
 <p>This is the partial for view 1.</p>
 <p> Assignment 1 Deparments table</p>
+<div id="searchM">
+    <p>
+        <label for="nameSearch"> Search 
+        <input type="text" id="nameSearch" ng-model="filterValue" />
+        </label>
+    </p>
+</div>
+
 <div id="DepartmentsTable">
     <input type="checkbox" ng-model="viewInfo" /> View Details<br/><br/>
     <departments-Table></departments-Table>
