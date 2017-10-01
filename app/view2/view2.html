@@ -3,24 +3,15 @@
 <hr/>
 
 
+<div class="container">
 
-<!--<table>
-    <tr class="TopTR">
-        <td>Name</td>
-        <td>Occupation</td>
-        <td class="stateS">State</td>
-    </tr>
-    <tr ng-repeat="employee in employees">
-        <td>{{employee.Name}}</td>
-        <td>{{employee.Occupation}}</td>
-        <td class="stateS">{{employee.State}}</td>
-    </tr>
-</table>-->
+
+<button class="btn btn-default disabled">Hello</button>
+
 <div id="alexSearch">
     <p>
-        <label for="nameSearch"> Search for Employee
+        <label for="nameSearch"> Search for Employee</label>
         <input type="text" id="nameSearch" ng-model="filterValue" />
-        </label>
     </p>
 </div>
 
@@ -28,102 +19,99 @@
     <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
     <my-employees-list></my-employees-list>
 </div>
-<hr/>
+<br/>
 
 <div id="AlexForms">
-    <div id="AlexAddEmployees">
-    <h3>To Add</h3>
+    <div id="AlexAddEmployees" class="col-sm-4">
+        <h3>To Add <small>{{inpName}} : {{inpOccup}} : {{inpState}}</small></h3>
     <form name="employeeForm">  <!--ng-submit="submitForm()">-->
         <p>
-            <label for="Name">
-            <span>Name:</span>
+            <label for="Name">Name:</label>
             <input id="Name" type="text" name="Name" ng-model="inpName" required/>
             <abbr title="required">*</abbr>
-            </label>
         </p>
         
         <p>
             <label for="Occupation">
-            <span>Occupation:</span>
+            Occupation:
+            </label>
             <input id="Occupation" type="text" name="Occupation" ng-model="inpOccup" required/>
             <abbr title="required">*</abbr>
-            </label>
         </p>
         
         <p>
             <label for="State">
-            <span>State:</span>
-            <input id="State" type="text" name="State" ng-model="inpState" required/>
-            <abbr title="required">*</abbr>
+            State:
             </label>
+            <input id="State" type="text" name="State" ng-model="inpState" required/>
+            <abbr title="required">*</abbr>            
         </p>
         
         <p>
             <label for="Department">
-            <span>Department:</span>
+            Department:
+            </label>
             <select ng-model="selectedDepartment" id="Department">
                 <option value="">No department</option>
                 <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
             </select>
-            </label>
         </p>
         
-        <button ng-click="AddToList()">Add</button>
+        <button ng-click="AddToList()" class="btn btn-primary">Add</button>
   <!--      <button ng-click="RemoveFromList()">Remove</button>-->
     </form>
     
-    <p>You're about to add<br/>{{inpName}} : {{inpOccup}} : {{inpState}}</p>
         </div>
         
 
-        <div id="AlexRemoveEmployees">
+        <div id="AlexRemoveEmployees" class="col-sm-4">
         <h3>To Remove</h3>
             <select ng-model="selectedEmployeeIndex1">
                 <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
             </select>
 
-            <button ng-click="ComboBoxRemove()">Remove</button>
+            <button ng-click="ComboBoxRemove()" class="btn btn-danger">Remove</button>
         </div>
 
 
-        <div id="AlexUpdateEmployees">
+        <div id="AlexUpdateEmployees" class="col-sm-4">
             <h3>To Update</h3>
             <form name="employeeForm">
                 <p>
                     <label for="updatedName">
-                    <span>Name</span>
+                    Name
+                    </label>
                     <select ng-model="selectedEmployeeIndex2" id="updatedName">
                         <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
                     </select>
-                    </label>
                 </p>
 
                 <p>
                     <label for="updatedOccupation">
-                    <span>Occupation</span>
+                    Occupation
+                    </label>
                     <input id="updatedOccupation" type="text" name="Occupation" ng-model="updatedInputDescription" required/>
                     <abbr title="required">*</abbr>
-                    </label>
                 </p>
 
                 <p>
                     <label for="updatedState">
-                    <span>State</span>
+                    State
+                    </label>
                     <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
                     <abbr title="required">*</abbr>
-                    </label>
                 </p>
                 
                 <p>
                     <label for="Department">
-                    <span>Department:</span>
+                    Department:
+                    </label>
                     <select ng-model="updatedDepartment" id="Department">
                         <option value="">No department</option>
                         <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
                     </select>
-                    </label>
                 </p>
-                <button ng-click="UpdateEmployees()">Update</button>
+                <button ng-click="UpdateEmployees()" class="btn btn-warning">Update</button>
             </form>
         </div>
 </div>
@@ -137,6 +125,7 @@
 
 
 
+</div>
 
 
 

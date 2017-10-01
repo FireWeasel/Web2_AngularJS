@@ -1,4 +1,16 @@
 <p>This is the partial for dashboard.</p>
+<hr/>
+
+<form action="">
+  <input type="radio" name="filter" value="employee"> Employee<br/>
+  <input type="radio" name="filter" value="department"> Department<br/>
+ 
+        <label for="nameSearch"> Search for Employee</label>
+        <input type="text" id="nameSearch" ng-model="filterValue" />
+    
+</form>
+
+
 <h3>Tasks</h3>
 <ul ng-repeat="task in tasks">
   <li>Task number: {{task.number}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>

@@ -63,6 +63,12 @@ angular.module('myApp.view2', ['ngRoute'])
           $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
         };
         
+//        for (var i = 0; i <= $scope.employees.length; i++){
+//            if ($scope.employees[i].Occupation === "CEO"){
+//                
+//            }
+//        }
+        
 }])
 
 
@@ -70,21 +76,28 @@ angular.module('myApp.view2', ['ngRoute'])
 //the Employee listing is a directive
 .directive('myEmployeesList', function(){
     return{
-        template: '<table>\n\
-                    <tr class="TopTR">\n\
-                        <td ng-show="alexDetails">Index</td>\n\
-                        <td>Name</td>\n\
-                        <td>Occupation</td>\n\
-                        <td>State</td>\n\
-                        <td ng-show="alexDetails">Department</td>\n\
-                    </tr>\n\
-                    <tr ng-repeat="employee in employees | filter: filterValue">\n\
-                        <td ng-show="alexDetails">{{$index}}</td>\n\
-                        <td>{{employee.Name}}</td>\n\
-                        <td>{{employee.Occupation}}</td>\n\
-                        <td>{{employee.State}}</td>\n\
-                        <td ng-show="alexDetails">{{employee.Department}}</td>\n\
-                    </tr>\n\
-                </table>'
+        template: '<table class="table table-bordered" id="alexTable">\n\
+                    <thead>\n\
+                        <tr>\n\
+                            <th ng-show="alexDetails">Index</th>\n\
+                            <th>Name</th>\n\
+                            <th>Occupation</th>\n\
+                            <th>State</th>\n\
+                            <th ng-show="alexDetails">Department</th>\n\
+                        </tr>\n\
+                    </thead>\n\
+                    <tbody>\n\
+                        <tr ng-repeat="employee in employees | filter: {Name: filterValue}">\n\
+                            <td ng-show="alexDetails">{{$index}}</td>\n\
+                            <td>{{employee.Name}}</td>\n\
+                            <td>{{employee.Occupation}}</td>\n\
+                            <td>{{employee.State}}</td>\n\
+                            <td ng-show="alexDetails">{{employee.Department}}</td>\n\
+                        </tr>\n\
+                    </tbody>\n\
+                    </table>'
     };
 });
+
+
+        
