@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+var myApp1 = angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', function($scope, myDepartments, RelationshipEmpDep) {
+myApp1.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', function($scope, myDepartments, RelationshipEmpDep) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -67,21 +67,50 @@ angular.module('myApp.view1', ['ngRoute'])
             $scope.viewId = $scope.departments[index].id;
             $scope.viewHeadquarters = $scope.departments[index].Headquarters;
         }
+        
+        //some properties that are not working
+          	/*$scope.isNavCollapsed = true;
+  			$scope.isCollapsed = false;
+  			$scope.isCollapsedHorizontal = false;*/
+  			
 }])
 
-.directive('departmentsTable', function(){
+myApp1.directive('departmentsTable', function(){
     return{
-        template: '<table>\n\
+        template: '<div ng-init="checked = true"> \n\
+  <label> \n\
+    <input type="checkbox" ng-model="checked" /> \n\
+    Is visible \n\
+  </label> \n\
+  <div class="content-area sample-show-hide"> \n\
+    <table class="table table-bordered">\n\
                     <tr class="TableDep">\n\
                         <td>Name</td>\n\
-                        <td ng-show="viewInfo">Headquarters</td>\n\
-                        <td ng-show="viewInfo">Employees</td>\n\
+                        <td ng-show="checked">Headquarters</td>\n\
+                        <td ng-show="checked">Employees</td>\n\
                     </tr>\n\
 					<tr ng-repeat="department in departments | filter: filterValue">\n\
                         <td>{{department.Name}}</td>\n\
-                        <td ng-show="viewInfo">{{department.Headquarters}}</td>\n\
-                        <td ng-show="viewInfo">{{department.Employee}}</td>\n\
+                        <td ng-show="checked">{{department.Headquarters}}</td>\n\
+                        <td ng-show="checked">{{department.Employee}}</td>\n\
                     </tr>\n\
-                </table>'
+                </table> \n\
+  </div> \n\
+</div>'
+        
+        
+        
+        
+        /*'<button type="button" class="btn btn-default" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal">Toggle collapse Horizontally</button> \n\
+	<hr> \n\
+	<div class="horizontal-collapse" uib-collapse="isCollapsedHorizontal" horizontal>   \n\
+		<div class="well well-lg">Some content</div> \n\
+	</div>' */
+        
+        
+        
+        
+        
+      
     };
 });

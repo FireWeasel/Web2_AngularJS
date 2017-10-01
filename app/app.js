@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var module = angular.module('myApp', [
   'ngRoute',
   'myApp.view1',
   'myApp.view2',
@@ -10,14 +10,14 @@ angular.module('myApp', [
   'myApp.version',
   'ui.bootstrap'
 ])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+module.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/dashboard'});
 }])
 
 
-.factory('myTasks', [function() {
+module.factory('myTasks', [function() {
   var obj = {};
 
   obj.data =
@@ -40,7 +40,7 @@ angular.module('myApp', [
   return obj;
 }])
 
-.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartments', function(myTasks, myEmployees, myDepartments) {
+module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartments', function(myTasks, myEmployees, myDepartments) {
         
   var obj = {};
   obj.data = myTasks.data;
@@ -62,7 +62,7 @@ angular.module('myApp', [
 //Alex
 //assignment 4.3 factory holding all of the employees
                         //'myDepartments',          myDepartments
-.factory('myEmployees', [function(){        
+module.factory('myEmployees', [function(){        
         var obj = {};
 
         obj.data =
@@ -104,7 +104,7 @@ angular.module('myApp', [
         return obj;
 }])
 
-.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
+module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
         
         var obj = {};
         obj.data = myDepartments.data;
@@ -125,7 +125,7 @@ angular.module('myApp', [
 
 
 //Marina                'myEmployees',      myEmployees
-.factory('myDepartments', [function() {
+module.factory('myDepartments', [function() {
         var obj = {};
 
         obj.data =
