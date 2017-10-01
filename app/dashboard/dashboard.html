@@ -2,14 +2,23 @@
 <hr/>
 
 <form action="">
-  <input type="radio" name="filter" value="employee"> Employee<br/>
-  <input type="radio" name="filter" value="department"> Department<br/>
- 
+<!--  <input type="radio" ng-model="selectedFilter" value="Name"> Employee<br/>
+  <input type="radio" ng-model="selectedFilter" value="Name2"> Department<br/>
+
         <label for="nameSearch"> Search for Employee</label>
-        <input type="text" id="nameSearch" ng-model="filterValue" />
+        <input type="text" id="nameSearch" ng-model="filterValue[selectedFilter]" ng-init="selectedFilter='Name'" />-->
+ 
+        <label for="employeeSearch"> Filter by Employee: </label>
+        <input type="text" id="employeeSearch" ng-model="filterEmployee" />
+        <br/>
+        <label for="departmentSearch"> Filter by Department: </label>
+        <input type="text" id="departmentSearch" ng-model="filterDepartment" />
     
 </form>
-
+<!--<br/>
+tempstring1 = {{filterEmployee}}
+<br/>
+tempstring2 = {{filterDepartment}}-->
 
 <h3>Tasks</h3>
 <ul ng-repeat="task in tasks">
@@ -18,13 +27,13 @@
 <div id="showTask" ng-show="TaskVisible"></div>
 
 <h3>Employees</h3>
-<ul ng-repeat="employee in employees">
+<ul ng-repeat="employee in employees | filter: {Name: filterEmployee, Department: filterDepartment}">
   <li>Name: {{employee.Name}} <a href="" ng-click="ShowEmployeeInfo(employee)">View</a> </li>
 </ul>
 <div id="showEmployee" ng-show="EmployeeVisible"></div>
 
-<h3>Departments</h3>
-<ul ng-repeat="department in departments">
+<h3>Departments</h3>                           <!--//Name: filterDepartment, -->
+<ul ng-repeat="department in departments | filter: {Employee: filterEmployee}">
   <li>Name: {{department.Name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
 </ul>
 <div id="showDepartment" ng-show="DepartmentVisible"></div>
