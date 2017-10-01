@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngTouch'])
+angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngTouch'
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', 'bootstrapExample' ,function($scope, myDepartments, RelationshipEmpDep) {
+.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep' ,function($scope, myDepartments, RelationshipEmpDep) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -71,7 +71,8 @@ angular.module('myApp.view1', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngTouch'
 
 .directive('departmentsTable', function(){
     return{
-        template: '<table>\n\
+        template:
+                '<table>\n\
                     <tr class="TableDep">\n\
                         <td>Name</td>\n\
                         <td ng-show="viewInfo">Headquarters</td>\n\
@@ -82,6 +83,6 @@ angular.module('myApp.view1', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngTouch'
                         <td ng-show="viewInfo">{{department.Headquarters}}</td>\n\
                         <td ng-show="viewInfo">{{department.Employee}}</td>\n\
                     </tr>\n\
-                </table>'
+                </table>' 
     };
 });
