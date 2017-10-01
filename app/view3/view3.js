@@ -11,7 +11,6 @@ angular.module('myApp.view3', ['ngRoute'])
 
 .controller('View3Ctrl', [ '$scope', 'myTasks', 'TaskDepartmentEmployees', function($scope, myTasks, TaskDepartmentEmployees) {
 
-  $scope.IsVisible = false;
   $scope.UpdateTaskVisible = false;
 
   $scope.tasks = myTasks.data;
@@ -24,6 +23,9 @@ angular.module('myApp.view3', ['ngRoute'])
                 "completed": $scope.inputCompleted
         });
     }
+    $scope.inputNumber = "";
+    $scope.inputDescription = "";
+    $scope.inputCompleted = "";
   };
 
   $scope.DeleteTask = function(task) {
@@ -44,15 +46,7 @@ angular.module('myApp.view3', ['ngRoute'])
     $scope.UpdateTaskVisible = false;
   };
 
-  $scope.ShowInfo = function(task) {
-    var myEl = angular.element(document.querySelector('#divData'));
-    $scope.IsVisible = true;
-    myEl.html("Completed: " + task.completed);
-  };
-
   $scope.EditTask = function(task) {
-    var myEl = angular.element(document.querySelector('#UpdateTask'));
-    $scope.UpdateTaskVisible = true;
     $scope.updatedInputNumber = task.number;
     $scope.updatedInputDescription = task.description;
     $scope.updatedInputCompleted = task.completed;

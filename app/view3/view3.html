@@ -1,66 +1,81 @@
-<p>This is the partial for view 3.</p>
+<h1 style="text-align: center;">Tasks</h1>
 <hr>
-<h3>Add task</h3>
-<div id="AddWeek3">
-    <form name="taskForm">
-        <p>
-            <label for="Number">
-            <span>Number:</span>
-            <input id="Number" type="text" name="Number" ng-model="inputNumber" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-
-        <p>
-            <label for="Description">
-            <span>Description:</span>
-            <input id="Description" type="text" name="Description" ng-model="inputDescription" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-
-        <p>
-            <label for="completed">
-            <span>Completed:</span>
-            <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-        <button ng-click="AddTaskToList()">Add</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                    <form name="taskForm">
+                        <div class="col col-xs-3">
+                            <input id="Number" type="text" name="Number" ng-model="inputNumber" placeholder="Number" style="width: 100%;" required/>
+                        </div>
+                        <div class="col col-xs-3">
+                            <input id="Description" type="text" name="Description" ng-model="inputDescription" placeholder="Description" style="width: 100%;" required/>
+                        </div>
+                        <div class="col col-xs-3">
+                            <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" placeholder="Completed" style="width: 100%;" required/>
+                        </div>
+                        <div class="col col-xs-3 text-right">
+                            <button ng-click="AddTaskToList()" class="btn btn-sm btn-primary btn-create">Add</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-list">
+                    <thead>
+                        <tr>
+                            <th><em class="fa fa-cog"></em></th>
+                            <th class="hidden-xs">ID</th>
+                            <th>Description</th>
+                            <th>Completed</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="task in tasks">
+                        <td align="center">
+                          <a class="btn btn-default" ng-click="EditTask(task)" data-toggle="modal" data-target="#edit_task"><em class="fa fa-pencil"></em></a>
+                          <a class="btn btn-danger" ng-click="DeleteTask(task)"><em class="fa fa-trash"></em></a>
+                        </td>
+                        <td class="hidden-xs">{{task.number}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.completed}}</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
-<br/>
+<div class="modal fade edit_task" id="edit_task">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                <h3 class="modal-title">Update task</h3>
+            </div>
+            <div class="modal-body">
+                <form name="taskForm">
+                    <input id="updateTaskNumber" type="text" name="Number" ng-model="updatedInputNumber" hidden="true">
+                    <p>
+                        <label for="Description">
+                        <span>Description:</span>
+                        <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
+                        </label>
+                    </p>
 
-<hr>
-<h3>Tasks</h3>
-<ul ng-repeat="task in tasks">
-  <li>|Task number: {{task.number}} | Description: {{task.description}} | <a href="" ng-click="ShowInfo(task)">View</a> | <a href="" ng-click="EditTask(task)">Edit</a> | <a href="" ng-click="DeleteTask(task)">Delete</a></li>
-</ul>
-
-<div id="divData" ng-show="IsVisible"></div>
-
-<div id="UpdateTask" ng-show="UpdateTaskVisible">
-    <h3>Update task</h3>
-    <form name="taskForm">
-        <input id="updateTaskNumber" type="text" name="Number" ng-model="updatedInputNumber" hidden="true">
-        <p>
-            <label for="Description">
-            <span>Description:</span>
-            <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-
-        <p>
-            <label for="completed">
-            <span>Completed:</span>
-            <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
-            <abbr title="required">*</abbr>
-            </label>
-        </p>
-        <button ng-click="UpdateTask()">Update</button>
-    </form>
+                    <p>
+                        <label for="completed">
+                        <span>Completed:</span>
+                        <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
+                        </label>
+                    </p>
+                    <button ng-click="UpdateTask()" class="btn btn-primary btn-create" data-dismiss="modal">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-<hr>
 <p>done by Lyubomir </p>
