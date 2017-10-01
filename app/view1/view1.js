@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngTouch'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', function($scope, myDepartments, RelationshipEmpDep) {
+.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', 'bootstrapExample' ,function($scope, myDepartments, RelationshipEmpDep) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
