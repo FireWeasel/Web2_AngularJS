@@ -14,19 +14,25 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  
+
   <!--references by Alex; Bootstrap-->
   <link rel="stylesheet" href="bower_components/bootstrap-css-only/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#!/view1">Departments</a></li>
-    <li><a href="#!/view2">Employees</a></li>
-    <li><a href="#!/view3">Tasks</a></li>
-    <li><a href="#!/dashboard">Dashboard</a></li>
-  </ul>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid" style="padding-left: 0px;">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li style="background-color: #74DF00;"><a href="#!/view1" style="color: white;">Departments</a></li>
+          <li style="background-color: #AE2DF3;"><a href="#!/view2" style="color: white;">Employees</a></li>
+          <li style="background-color: #FAC942;"><a href="#!/view3" style="color: white;">Tasks</a></li>
+          <li style="background-color: #128CFF;"><a href="#!/dashboard" style="color: white;">Dashboard</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -49,7 +55,7 @@
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
-  
+
   <!--references by Alex; Bootstrap-->
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src=" bower_components/angular-animate/angular-animate.min.js "></script>
