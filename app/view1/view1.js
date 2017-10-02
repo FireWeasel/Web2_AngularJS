@@ -80,7 +80,7 @@ myApp1.directive('departmentsTable', function(){
         template: '<div ng-init="checked = true"> \n\
   <label> \n\
     <input type="checkbox" ng-model="checked" /> \n\
-    Is visible \n\
+    View \n\
   </label> \n\
   <div class="content-area sample-show-hide"> \n\
     <table class="table table-bordered">\n\

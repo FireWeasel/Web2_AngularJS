@@ -1,6 +1,7 @@
 <p>This is the partial for view 1.</p>
 <p> Assignment 1 Deparments table</p>
 <p>done by Marina </p>
+<div class="container">
 <div id="searchM">
     <p>
         <label for="nameSearch"> Search 
@@ -15,6 +16,7 @@
     
     
 </div>
+
 <hr/>
 
 <div ng-init="checked = true" class="col-sm-4"> 
@@ -48,7 +50,7 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
-        <button ng-click="AddDepartmentToList()">Add</button>
+        <button class="btn btn-default" ng-click="AddDepartmentToList()">Add</button>
     </form>
 </div>
    
@@ -65,7 +67,7 @@
         <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
     </select>
 
-    <button ng-click="CBRemove()">Remove</button>
+    <button class="btn btn-warning" ng-click="CBRemove()">Remove</button>
 </div>
 </div>
 <div ng-init="checked = true" class="col-sm-4"> 
@@ -107,8 +109,9 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
-        <button ng-click="UpdateDepartment()">Update</button>
+        <button class="btn btn-info" ng-click="UpdateDepartment()">Update</button>
     </form>
+</div>
 </div>
 </div>
 
