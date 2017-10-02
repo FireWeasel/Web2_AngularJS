@@ -1,4 +1,4 @@
-<p>This is the partial for view 2 (Employees).</p>
+<p style="margin-top: 75px;">This is the partial for view 2 (Employees).</p>
 <h4> done by Alex </h4>
 <hr/>
 
@@ -30,7 +30,7 @@
             <input id="Name" type="text" name="Name" ng-model="inpName" required/>
             <abbr title="required">*</abbr>
         </p>
-        
+
         <p>
             <label for="Occupation">
             Occupation:
@@ -38,15 +38,15 @@
             <input id="Occupation" type="text" name="Occupation" ng-model="inpOccup" required/>
             <abbr title="required">*</abbr>
         </p>
-        
+
         <p>
             <label for="State">
             State:
             </label>
             <input id="State" type="text" name="State" ng-model="inpState" required/>
-            <abbr title="required">*</abbr>            
+            <abbr title="required">*</abbr>
         </p>
-        
+
         <p>
             <label for="Department">
             Department:
@@ -56,13 +56,13 @@
                 <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
             </select>
         </p>
-        
+
         <button ng-click="AddToList()" class="btn btn-primary">Add</button>
   <!--      <button ng-click="RemoveFromList()">Remove</button>-->
     </form>
-    
+
         </div>
-        
+
 
         <div id="AlexRemoveEmployees" class="col-sm-4">
         <h3>To Remove</h3>
@@ -101,7 +101,7 @@
                     <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
                     <abbr title="required">*</abbr>
                 </p>
-                
+
                 <p>
                     <label for="Department">
                     Department:

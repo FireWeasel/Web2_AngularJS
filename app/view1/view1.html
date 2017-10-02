@@ -1,30 +1,30 @@
-<p>This is the partial for view 1.</p>
+<p style="margin-top: 75px;">This is the partial for view 1.</p>
 <p> Assignment 1 Deparments table</p>
 <p>done by Marina </p>
 <div class="container">
 <div id="searchM">
     <p>
-        <label for="nameSearch"> Search 
+        <label for="nameSearch"> Search
         <input type="text" id="nameSearch" ng-model="filterValue" />
         </label>
     </p>
 </div>
 
 <div id="DepartmentsTable">
-   
+
     <departments-Table></departments-Table>
-    
-    
+
+
 </div>
 
 <hr/>
 
-<div ng-init="checked = true" class="col-sm-4"> 
-  <label> 
-    <input type="checkbox" ng-model="checkedAdd" /> 
-    Add 
-  </label> 
-  <div class="show-add"> 
+<div ng-init="checked = true" class="col-sm-4">
+  <label>
+    <input type="checkbox" ng-model="checkedAdd" />
+    Add
+  </label>
+  <div class="show-add">
   <div id="AddWeek3">
     <form ng-show="checkedAdd" name="departmentForm">
     <p>
@@ -34,7 +34,7 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
-    
+
         <p>
             <label for="Name">
             <span>Name:</span>
@@ -42,7 +42,7 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
-        
+
         <p>
             <label for="Headquarters">
             <span>Headquarters:</span>
@@ -53,15 +53,15 @@
         <button class="btn btn-default" ng-click="AddDepartmentToList()">Add</button>
     </form>
 </div>
-   
-  </div> 
+
+  </div>
 </div>
 
 <div ng-init="checked = true" class="col-sm-4">
-<label> 
-    <input type="checkbox" ng-model="checkedRemove" /> 
+<label>
+    <input type="checkbox" ng-model="checkedRemove" />
     Remove
-  </label> 
+  </label>
   <div ng-show="checkedRemove" class="show-add">
     <select ng-model="selectedDepartmentIndex">
         <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
@@ -70,9 +70,9 @@
     <button class="btn btn-warning" ng-click="CBRemove()">Remove</button>
 </div>
 </div>
-<div ng-init="checked = true" class="col-sm-4"> 
-  <label> 
-    <input type="checkbox" ng-model="checkedUpdate" /> 
+<div ng-init="checked = true" class="col-sm-4">
+  <label>
+    <input type="checkbox" ng-model="checkedUpdate" />
     Update
   </label>
 <div ng-show="checkedUpdate" id="UpdateDepartment" class="col-sm-4">
@@ -101,7 +101,7 @@
             <abbr title="required">*</abbr>
             </label>
         </p>
-        
+
         <p>
             <label for="headquarters">
             <span>Headquarters:</span>
@@ -134,7 +134,7 @@
             <abbr title="required"></abbr>
             </label>
         </p>
-        
+
         <p>
             <label for="headquarters">
             <span>Headquarters:</span>
@@ -145,5 +145,3 @@
         <button ng-click="ViewDepartment()">View</button>
     </form>
 </div> -->
-
-
