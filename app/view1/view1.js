@@ -89,7 +89,7 @@ myApp1.directive('departmentsTable', function(){
                         <td ng-show="checked">Headquarters</td>\n\
                         <td ng-show="checked">Employees</td>\n\
                     </tr>\n\
-					<tr ng-repeat="department in departments | filter: filterValue">\n\
+					<tr ng-repeat="department in departments | filter:{Name: filterValue} ">\n\
                         <td>{{department.Name}}</td>\n\
                         <td ng-show="checked">{{department.Headquarters}}</td>\n\
                         <td ng-show="checked">{{department.Employee}}</td>\n\
