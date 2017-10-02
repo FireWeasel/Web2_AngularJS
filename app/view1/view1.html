@@ -1,5 +1,6 @@
 <p>This is the partial for view 1.</p>
 <p> Assignment 1 Deparments table</p>
+<p>done by Marina </p>
 <div id="searchM">
     <p>
         <label for="nameSearch"> Search 
@@ -9,16 +10,21 @@
 </div>
 
 <div id="DepartmentsTable">
-    <!--<input type="checkbox" ng-model="viewInfo" /> View Details<br/><br/> --!>
+   
     <departments-Table></departments-Table>
     
     
 </div>
 <hr/>
 
-<div id="AddWeek3">
-<h3> Add </h3>
-    <form name="departmentForm">
+<div ng-init="checked = true" class="col-sm-4"> 
+  <label> 
+    <input type="checkbox" ng-model="checkedAdd" /> 
+    Add 
+  </label> 
+  <div class="show-add"> 
+  <div id="AddWeek3">
+    <form ng-show="checkedAdd" name="departmentForm">
     <p>
             <label for="Id">
             <span>Id:</span>
@@ -45,19 +51,29 @@
         <button ng-click="AddDepartmentToList()">Add</button>
     </form>
 </div>
-<br/>
-<hr>
-<div id="RemoveWeek3">
-<h3>Remove</h3>
+   
+  </div> 
+</div>
+
+<div ng-init="checked = true" class="col-sm-4">
+<label> 
+    <input type="checkbox" ng-model="checkedRemove" /> 
+    Remove
+  </label> 
+  <div ng-show="checkedRemove" class="show-add">
     <select ng-model="selectedDepartmentIndex">
         <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
     </select>
 
     <button ng-click="CBRemove()">Remove</button>
 </div>
-<hr>
-<h3>Update departments</h3>
-<div id="UpdateDepartment">
+</div>
+<div ng-init="checked = true" class="col-sm-4"> 
+  <label> 
+    <input type="checkbox" ng-model="checkedUpdate" /> 
+    Update
+  </label>
+<div ng-show="checkedUpdate" id="UpdateDepartment" class="col-sm-4">
     <form name="departmentForm">
         <p>
             <label for="Name">
@@ -94,7 +110,7 @@
         <button ng-click="UpdateDepartment()">Update</button>
     </form>
 </div>
-<hr>
+</div>
 
 <!--<h3>View details - departments</h3>
 <div id="ViewDepartment">
@@ -125,7 +141,6 @@
         </p>
         <button ng-click="ViewDepartment()">View</button>
     </form>
-</div>
---!>
+</div> -->
 
-<p>done by Marina </p>
+
