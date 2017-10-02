@@ -29,20 +29,20 @@ tempstring2 = {{filterDepartment}}-->
 <ul class="list-group-item" ng-repeat="task in tasks| filter: {Description: filterTask}">
   <li>Task number: {{task.number}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>
 </ul>
-<div id="showTask" ng-show="TaskVisible"></div>
+<div id="showTask" ng-show="TaskVisible" class="alert alert-info"></div>
 </div>  
 <div class="col-sm-4">
 <h3>Employees</h3>
 <ul class="list-group-item" ng-repeat="employee in employees | filter: {Name: filterEmployee, Department: filterDepartment}">
   <li>Name: {{employee.Name}} <a href="" ng-click="ShowEmployeeInfo(employee)">View</a> </li>
 </ul>
-<div id="showEmployee" ng-show="EmployeeVisible"></div>
+<div id="showEmployee" ng-show="EmployeeVisible" class="alert alert-info"></div>
 </div>  
 <div class="col-sm-4">
 <h3>Departments</h3>                           <!--//Name: filterDepartment, -->
 <ul class="list-group-item" ng-repeat="department in departments | filter: {Name:filterDepartment, Employee: filterEmployee}">
   <li>Name: {{department.Name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
 </ul>
-<div id="showDepartment" ng-show="DepartmentVisible"></div>
+<div id="showDepartment" ng-show="DepartmentVisible" class="alert alert-info"></div>
 </div>  
 </div>  
