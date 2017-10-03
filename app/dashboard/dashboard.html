@@ -26,7 +26,7 @@ tempstring1 = {{filterEmployee}}
 tempstring2 = {{filterDepartment}}-->
 <div class="col-sm-4">
 <h3>Tasks</h3>
-<ul class="list-group-item" ng-repeat="task in tasks| filter: {Description: filterTask}">
+<ul class="list-group-item" ng-repeat="task in tasks| filter: {title: filterTask}">
   <li>Task number: {{task.number}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>
 </ul>
 <div id="showTask" ng-show="TaskVisible" class="alert alert-info"></div>
