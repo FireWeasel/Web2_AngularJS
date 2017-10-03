@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.dashboard', ['ngRoute'])
+angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/dashboard', {
@@ -9,10 +9,11 @@ angular.module('myApp.dashboard', ['ngRoute'])
   });
 }])
 
-.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', function($scope, myTasks, myEmployees, myDepartments) {
+.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', 'uiCalendarConfig', function($scope, myTasks, myEmployees, myDepartments, uiCalendarConfig) {
 	$scope.tasks = myTasks.data;
 	$scope.employees = myEmployees.data;
 	$scope.departments = myDepartments.data;
+  $scope.eventSources = [];
 
 	$scope.TaskVisible = false;
 	$scope.EmployeeVisible = false;

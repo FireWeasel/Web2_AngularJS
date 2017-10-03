@@ -8,7 +8,8 @@ var module = angular.module('myApp', [
   'myApp.view3',
   'myApp.dashboard',
   'myApp.version',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.calendar'
 ])
 module.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
@@ -41,18 +42,18 @@ module.factory('myTasks', [function() {
 }])
 
 module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartments', function(myTasks, myEmployees, myDepartments) {
-        
+
   var obj = {};
   obj.data = myTasks.data;
 
-  for (var i = 0; i < myTasks.data.length; i++) {           
+  for (var i = 0; i < myTasks.data.length; i++) {
     var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
     myDepartments.data[randomNumber]['task'] = myTasks.data[i].description;
     myTasks.data[i]['department'] = myDepartments.data[randomNumber].Name;
     myTasks.data[i]['employees'] = [];
     var n = Math.floor((Math.random()*myEmployees.data.length-1)+0);
     for(var k = 0; k < n; k++) {
-      myTasks.data[i]['employees'] += myEmployees.data[Math.floor(Math.random()*myEmployees.data.length)].Name;      
+      myTasks.data[i]['employees'] += myEmployees.data[Math.floor(Math.random()*myEmployees.data.length)].Name;
     }
   }
 
@@ -62,7 +63,7 @@ module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartme
 //Alex
 //assignment 4.3 factory holding all of the employees
                         //'myDepartments',          myDepartments
-module.factory('myEmployees', [function(){        
+module.factory('myEmployees', [function(){
         var obj = {};
 
         obj.data =
@@ -75,51 +76,51 @@ module.factory('myEmployees', [function(){
             {"Name":"Catelyn Jones",
              "Occupation":"Secretary",
              "State":"Indiana"
-//            ,"Department":String(myDepartments.data[0].Name)       
+//            ,"Department":String(myDepartments.data[0].Name)
             },
             {"Name":"Tyler Lee",
              "Occupation":"Manager",
-             "State":"Washington"  
-//             ,"Department":String(myDepartments.data[2].Name)     
+             "State":"Washington"
+//             ,"Department":String(myDepartments.data[2].Name)
             },
             {"Name":"Peter Smith",
              "Occupation":"CEO",
-             "State":"New York"    
-//          ,"Department":String(myDepartments.data[2].Name)    
+             "State":"New York"
+//          ,"Department":String(myDepartments.data[2].Name)
             },
             {"Name":"Jack Spiker",
              "Occupation":"Lawyer",
-             "State":"California"  
- //            ,"Department":String(myDepartments.data[1].Name)      
+             "State":"California"
+ //            ,"Department":String(myDepartments.data[1].Name)
             }
         ];
-        
+
         //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
 //        for (var i = 0; i < obj.data.length; i++) {
-//            
+//
 //            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
 //            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
 //        }
-        
+
         return obj;
 }])
 
 module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
-        
+
         var obj = {};
         obj.data = myDepartments.data;
         //Assigning a RANDOM department to EACH Employee
         for (var i = 0; i < myEmployees.data.length; i++) {
-            
+
             var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
             myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
-            if(!myDepartments.data[randomNumber]['Employee']) 
+            if(!myDepartments.data[randomNumber]['Employee'])
             {
  				 myDepartments.data[randomNumber]['Employee'] = '';
  			}
             myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;
         }
-        
+
         return obj;
 }])
 
@@ -130,7 +131,7 @@ module.factory('myDepartments', [function() {
 
         obj.data =
         [
-            {   
+            {
             	"id" : "1",
                 "Name":"Management",
                 "Headquarters":"New York City"
@@ -146,7 +147,7 @@ module.factory('myDepartments', [function() {
                 "Headquarters":"Boston"
             },
             {
-            	"id" : "4", 
+            	"id" : "4",
                 "Name":"IT",
                 "Headquarters":"Seattle"
             }
