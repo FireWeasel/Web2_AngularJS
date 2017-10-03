@@ -11,6 +11,12 @@ var module = angular.module('myApp', [
   'ui.bootstrap',
   'ui.calendar'
 ])
+
+var date = new Date();
+var d = date.getDate();
+var m = date.getMonth();
+var y = date.getFullYear();
+
 module.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
@@ -24,16 +30,24 @@ module.factory('myTasks', [function() {
   obj.data =
   [
       {"number":"1",
-       "description":"Clean the kitchen",
+       "title":"Clean the kitchen",
+       "start": new Date(y, m, 1),
+       "end": new Date(y, m, 2),
        "completed":"Yes"
       }, {"number":"2",
-       "description":"Clean the living room",
+       "title":"Clean the living room",
+       "start": new Date(y, m, 2),
+       "end": new Date(y, m, 3),
        "completed":"No"
       }, {"number":"3",
-       "description":"Clean the room",
+       "title":"Clean the room",
+       "start": new Date(y, m, 3),
+       "end": new Date(y, m, 4),
        "completed":"No"
       }, {"number":"4",
-       "description":"Do the WEB2 homework",
+       "title":"Do the WEB2 homework",
+       "start": new Date(y, m, 4),
+       "end": new Date(y, m, 5),
        "completed":"Yes"
       }
   ];

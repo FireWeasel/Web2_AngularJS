@@ -10,10 +10,11 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 }])
 
 .controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', 'uiCalendarConfig', function($scope, myTasks, myEmployees, myDepartments, uiCalendarConfig) {
-	$scope.tasks = myTasks.data;
+
+  $scope.tasks = myTasks.data;
 	$scope.employees = myEmployees.data;
 	$scope.departments = myDepartments.data;
-  $scope.eventSources = [];
+  $scope.eventSources = [$scope.tasks];
 
 	$scope.TaskVisible = false;
 	$scope.EmployeeVisible = false;
@@ -22,7 +23,7 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 	$scope.ShowTaskInfo = function(task) {
 		var myEl = angular.element(document.querySelector('#showTask'));
 		$scope.TaskVisible = true;
-		myEl.html("Task info -> Number: " + task.number + " | Description: " + task.description + " | Completed: " + task.completed);
+		myEl.html("Task info -> Number: " + task.number + " | Description: " + task.title + " | Completed: " + task.completed + " | Start date: " + task.start.toString() + " | End date: " + task.end.toString());
 	};
 
 	$scope.ShowEmployeeInfo = function(employee) {

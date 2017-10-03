@@ -11,6 +11,10 @@ angular.module('myApp.view3', ['ngRoute'])
 
 .controller('View3Ctrl', [ '$scope', 'myTasks', 'TaskDepartmentEmployees', function($scope, myTasks, TaskDepartmentEmployees) {
 
+  $("#Start").datepicker();
+  $("#End").datepicker();
+  $("#updatedStart").datepicker();
+  $("#updatedEnd").datepicker();
   $scope.UpdateTaskVisible = false;
 
   $scope.tasks = myTasks.data;
@@ -19,8 +23,10 @@ angular.module('myApp.view3', ['ngRoute'])
     if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
         $scope.tasks.push({
                 "number": $scope.inputNumber,
-                "description": $scope.inputDescription,
-                "completed": $scope.inputCompleted
+                "title": $scope.inputDescription,
+                "completed": $scope.inputCompleted,
+                "start": $("#Start").datepicker('getDate'),
+                "end": $("#End").datepicker('getDate')
         });
     }
     $scope.inputNumber = "";
@@ -30,7 +36,7 @@ angular.module('myApp.view3', ['ngRoute'])
 
   $scope.DeleteTask = function(task) {
     var index = $scope.tasks.indexOf(task);
-    $scope.tasks.splice(index, 1); 
+    $scope.tasks.splice(index, 1);
   };
 
   $scope.UpdateTask = function(){
@@ -43,13 +49,17 @@ angular.module('myApp.view3', ['ngRoute'])
 
     $scope.tasks.find(checkNumber).description = $scope.updatedInputDescription;
     $scope.tasks.find(checkNumber).completed = $scope.updatedInputCompleted;
+    $scope.tasks.find(checkNumber).start = $("#updatedStart").datepicker('getDate');
+    $scope.tasks.find(checkNumber).end = $("#updatedEnd").datepicker('getDate');
     $scope.UpdateTaskVisible = false;
   };
 
   $scope.EditTask = function(task) {
     $scope.updatedInputNumber = task.number;
-    $scope.updatedInputDescription = task.description;
+    $scope.updatedInputDescription = task.title;
     $scope.updatedInputCompleted = task.completed;
+    $("#updatedStart").datepicker('setDate', task.start);
+    $("#updatedEnd").datepicker('setDate', task.end);
   }
 
 }]);

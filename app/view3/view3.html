@@ -7,16 +7,22 @@
               <div class="panel-heading">
                 <div class="row">
                     <form name="taskForm">
-                        <div class="col col-xs-3">
+                        <div class="col col-xs-2">
                             <input id="Number" type="text" name="Number" ng-model="inputNumber" placeholder="Number" style="width: 100%;" required/>
                         </div>
-                        <div class="col col-xs-3">
+                        <div class="col col-xs-2">
                             <input id="Description" type="text" name="Description" ng-model="inputDescription" placeholder="Description" style="width: 100%;" required/>
                         </div>
-                        <div class="col col-xs-3">
+                        <div class="col col-xs-2">
                             <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" placeholder="Completed" style="width: 100%;" required/>
                         </div>
-                        <div class="col col-xs-3 text-right">
+                        <div class="col col-xs-2">
+                            <input id="Start" type="text" name="Start" ng-model="inputStart" placeholder="Start" style="width: 100%;" required/>
+                        </div>
+                        <div class="col col-xs-2">
+                            <input id="End" type="text" name="End" ng-model="inputEnd" placeholder="End" style="width: 100%;" required/>
+                        </div>
+                        <div class="col col-xs-2 text-right">
                             <button ng-click="AddTaskToList()" class="btn btn-sm btn-primary btn-create">Add</button>
                         </div>
                     </form>
@@ -34,6 +40,8 @@
                             <th class="hidden-xs">ID</th>
                             <th>Description</th>
                             <th>Completed</th>
+                            <th>Start date</th>
+                            <th>End date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +51,10 @@
                           <a class="btn btn-danger" ng-click="DeleteTask(task)"><em class="fa fa-trash"></em></a>
                         </td>
                         <td class="hidden-xs">{{task.number}}</td>
-                        <td>{{task.description}}</td>
+                        <td>{{task.title}}</td>
                         <td>{{task.completed}}</td>
+                        <td>{{task.start.toString()}}</td>
+                        <td>{{task.end.toString()}}</td>
                       </tr>
                     </tbody>
                 </table>
@@ -65,15 +75,29 @@
                     <input id="updateTaskNumber" type="text" name="Number" ng-model="updatedInputNumber" hidden="true">
                     <p>
                         <label for="Description">
-                        <span>Description:</span>
-                        <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
+                          <span>Description:</span>
+                          <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
                         </label>
                     </p>
 
                     <p>
                         <label for="completed">
-                        <span>Completed:</span>
-                        <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
+                          <span>Completed:</span>
+                          <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
+                        </label>
+                    </p>
+
+                    <p>
+                        <label for="Start">
+                          <span>Start date:</span>
+                          <input id="updatedStart" type="text" name="Start" ng-model="updatedInputStart" required/>
+                        </label>
+                    </p>
+
+                    <p>
+                        <label for="End">
+                          <span>End date:</span>
+                          <input id="updatedEnd" type="text" name="End" ng-model="updatedInputEnd" required/>
                         </label>
                     </p>
                     <button ng-click="UpdateTask()" class="btn btn-primary btn-create" data-dismiss="modal">Update</button>
