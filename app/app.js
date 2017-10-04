@@ -75,39 +75,100 @@ module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartme
 }])
 
 //Alex
-//assignment 4.3 factory holding all of the employees
-                        //'myDepartments',          myDepartments
-module.factory('myEmployees', [function(){
-        var obj = {};
-
-        obj.data =
+module.service('alexService', ['$http', function($http){
+        var returnEmployees = 
         [
-            {"Name":"John Doe",
-             "Occupation":"Developer",
-             "State":"Ohio"
-//             ,"Department":String(myDepartments.data[0].Name)
-            },
-            {"Name":"Catelyn Jones",
-             "Occupation":"Secretary",
-             "State":"Indiana"
-//            ,"Department":String(myDepartments.data[0].Name)
-            },
-            {"Name":"Tyler Lee",
-             "Occupation":"Manager",
-             "State":"Washington"
-//             ,"Department":String(myDepartments.data[2].Name)
-            },
-            {"Name":"Peter Smith",
-             "Occupation":"CEO",
-             "State":"New York"
-//          ,"Department":String(myDepartments.data[2].Name)
-            },
-            {"Name":"Jack Spiker",
-             "Occupation":"Lawyer",
-             "State":"California"
- //            ,"Department":String(myDepartments.data[1].Name)
+            {
+                "Name":"nothing"
             }
         ];
+        
+        this.getEmployees = function(){
+           returnEmployees = $http.get('http://i874156.iris.fhict.nl/WEB2/employees');
+            //will get Expected array but received: {}
+            
+            
+            //same error EVEN if we put Name, Occupation & State in every entry
+//            for (var i = 0; i <= returnEmployees.length; i++){                
+//                returnEmployees[i].Name = returnEmployees[i].firstName;
+//                returnEmployees[i].Occupation = "dev";
+//                returnEmployees[i].State = "NY";
+//            }
+            
+            
+            //if I reinitialize it so it's like the previous employee template it WILL WORK
+            returnEmployees =
+                [
+                    {"Name":"John Doe",
+                     "Occupation":"Developer",
+                     "State":"Ohio"
+        //             ,"Department":String(myDepartments.data[0].Name)
+                    },
+                    {"Name":"Catelyn Jones",
+                     "Occupation":"Secretary",
+                     "State":"Indiana"
+        //            ,"Department":String(myDepartments.data[0].Name)
+                    },
+                    {"Name":"Tyler Lee",
+                     "Occupation":"Manager",
+                     "State":"Washington"
+        //             ,"Department":String(myDepartments.data[2].Name)
+                    },
+                    {"Name":"Peter Smith",
+                     "Occupation":"CEO",
+                     "State":"New York"
+        //          ,"Department":String(myDepartments.data[2].Name)
+                    },
+                    {"Name":"Jack Spiker",
+                     "Occupation":"Lawyer",
+                     "State":"California"
+         //            ,"Department":String(myDepartments.data[1].Name)
+                    }
+                ];
+
+           
+            return returnEmployees;
+        };     
+}])
+
+module.factory('myEmployees', ['alexService', function(alexService){
+        var obj = {};
+     
+//        obj.data = alexService.getEmployees();
+//        obj.data.Name = obj.data.firstName;
+        
+        //doesn't work
+        var alexData = alexService.getEmployees();
+       obj.data = alexData;
+
+//        obj.data =
+//        [
+//            {"Name":"John Doe",
+//             "Occupation":"Developer",
+//             "State":"Ohio"
+////             ,"Department":String(myDepartments.data[0].Name)
+//            },
+//            {"Name":"Catelyn Jones",
+//             "Occupation":"Secretary",
+//             "State":"Indiana"
+////            ,"Department":String(myDepartments.data[0].Name)
+//            },
+//            {"Name":"Tyler Lee",
+//             "Occupation":"Manager",
+//             "State":"Washington"
+////             ,"Department":String(myDepartments.data[2].Name)
+//            },
+//            {"Name":"Peter Smith",
+//             "Occupation":"CEO",
+//             "State":"New York"
+////          ,"Department":String(myDepartments.data[2].Name)
+//            },
+//            {"Name":"Jack Spiker",
+//             "Occupation":"Lawyer",
+//             "State":"California"
+// //            ,"Department":String(myDepartments.data[1].Name)
+//            }
+//        ];
 
         //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
 //        for (var i = 0; i < obj.data.length; i++) {

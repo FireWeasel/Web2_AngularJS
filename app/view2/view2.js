@@ -12,10 +12,27 @@ angular.module('myApp.view2', ['ngRoute'])
 .controller('View2Ctrl', [  '$scope',
                             'myEmployees',
                             'RelationshipEmpDep',
-                            function($scope, myEmployees, RelationshipEmpDep) {
+                            'alexService',
+                            function($scope, myEmployees, RelationshipEmpDep, alexService) {
                                 
         //employee list in app.js
         $scope.employees = myEmployees.data;//initializing factory
+//         alexService.getEmployees()
+//                .then(function(response){
+//                            $scope.employees = [{"Name":"John Doe",
+//             "Occupation":"Developer",
+//             "State":"Ohio"
+//            }];
+//        }), function(error){
+//            $scope.employees = [
+//                {
+//                "Name":"ERROR",
+//                "Occupation":"ERROR",
+//                "State":"ERROR"
+//                }
+//            ];
+//        };
+
         
         $scope.departments = [];
         for (var i = 0; i < RelationshipEmpDep.data.length; i++){
