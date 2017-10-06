@@ -28,7 +28,7 @@
   <div id="AddWeek3">
     <form ng-show="checkedAdd" name="departmentForm">
     <p>
-            <label for="Id">
+            <label for="No">
             <span>Id:</span>
             <input id="Id" type="text" name="Id" ng-model="inputId" required/>
             <abbr title="required">*</abbr>
@@ -44,9 +44,9 @@
         </p>
 
         <p>
-            <label for="Headquarters">
-            <span>Headquarters:</span>
-            <input id="Headquarters" type="text" name="Headquarters" ng-model="inputHeadquarters" required/>
+            <label for="Code">
+            <span>Code:</span>
+            <input id="Headquarters" type="text" name="Headquarters" ng-model="inputCode" required/>
             <abbr title="required">*</abbr>
             </label>
         </p>
@@ -64,7 +64,7 @@
   </label>
   <div ng-show="checkedRemove" class="show-add">
     <select ng-model="selectedDepartmentIndex">
-        <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+        <option ng-repeat="department in departments" value="{{$index}}">{{department.name}}</option>
     </select>
 
     <button class="btn btn-warning" ng-click="CBRemove()">Remove</button>
@@ -81,14 +81,14 @@
             <label for="Name">
             <span>Name:</span>
             <select ng-model="SelectedDepartmentUpdate">
-             <option ng-repeat="department in departments" value="{{$index}}">{{department.Name}}</option>
+             <option ng-repeat="department in departments" value="{{$index}}">{{department.name}}</option>
             </select>
             </label>
         </p>
 
         <p>
             <label for="Id">
-            <span>Id:</span>
+            <span>No:</span>
             <input id="updateId" type="text" name="Id" ng-model="updateId" required/>
             <abbr title="required">*</abbr>
             </label>
@@ -104,8 +104,8 @@
 
         <p>
             <label for="headquarters">
-            <span>Headquarters:</span>
-            <input id="updateHeadquarters" type="text" name="Headquarters" ng-model="updatedInputHeadquarters" required/>
+            <span>Code:</span>
+            <input id="updateHeadquarters" type="text" name="Headquarters" ng-model="updatedCode" required/>
             <abbr title="required">*</abbr>
             </label>
         </p>

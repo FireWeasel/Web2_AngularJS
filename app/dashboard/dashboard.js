@@ -9,11 +9,20 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
   });
 }])
 
-.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', 'uiCalendarConfig', function($scope, myTasks, myEmployees, myDepartments, uiCalendarConfig) {
+.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'departmentService', 'uiCalendarConfig', function($scope, myTasks, myEmployees, departmentService, uiCalendarConfig) {
 
   $scope.tasks = myTasks.data;
 	$scope.employees = myEmployees.data;
-	$scope.departments = myDepartments.data;
+	//$scope.departments = myDepartments.data;
+	
+	
+		departmentService.getDepartments()
+		.then(function(response){
+		$scope.departments = response.data;
+		},function(error){
+		$scope.error = error;
+		}); 
+	
   $scope.eventSources = [$scope.tasks];
 
 	$scope.TaskVisible = false;
@@ -35,6 +44,6 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 	$scope.ShowDepartmentInfo = function(department) {
 		var myEl = angular.element(document.querySelector('#showDepartment'));
 		$scope.DepartmentVisible = true;
-		myEl.html("Department info -> Id: " + department.id + " | Name: " + department.Name + " | Headquaters: " + department.Headquaters);
+		myEl.html("Department info -> Id: " + department.no + " | Name: " + department.name + " | Code: " + department.code);
 	};
 }]);

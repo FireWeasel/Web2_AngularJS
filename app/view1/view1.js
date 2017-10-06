@@ -9,7 +9,7 @@ var myApp1 = angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-myApp1.controller('View1Ctrl', [ '$scope', 'RelationshipEmpDep', 'marinaService', function($scope, RelationshipEmpDep, marinaService) {
+myApp1.controller('View1Ctrl', [ '$scope', 'departmentService', function($scope, departmentService) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -32,20 +32,26 @@ myApp1.controller('View1Ctrl', [ '$scope', 'RelationshipEmpDep', 'marinaService'
 //                "Headquarters":"Seattle"
 //            }
 //        ];
-		marinaService.getDepartments()
+		/*departmentService.getDepartments()
 		.then(function(response){
 		$scope.departments = response.data;
 		}, function(error){
 		$scope.error = error;
-		});
-        
+		});*/
+		
+		departmentService.getDepartments()
+		.then(function(response){
+		$scope.departments = response.data;
+		},function(error){
+		$scope.error = error;
+		}); 
         
         $scope.AddDepartmentToList = function() {
-        if($scope.inputName && $scope.inputHeadquarters && $scope.inputId) {
+        if($scope.inputName && $scope.inputCode && $scope.inputId) {
         $scope.departments.push({
-        				"id" : $scope.inputId,
-                        "Name": $scope.inputName,
-                        "Headquarters": $scope.inputHeadquarters
+        				"no" : $scope.inputId,
+                        "name": $scope.inputName,
+                        "code": $scope.inputCode
                         })};
         }
         
@@ -61,16 +67,16 @@ myApp1.controller('View1Ctrl', [ '$scope', 'RelationshipEmpDep', 'marinaService'
 
           var index = $scope.SelectedDepartmentUpdate;
 
-		  $scope.departments[index].id = $scope.updateId;
-          $scope.departments[index].Name = $scope.updatedInputName;
-          $scope.departments[index].Headquarters = $scope.updatedInputHeadquarters;
+		  $scope.departments[index].no = $scope.updateId;
+          $scope.departments[index].name = $scope.updatedInputName;
+          $scope.departments[index].code = $scope.updatedCode;
         }
 
         $scope.ViewDepartment = function() {
             var index = $scope.SelectedDepartmentView;
 
-            $scope.viewId = $scope.departments[index].id;
-            $scope.viewHeadquarters = $scope.departments[index].Headquarters;
+            $scope.viewId = $scope.departments[index].no;
+            $scope.viewHeadquarters = $scope.departments[index].code;
         }
         
         //some properties that are not working

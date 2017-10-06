@@ -41,7 +41,7 @@ tempstring2 = {{filterDepartment}}-->
 <div class="col-sm-4">
 <h3>Departments</h3>                           <!--//Name: filterDepartment, -->
 <ul class="list-group-item" ng-repeat="department in departments | filter: {Name:filterDepartment, Employee: filterEmployee}">
-  <li>Name: {{department.Name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
+  <li>Name: {{department.name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
 </ul>
 <div id="showDepartment" ng-show="DepartmentVisible" class="alert alert-info"></div>
 </div>
