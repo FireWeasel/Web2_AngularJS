@@ -9,7 +9,7 @@ var myApp1 = angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-myApp1.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep', function($scope, myDepartments, RelationshipEmpDep) {
+myApp1.controller('View1Ctrl', [ '$scope', 'RelationshipEmpDep', 'marinaService', function($scope, RelationshipEmpDep, marinaService) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -32,7 +32,12 @@ myApp1.controller('View1Ctrl', [ '$scope', 'myDepartments', 'RelationshipEmpDep'
 //                "Headquarters":"Seattle"
 //            }
 //        ];
-        $scope.departments = myDepartments.data;
+		marinaService.getDepartments()
+		.then(function(response){
+		$scope.departments = response.data;
+		}, function(error){
+		$scope.error = error;
+		});
         
         
         $scope.AddDepartmentToList = function() {
@@ -85,14 +90,14 @@ myApp1.directive('departmentsTable', function(){
   <div class="content-area sample-show-hide"> \n\
     <table class="table table-bordered">\n\
                     <tr class="TableDep">\n\
-                        <td>Name</td>\n\
-                        <td ng-show="checked">Headquarters</td>\n\
-                        <td ng-show="checked">Employees</td>\n\
+                        <td>no</td>\n\
+                        <td ng-show="checked">code</td>\n\
+                        <td ng-show="checked">name</td>\n\
                     </tr>\n\
-					<tr ng-repeat="department in departments | filter:{Name: filterValue} ">\n\
-                        <td>{{department.Name}}</td>\n\
-                        <td ng-show="checked">{{department.Headquarters}}</td>\n\
-                        <td ng-show="checked">{{department.Employee}}</td>\n\
+					<tr ng-repeat="department in departments">\n\
+                        <td>{{department.no}}</td>\n\
+                        <td ng-show="checked">{{department.code}}</td>\n\
+                        <td ng-show="checked">{{department.name}}</td>\n\
                     </tr>\n\
                 </table> \n\
   </div> \n\

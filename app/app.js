@@ -127,12 +127,13 @@ module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(m
         for (var i = 0; i < myEmployees.data.length; i++) {
 
             var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-            myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
-            if(!myDepartments.data[randomNumber]['Employee'])
+            myEmployees.data[i]['Department'] = myDepartments.data[randomNumber];
+           
+           /* if(!myDepartments.data[randomNumber]['Employee'])
             {
  				 myDepartments.data[randomNumber]['Employee'] = '';
  			}
-            myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;
+            myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;*/
         }
 
         return obj;
@@ -140,9 +141,25 @@ module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(m
 
 
 //Marina                'myEmployees',      myEmployees
+
+module.service('marinaService', ['$http', function($http){
+		//var departmentsList = [];
+	
+		this.getDepartments= function(){
+		return $http.get('http://i874156.iris.fhict.nl/WEB2/departments');
+};
+
+	//return departmentsList;
+}]);
+
+
+
 module.factory('myDepartments', [function() {
         var obj = {};
-
+		
+		
+		//leaving factory for other factories 	
+		//obj.data = marinaService.getDepartments();
         obj.data =
         [
             {
