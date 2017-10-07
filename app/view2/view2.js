@@ -10,33 +10,15 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', [  '$scope',
-                            'newEmployees',
-                            function($scope, newEmployees) {
+                            'myEmployees',
+                            function($scope, myEmployees) {
                                 
         //employee list in app.js
-        $scope.employees = newEmployees.data;//initializing factory
+        $scope.employees = myEmployees.data;//initializing factory
 
-                                
-//$scope.employees = [];
+
         
-//        employeesService.getEmployees()
-//		.then(function(response){
-//		$scope.tempEmployees = response.data;
-//                        
-//                        //loop to limit $scope.employees.length to 6
-//                        for (var i = 0; i < 6; i++){
-//                            var tempEmployee = $scope.tempEmployees[i];
-//                            tempEmployee.Name = tempEmployee.firstName + " " + tempEmployee.lastName;
-//                            
-//                            $scope.employees.push(tempEmployee);
-//                            
-//                        }
-//                    
-//		},function(error){
-//		$scope.error = error;
-//		}); 
-        
-        
+//        
 //        $scope.departments = [];
 //        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
 //            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
@@ -134,6 +116,7 @@ angular.module('myApp.view2', ['ngRoute'])
                             <td>{{employee.birthDate}}</td>\n\
                             <td>{{employee.gender}}</td>\n\
                             <td ng-show="alexDetails">{{employee.hireDate}}</td>\n\
+                            <td ng-show="alexDetails">{{employee.Department}}</td>\n\
                         </tr>\n\
                     </tbody>\n\
                     </table>'

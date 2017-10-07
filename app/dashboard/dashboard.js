@@ -9,7 +9,7 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
   });
 }])
 
-.controller('DashboardCtrl', [ '$scope', 'myTasks', 'newEmployees', 'departmentService', 'uiCalendarConfig', function($scope, myTasks, newEmployees, departmentService, uiCalendarConfig) {
+.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'departmentService', 'uiCalendarConfig', function($scope, myTasks, myEmployees, departmentService, uiCalendarConfig) {
 
   $scope.tasks = myTasks.data;
 	//$scope.employees = myEmployees.data;
@@ -24,27 +24,9 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 		}); 
                 
                 
-                $scope.employees = newEmployees.data;
+                $scope.employees = myEmployees.data;
                 
-                //calls the service a new time rendering all new additions in each view controller useless & reseted
-//                $scope.employees = [];
-//                 employeesService.getEmployees()
-//		.then(function(response){
-//		$scope.tempEmployees = response.data;
-//                        
-//                        //loop to limit $scope.employees.length to 6
-//                        for (var i = 0; i < 6; i++){
-//                            var tempEmployee = $scope.tempEmployees[i];
-//                            tempEmployee.Name = tempEmployee.firstName + " " + tempEmployee.lastName;
-//                            
-//                            $scope.employees.push(tempEmployee);
-//                            
-//                        }
-//                    
-//		},function(error){
-//		$scope.error = error;
-//		}); 
-	
+              
   $scope.eventSources = [$scope.tasks];
 
 	$scope.TaskVisible = false;

@@ -9,7 +9,7 @@ var myApp1 = angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
   });
 }])
                                                     //, 'myEmployees'               , myEmployees
-myApp1.controller('View1Ctrl', [ '$scope', 'departmentService', function($scope, departmentService) {
+myApp1.controller('View1Ctrl', [ '$scope', 'departmentService', 'myEmployees', function($scope, departmentService, myEmployees) {
 //    $scope.departments = [
 //            {   
 //            	"id" : "1",
@@ -39,12 +39,26 @@ myApp1.controller('View1Ctrl', [ '$scope', 'departmentService', function($scope,
 		$scope.error = error;
 		});*/
 		
-		departmentService.getDepartments()
+                departmentService.getDepartments()
 		.then(function(response){
 		$scope.departments = response.data;
 		},function(error){
 		$scope.error = error;
 		}); 
+                
+                
+                
+                //after you fix your factory add something in it like this so each department gets connected to an employee
+//                var employees = myEmployees.data;
+//                        
+//                for (var i = 0; i < $scope.departments.length; i++){
+//                       
+//                    for (var j = 0; j < employees.length; i++){                            
+//                        if ($scope.departments[i].name === employees[j].Department){
+//                                $scope.department.Employees += " - " + employees[j].Name;
+//                        }
+//                    }
+//                }    
         
         $scope.AddDepartmentToList = function() {
         if($scope.inputName && $scope.inputCode && $scope.inputId) {
@@ -99,11 +113,13 @@ myApp1.directive('departmentsTable', function(){
                         <td>no</td>\n\
                         <td ng-show="checked">code</td>\n\
                         <td ng-show="checked">name</td>\n\
+         <!--               <td>Employees</td>-->\n\
                     </tr>\n\
 					<tr ng-repeat="department in departments| filter:filterValue">\n\
                         <td>{{department.no}}</td>\n\
                         <td ng-show="checked">{{department.code}}</td>\n\
                         <td ng-show="checked">{{department.name}}</td>\n\
+      <!--                  <td>{{department.Employees}}</td>-->\n\
                     </tr>\n\
                 </table> \n\
   </div> \n\

@@ -81,7 +81,7 @@ module.service('employeesService', ['$http', function($http) {
         };
 }]);
 
-module.factory('newEmployees', ['employeesService', function(employeesService) {
+module.factory('myEmployees', ['employeesService', 'myDepartments', function(employeesService, myDepartments) {
         var obj = {};
         
         //var employees = [];
@@ -97,6 +97,9 @@ module.factory('newEmployees', ['employeesService', function(employeesService) {
                             var temp = tempEmployees[i];
                             temp.Name = temp.firstName + " " + temp.lastName;
                             
+                            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+                            temp.Department = myDepartments.data[randomNumber].Name;
+                            
                             obj.data.push(temp);                            
                         }
                     
@@ -104,74 +107,79 @@ module.factory('newEmployees', ['employeesService', function(employeesService) {
                         console.log(error);
                     });        
               
+              
         
         return obj;
-}]);
+}])
                         //'myDepartments',          myDepartments
-module.factory('myEmployees', [function(){
-        var obj = {};
-
-                //leaving factory for other factories
-        obj.data =
-        [
-            {"Name":"John Doe",
-             "Occupation":"Developer",
-             "State":"Ohio"
-//             ,"Department":String(myDepartments.data[0].Name)
-            },
-            {"Name":"Catelyn Jones",
-             "Occupation":"Secretary",
-             "State":"Indiana"
-//            ,"Department":String(myDepartments.data[0].Name)
-            },
-            {"Name":"Tyler Lee",
-             "Occupation":"Manager",
-             "State":"Washington"
-//             ,"Department":String(myDepartments.data[2].Name)
-            },
-            {"Name":"Peter Smith",
-             "Occupation":"CEO",
-             "State":"New York"
-//          ,"Department":String(myDepartments.data[2].Name)
-            },
-            {"Name":"Jack Spiker",
-             "Occupation":"Lawyer",
-             "State":"California"
- //            ,"Department":String(myDepartments.data[1].Name)
-            }
-        ];
-
-        //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
-//        for (var i = 0; i < obj.data.length; i++) {
+//module.factory('myEmployees', [function(){
+//        var obj = {};
 //
-//            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-//            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+//                //leaving factory for other factories
+//        obj.data =
+//        [
+//            {"Name":"John Doe",
+//             "Occupation":"Developer",
+//             "State":"Ohio"
+////             ,"Department":String(myDepartments.data[0].Name)
+//            },
+//            {"Name":"Catelyn Jones",
+//             "Occupation":"Secretary",
+//             "State":"Indiana"
+////            ,"Department":String(myDepartments.data[0].Name)
+//            },
+//            {"Name":"Tyler Lee",
+//             "Occupation":"Manager",
+//             "State":"Washington"
+////             ,"Department":String(myDepartments.data[2].Name)
+//            },
+//            {"Name":"Peter Smith",
+//             "Occupation":"CEO",
+//             "State":"New York"
+////          ,"Department":String(myDepartments.data[2].Name)
+//            },
+//            {"Name":"Jack Spiker",
+//             "Occupation":"Lawyer",
+//             "State":"California"
+// //            ,"Department":String(myDepartments.data[1].Name)
+//            }
+//        ];
+//
+//        //4.6 assignment              Made it so a Department is assigned RANDOMLY (on every F5 full website Refresg)
+////        for (var i = 0; i < obj.data.length; i++) {
+////
+////            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+////            obj.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+////        }
+//
+//        return obj;
+//}])
+
+//module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
+//
+//        var obj = {};
+//        obj.data = myDepartments.data;
+//        
+//        
+//        //Assigning a RANDOM department to EACH Employee
+//        
+//        
+//        //assigning department on index 1
+//        for (var i = 0; i < myEmployees.data.length; i++) {
+//
+//            //var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+//            var randomNumber = 1;
+//            myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
+//           
+////            if(!myDepartments.data[randomNumber]['Employee'])
+////            {
+////                    myDepartments.data[randomNumber]['Employee'] = '';
+////            }
+////            myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;
 //        }
-
-        return obj;
-}])
-
-module.factory('RelationshipEmpDep', ['myEmployees', 'myDepartments', function(myEmployees, myDepartments) {
-
-        var obj = {};
-        obj.data = myDepartments.data;
-        
-        
-        //Assigning a RANDOM department to EACH Employee
-        for (var i = 0; i < myEmployees.data.length; i++) {
-
-            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-            myEmployees.data[i]['Department'] = myDepartments.data[randomNumber].Name;
-           
-           if(!myDepartments.data[randomNumber]['Employee'])
-            {
- 				 myDepartments.data[randomNumber]['Employee'] = '';
- 			}
-            myDepartments.data[randomNumber]['Employee'] += myEmployees.data[i].Name + " " ;
-        }
-
-        return obj;
-}])
+//
+//        return obj;
+//}])
 
 
 //Marina                'myEmployees',      myEmployees
