@@ -10,17 +10,37 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', [  '$scope',
-                            'myEmployees',
-                            'RelationshipEmpDep',
-                            function($scope, myEmployees, RelationshipEmpDep) {
+                            'newEmployees',
+                            function($scope, newEmployees) {
                                 
         //employee list in app.js
-        $scope.employees = myEmployees.data;//initializing factory
+        $scope.employees = newEmployees.data;//initializing factory
+
+                                
+//$scope.employees = [];
         
-        $scope.departments = [];
-        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
-            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
-        }
+//        employeesService.getEmployees()
+//		.then(function(response){
+//		$scope.tempEmployees = response.data;
+//                        
+//                        //loop to limit $scope.employees.length to 6
+//                        for (var i = 0; i < 6; i++){
+//                            var tempEmployee = $scope.tempEmployees[i];
+//                            tempEmployee.Name = tempEmployee.firstName + " " + tempEmployee.lastName;
+//                            
+//                            $scope.employees.push(tempEmployee);
+//                            
+//                        }
+//                    
+//		},function(error){
+//		$scope.error = error;
+//		}); 
+        
+        
+//        $scope.departments = [];
+//        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
+//            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
+//        }
 
                                 
                                 
@@ -35,12 +55,32 @@ angular.module('myApp.view2', ['ngRoute'])
         
         $scope.AddToList = function(){
             
-            if ($scope.inpName && $scope.inpOccup && $scope.inpState){
+            if ($scope.inpName && $scope.inpBirthDate && $scope.inpGender){
+                var today = new Date();
+                var dd = today.getDay() + 1;
+
+                var mm = today.getMonth() + 1; 
+                var yyyy = today.getFullYear();
+                
+                if(dd<10)
+                {
+                    dd='0'+dd;
+                } 
+
+                if(mm<10) 
+                {
+                    mm='0'+mm;
+                } 
+                
+                var todayString = yyyy + '-' + mm + '-' + dd;
+                
                 $scope.employees.push({
+                        "no": $scope.employees[$scope.employees.length - 1].no + 1,
                         "Name": $scope.inpName,
-                        "Occupation": $scope.inpOccup,
-                        "State": $scope.inpState,
-                        "Department": $scope.departments[$scope.selectedDepartment]
+                        "birthDate": $scope.inpBirthDate,
+                        "gender": $scope.inpGender
+                        //,                        "Department": $scope.departments[$scope.selectedDepartment]
+                        ,"hireDate": todayString
                 });
             }
             
@@ -58,9 +98,9 @@ angular.module('myApp.view2', ['ngRoute'])
 
            var index = $scope.selectedEmployeeIndex2;
 
-          $scope.employees[index].Occupation = $scope.updatedInputDescription;
-          $scope.employees[index].State = $scope.updatedInputState;
-          $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
+          $scope.employees[index].birthDate = $scope.updateBirthDate;
+          $scope.employees[index].gender = $scope.updateGender;
+//          $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
         };
         
 //        for (var i = 0; i <= $scope.employees.length; i++){
@@ -79,20 +119,21 @@ angular.module('myApp.view2', ['ngRoute'])
         template: '<table class="table table-bordered" id="alexTable">\n\
                     <thead>\n\
                         <tr>\n\
-                            <th ng-show="alexDetails">Index</th>\n\
+                            <th ng-show="alexDetails">No</th>\n\
                             <th>Name</th>\n\
-                            <th>Occupation</th>\n\
-                            <th>State</th>\n\
+                            <th>Birth Date</th>\n\
+                            <th>Gender</th>\n\
+                            <th ng-show="alexDetails">Hire Date</th>\n\
                             <th ng-show="alexDetails">Department</th>\n\
                         </tr>\n\
                     </thead>\n\
                     <tbody>\n\
-                        <tr ng-repeat="employee in employees | filter: {Name: filterValue}">\n\
-                            <td ng-show="alexDetails">{{$index}}</td>\n\
+                        <tr ng-repeat="employee in employees | filter: filterValue">\n\
+                            <td ng-show="alexDetails">{{employee.no}}</td>\n\
                             <td>{{employee.Name}}</td>\n\
-                            <td>{{employee.Occupation}}</td>\n\
-                            <td>{{employee.State}}</td>\n\
-                            <td ng-show="alexDetails">{{employee.Department}}</td>\n\
+                            <td>{{employee.birthDate}}</td>\n\
+                            <td>{{employee.gender}}</td>\n\
+                            <td ng-show="alexDetails">{{employee.hireDate}}</td>\n\
                         </tr>\n\
                     </tbody>\n\
                     </table>'

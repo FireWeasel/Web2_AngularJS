@@ -33,14 +33,14 @@ tempstring2 = {{filterDepartment}}-->
 </div>
 <div class="col-sm-4">
 <h3>Employees</h3>
-<ul class="list-group-item" ng-repeat="employee in employees | filter: {Name: filterEmployee, Department: filterDepartment}">
+<ul class="list-group-item" ng-repeat="employee in employees | filter: filterEmployee">
   <li>Name: {{employee.Name}} <a href="" ng-click="ShowEmployeeInfo(employee)">View</a> </li>
 </ul>
 <div id="showEmployee" ng-show="EmployeeVisible" class="alert alert-info"></div>
 </div>
 <div class="col-sm-4">
 <h3>Departments</h3>                           <!--//Name: filterDepartment, -->
-<ul class="list-group-item" ng-repeat="department in departments | filter: {Name:filterDepartment, Employee: filterEmployee}">
+<ul class="list-group-item" ng-repeat="department in departments | filter: {Name:filterDepartment}">
   <li>Name: {{department.name}} <a href="" ng-click="ShowDepartmentInfo(department)">View</a> </li>
 </ul>
 <div id="showDepartment" ng-show="DepartmentVisible" class="alert alert-info"></div>

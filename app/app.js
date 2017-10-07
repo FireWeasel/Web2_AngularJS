@@ -75,11 +75,43 @@ module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartme
 }])
 
 //Alex
-//assignment 4.3 factory holding all of the employees
+module.service('employeesService', ['$http', function($http) {
+        this.getEmployees = function() {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees');
+        };
+}]);
+
+module.factory('newEmployees', ['employeesService', function(employeesService) {
+        var obj = {};
+        
+        //var employees = [];
+        obj.data = [];  
+        
+                employeesService.getEmployees()
+                    .then(function(response){
+                        var tempEmployees = response.data;
+                        
+                        //loop to limit $scope.employees.length to 6
+                        for (var i = 0; i < 8; i++){
+                            
+                            var temp = tempEmployees[i];
+                            temp.Name = temp.firstName + " " + temp.lastName;
+                            
+                            obj.data.push(temp);                            
+                        }
+                    
+                    },function(error){
+                        console.log(error);
+                    });        
+              
+        
+        return obj;
+}]);
                         //'myDepartments',          myDepartments
 module.factory('myEmployees', [function(){
         var obj = {};
 
+                //leaving factory for other factories
         obj.data =
         [
             {"Name":"John Doe",

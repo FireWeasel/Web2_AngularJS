@@ -23,7 +23,7 @@
 
 <div id="AlexForms">
     <div id="AlexAddEmployees" class="col-sm-4">
-        <h3>To Add <small>{{inpName}} : {{inpOccup}} : {{inpState}}</small></h3>
+        <h3>To Add <small>{{inpName}} : {{inpBirthDate}} : {{inpGender}}</small></h3>
     <form name="employeeForm">  <!--ng-submit="submitForm()">-->
         <p>
             <label for="Name">Name:</label>
@@ -32,22 +32,22 @@
         </p>
 
         <p>
-            <label for="Occupation">
-            Occupation:
+            <label for="BirthDate">
+            Birth Date:
             </label>
-            <input id="Occupation" type="text" name="Occupation" ng-model="inpOccup" required/>
+            <input id="BirthDate" type="text" name="BirthDate" ng-model="inpBirthDate" required/>
             <abbr title="required">*</abbr>
         </p>
 
         <p>
-            <label for="State">
-            State:
+            <label for="Gender">
+            Gender
             </label>
-            <input id="State" type="text" name="State" ng-model="inpState" required/>
+            <input id="Gender" type="text" name="Gender" ng-model="inpGender" required/>
             <abbr title="required">*</abbr>
         </p>
 
-        <p>
+<!--        <p>
             <label for="Department">
             Department:
             </label>
@@ -55,7 +55,7 @@
                 <option value="">No department</option>
                 <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
             </select>
-        </p>
+        </p>-->
 
         <button ng-click="AddToList()" class="btn btn-primary">Add</button>
   <!--      <button ng-click="RemoveFromList()">Remove</button>-->
@@ -79,7 +79,7 @@
             <form name="employeeForm">
                 <p>
                     <label for="updatedName">
-                    Name
+                    Name:
                     </label>
                     <select ng-model="selectedEmployeeIndex2" id="updatedName">
                         <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
@@ -87,22 +87,22 @@
                 </p>
 
                 <p>
-                    <label for="updatedOccupation">
-                    Occupation
+                    <label for="updateBirthDate">
+                    Birth Date:
                     </label>
-                    <input id="updatedOccupation" type="text" name="Occupation" ng-model="updatedInputDescription" required/>
+                    <input id="updateBirthDate" type="text" name="updateBirthDate" ng-model="updateBirthDate" required/>
                     <abbr title="required">*</abbr>
                 </p>
 
                 <p>
-                    <label for="updatedState">
-                    State
+                    <label for="updateGender">
+                    Gender:
                     </label>
-                    <input id="updatedState" type="text" name="State" ng-model="updatedInputState" required/>
+                    <input id="updateGender" type="text" name="updateGender" ng-model="updateGender" required/>
                     <abbr title="required">*</abbr>
                 </p>
 
-                <p>
+<!--                <p>
                     <label for="Department">
                     Department:
                     </label>
@@ -110,7 +110,7 @@
                         <option value="">No department</option>
                         <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
                     </select>
-                </p>
+                </p>-->
                 <button ng-click="UpdateEmployees()" class="btn btn-warning">Update</button>
             </form>
         </div>
