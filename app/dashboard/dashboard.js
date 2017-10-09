@@ -9,22 +9,17 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
   });
 }])
 
-.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'departmentService', 'uiCalendarConfig', function($scope, myTasks, myEmployees, departmentService, uiCalendarConfig) {
+.controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', 'uiCalendarConfig', function($scope, myTasks, myEmployees, myDepartments, uiCalendarConfig) {
 
   $scope.tasks = myTasks.data;
 	//$scope.employees = myEmployees.data;
 	//$scope.departments = myDepartments.data;
 	
 	
-		departmentService.getDepartments()
-		.then(function(response){
-		$scope.departments = response.data;
-		},function(error){
-		$scope.error = error;
-		}); 
-                
+		
                 
                 $scope.employees = myEmployees.data;
+                $scope.departments = myDepartments.data;
                 
               
   $scope.eventSources = [$scope.tasks];

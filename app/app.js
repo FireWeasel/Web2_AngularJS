@@ -85,8 +85,8 @@ module.service('employeesService', ['$http', function($http) {
 }]);
 
 module.service('testService', ['$http', function($http) {
-        this.getEmp = function() {
-            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees/10003');
+        this.getEmp = function(id) {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees/' + id);
         };
 }]);
 
@@ -198,45 +198,53 @@ module.service('departmentService', ['$http', function($http){
 	
 		this.getDepartments= function(){
 		return $http.get('http://i874156.iris.fhict.nl/WEB2/departments');
-};
-		
-		/* testing method to see if url with id works
-		this.getEmpDep = function(id){
-			return $http.get('http://i874156.iris.fhict.nl/WEB2/departments/1');
-		};*/
-		
-		}]);
-		
-		
-module.factory('myDepartments', [function() {
+                };
+}]);
+            
+            
+module.factory('myDepartments', ['departmentService', function(departmentService) {
         var obj = {};
-		
-		
-		//leaving factory for other factories 	
-		//obj.data = marinaService.getDepartments();
-        obj.data =
-        [
-            {
-            	"id" : "1",
-                "Name":"Management",
-                "Headquarters":"New York City"
-            },
-            {
-            	"id" : "2",
-                "Name":"Sales",
-                "Headquarters":"Chicago"
-            },
-            {
-            	"id" : "3",
-                "Name":"Marketing",
-                "Headquarters":"Boston"
-            },
-            {
-            	"id" : "4",
-                "Name":"IT",
-                "Headquarters":"Seattle"
-            }
-        ];
-
+        
+        departmentService.getDepartments()
+		.then(function(response){
+		obj.data = response.data;
+		},function(error){
+		console.log(error);
+		}); 
+        
         return obj;
 }]);
+		
+//		
+//module.factory('myDepartments', [function() {
+//        var obj = {};
+//		
+//		
+//		//leaving factory for other factories 	
+//		//obj.data = marinaService.getDepartments();
+//        obj.data =
+//        [
+//            {
+//            	"id" : "1",
+//                "Name":"Management",
+//                "Headquarters":"New York City"
+//            },
+//            {
+//            	"id" : "2",
+//                "Name":"Sales",
+//                "Headquarters":"Chicago"
+//            },
+//            {
+//            	"id" : "3",
+//                "Name":"Marketing",
+//                "Headquarters":"Boston"
+//            },
+//            {
+//            	"id" : "4",
+//                "Name":"IT",
+//                "Headquarters":"Seattle"
+//            }
+//        ];
+//
+//        return obj;
+//}]);

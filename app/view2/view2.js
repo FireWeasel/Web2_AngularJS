@@ -22,13 +22,14 @@ angular.module('myApp.view2', ['ngRoute'])
 //};     
 $scope.anEmployeeData = "NOTHIIIIIING";
 
-$scope.getAnEmpData = function(){
+$scope.getAnEmpData = function(ID){
             //var myEmp = "nothing";
-            var id = 10003;
+            var str1 = "1000";
+            var str2 = ID + 1;
                   
+            var anID = str1.concat(str2);      
                   
-                  
-                  testService.getEmp()
+                  testService.getEmp(anID)
                     .then(function(response){
                         $scope.anEmployeeData = response.data.firstName;
                     },function(error){
@@ -124,7 +125,7 @@ $scope.getAnEmpData = function(){
 //the Employee listing is a directive
 .directive('myEmployeesList', function(){
     return{
-        template: '<table class="table table-bordered" id="alexTable">\n\
+        template: '<table class="table table-bordered table-hover" id="alexTable">\n\
                     <thead>\n\
                         <tr>\n\
                             <th ng-show="alexDetails">No</th>\n\
@@ -133,6 +134,7 @@ $scope.getAnEmpData = function(){
                             <th>Gender</th>\n\
                             <th ng-show="alexDetails">Hire Date</th>\n\
                             <th ng-show="alexDetails">Department</th>\n\
+                            <th>More details</th>\n\
                         </tr>\n\
                     </thead>\n\
                     <tbody>\n\
@@ -143,6 +145,7 @@ $scope.getAnEmpData = function(){
                             <td>{{employee.gender}}</td>\n\
                             <td ng-show="alexDetails">{{employee.hireDate}}</td>\n\
                             <td ng-show="alexDetails">{{employee.Department}}</td>\n\
+                            <td><button class="btn btn-default" ng-click="getAnEmpData({{$index + 1}})">{{$index + 1}}</button></td>\n\
                         </tr>\n\
                     </tbody>\n\
                     </table>'
