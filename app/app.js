@@ -77,11 +77,21 @@ module.factory('TaskDepartmentEmployees', ['myTasks', 'myEmployees', 'myDepartme
 //Alex
 module.service('employeesService', ['$http', function($http) {
         this.getEmployees = function() {
-            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees');
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees');            
+        };
+        
+        
+        
+}]);
+
+module.service('testService', ['$http', function($http) {
+        this.getEmp = function() {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees/10003');
         };
 }]);
 
-module.factory('myEmployees', ['employeesService', 'myDepartments', function(employeesService, myDepartments) {
+
+module.factory('myEmployees', ['employeesService', function(employeesService) {
         var obj = {};
         
         //var employees = [];
@@ -97,8 +107,8 @@ module.factory('myEmployees', ['employeesService', 'myDepartments', function(emp
                             var temp = tempEmployees[i];
                             temp.Name = temp.firstName + " " + temp.lastName;
                             
-                            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-                            temp.Department = myDepartments.data[randomNumber].Name;
+//                            var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
+//                            temp.Department = myDepartments.data[randomNumber].Name;
                             
                             obj.data.push(temp);                            
                         }
@@ -106,7 +116,7 @@ module.factory('myEmployees', ['employeesService', 'myDepartments', function(emp
                     },function(error){
                         console.log(error);
                     });        
-              
+             
               
         
         return obj;

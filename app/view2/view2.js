@@ -11,13 +11,33 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .controller('View2Ctrl', [  '$scope',
                             'myEmployees',
-                            function($scope, myEmployees) {
+                            'testService',
+                            function($scope, myEmployees, testService) {
                                 
         //employee list in app.js
         $scope.employees = myEmployees.data;//initializing factory
 
+//var getSpecificEmpData = function(id){
+//                  
+//};     
+$scope.anEmployeeData = "NOTHIIIIIING";
 
-        
+$scope.getAnEmpData = function(){
+            //var myEmp = "nothing";
+            var id = 10003;
+                  
+                  
+                  
+                  testService.getEmp()
+                    .then(function(response){
+                        $scope.anEmployeeData = response.data.firstName;
+                    },function(error){
+                        console.log(error);
+                    }); 
+                    
+                    console.log("You're in the function");
+           // return myEmp; 
+};        
 //        
 //        $scope.departments = [];
 //        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
@@ -93,7 +113,13 @@ angular.module('myApp.view2', ['ngRoute'])
         
 }])
 
-
+.directive('employeeDataModule', function(){
+    return{
+        template: '<span>\n\
+            {{anEmployeeData}}\n\
+    </span>'
+    };
+})
 
 //the Employee listing is a directive
 .directive('myEmployeesList', function(){
