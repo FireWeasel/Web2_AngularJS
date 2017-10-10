@@ -38,8 +38,8 @@
                         <tr>
                             <th><em class="fa fa-cog"></em></th>
                             <th class="hidden-xs">ID</th>
+                            <th>Title</th>
                             <th>Description</th>
-                            <th>Completed</th>
                             <th>Start date</th>
                             <th>End date</th>
                         </tr>
@@ -50,11 +50,11 @@
                           <a class="btn btn-default" ng-click="EditTask(task)" data-toggle="modal" data-target="#edit_task"><em class="fa fa-pencil"></em></a>
                           <a class="btn btn-danger" ng-click="DeleteTask(task)"><em class="fa fa-trash"></em></a>
                         </td>
-                        <td class="hidden-xs">{{task.number}}</td>
+                        <td class="hidden-xs">{{task.no}}</td>
                         <td>{{task.title}}</td>
-                        <td>{{task.completed}}</td>
-                        <td>{{task.start.toString()}}</td>
-                        <td>{{task.end.toString()}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.creatioDate.toString()}}</td>
+                        <td>{{task.finishedDate.toString()}}</td>
                       </tr>
                     </tbody>
                 </table>

@@ -17,6 +17,14 @@ angular.module('myApp.view3', ['ngRoute'])
   $("#updatedEnd").datepicker();
   $scope.UpdateTaskVisible = false;
 
+	/*taskService.getTasks()
+	.then(function(response){
+	$scope.tasks = response.data;
+	},function(error){
+	$scope.error = error;
+	}); */
+
+
   $scope.tasks = myTasks.data;
 
   $scope.AddTaskToList = function(){

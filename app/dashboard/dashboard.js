@@ -11,13 +11,17 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 
 .controller('DashboardCtrl', [ '$scope', 'myTasks', 'myEmployees', 'myDepartments', 'uiCalendarConfig', function($scope, myTasks, myEmployees, myDepartments, uiCalendarConfig) {
 
-  $scope.tasks = myTasks.data;
+  	//$scope.tasks = myTasks.data;
 	//$scope.employees = myEmployees.data;
 	//$scope.departments = myDepartments.data;
 	
-	
-		
-                
+		/*taskService.getTasks()
+		.then(function(response){
+		$scope.tasks = response.data;
+		},function(error){
+		$scope.error = error;
+		}); */
+                $scope.tasks = myTasks.data;
                 $scope.employees = myEmployees.data;
                 $scope.departments = myDepartments.data;
                 
@@ -31,7 +35,7 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 	$scope.ShowTaskInfo = function(task) {
 		var myEl = angular.element(document.querySelector('#showTask'));
 		$scope.TaskVisible = true;
-		myEl.html("Task info -> Number: " + task.number + " | Description: " + task.title + " | Completed: " + task.completed + " | Start date: " + task.start.toString() + " | End date: " + task.end.toString());
+		myEl.html("Task info -> Number: " + task.no + " | Description: " + task.title + " | Completed: " + task.description + " | Start date: " + task.creatioDate.toString());
 	};
 
 	$scope.ShowEmployeeInfo = function(employee) {

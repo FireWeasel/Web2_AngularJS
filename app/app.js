@@ -19,38 +19,25 @@ var y = date.getFullYear();
 
 module.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
-
   $routeProvider.otherwise({redirectTo: '/dashboard'});
 }])
 
 
-module.factory('myTasks', [function() {
+module.service('taskService', ['$http', function($http){
+	this.getTasks = function(){
+	return $http.get('http://i874156.iris.fhict.nl/WEB2/tasks');
+	};
+}]);
+
+module.factory('myTasks', ['taskService', function(taskService) {
   var obj = {};
 
-  obj.data =
-  [
-      {"number":"1",
-       "title":"Clean the kitchen",
-       "start": new Date(y, m, 1),
-       "end": new Date(y, m, 2),
-       "completed":"Yes"
-      }, {"number":"2",
-       "title":"Clean the living room",
-       "start": new Date(y, m, 2),
-       "end": new Date(y, m, 3),
-       "completed":"No"
-      }, {"number":"3",
-       "title":"Clean the room",
-       "start": new Date(y, m, 3),
-       "end": new Date(y, m, 4),
-       "completed":"No"
-      }, {"number":"4",
-       "title":"Do the WEB2 homework",
-       "start": new Date(y, m, 4),
-       "end": new Date(y, m, 5),
-       "completed":"Yes"
-      }
-  ];
+ 		taskService.getTasks()
+		.then(function(response){
+		obj.data = response.data;
+		},function(error){
+		console.log(error);
+		}); 
 
   return obj;
 }])
@@ -195,56 +182,24 @@ module.factory('myEmployees', ['employeesService', function(employeesService) {
 //Marina                'myEmployees',      myEmployees
 
 module.service('departmentService', ['$http', function($http){
-	
-		this.getDepartments= function(){
-		return $http.get('http://i874156.iris.fhict.nl/WEB2/departments');
-                };
-}]);
-            
+			var temp = {};
+			this.getDepartments = function() {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/departments')
+            .success(function(data) {
+			temp = data;
+        });
+    }
+}]);     
             
 module.factory('myDepartments', ['departmentService', function(departmentService) {
         var obj = {};
         
         departmentService.getDepartments()
 		.then(function(response){
-		obj.data = response.data;
+			obj.data = response.data;
 		},function(error){
-		console.log(error);
+			console.log(error);
 		}); 
         
         return obj;
 }]);
-		
-//		
-//module.factory('myDepartments', [function() {
-//        var obj = {};
-//		
-//		
-//		//leaving factory for other factories 	
-//		//obj.data = marinaService.getDepartments();
-//        obj.data =
-//        [
-//            {
-//            	"id" : "1",
-//                "Name":"Management",
-//                "Headquarters":"New York City"
-//            },
-//            {
-//            	"id" : "2",
-//                "Name":"Sales",
-//                "Headquarters":"Chicago"
-//            },
-//            {
-//            	"id" : "3",
-//                "Name":"Marketing",
-//                "Headquarters":"Boston"
-//            },
-//            {
-//            	"id" : "4",
-//                "Name":"IT",
-//                "Headquarters":"Seattle"
-//            }
-//        ];
-//
-//        return obj;
-//}]);

@@ -14,7 +14,7 @@ myApp1.controller('View1Ctrl', ['$scope', 'myDepartments', function($scope, myDe
 		
 		
                 $scope.departments = myDepartments.data;
-//                departmentService.getDepartments()
+//      departmentService.getDepartments()
 //		.then(function(response){
 //		$scope.departments = response.data;
 //		},function(error){
@@ -59,10 +59,6 @@ myApp1.controller('View1Ctrl', ['$scope', 'myDepartments', function($scope, myDe
             $scope.viewHeadquarters = $scope.departments[index].code;
         };
         
-        //some properties that are not working
-          	/*$scope.isNavCollapsed = true;
-  			$scope.isCollapsed = false;
-  			$scope.isCollapsedHorizontal = false;*/
   			
 }]);
 
@@ -76,9 +72,9 @@ myApp1.directive('departmentsTable', function(){
   <div class="content-area sample-show-hide"> \n\
     <table class="table table-bordered table-hover">\n\
                     <tr class="TableDep">\n\
-                        <td>no</td>\n\
-                        <td ng-show="checked">code</td>\n\
-                        <td ng-show="checked">name</td>\n\
+                        <th>no</td>\n\
+                        <th ng-show="checked">code</td>\n\
+                        <th ng-show="checked">name</td>\n\
                     </tr>\n\
 					<tr ng-repeat="department in departments | filter: filterValue">\n\
                         <td>{{department.no}}</td>\n\
