@@ -25,13 +25,15 @@ angular.module('myApp.view3', ['ngRoute'])
                 "no": $scope.inputNumber,
                 "title": $scope.inputDescription,
                 "description": $scope.inputCompleted,
-                "creatioDate": $("#Start").datepicker('getDate'),
-                "finishedDate": $("#End").datepicker('getDate')
+                "status": $scope.inputStatus,
+                "start": $("#Start").datepicker('getDate'),
+                "end": $("#End").datepicker('getDate')
         });
     }
     $scope.inputNumber = "";
     $scope.inputDescription = "";
     $scope.inputCompleted = "";
+    $scope.inputStatus = "";
   };
 
   $scope.DeleteTask = function(task) {
