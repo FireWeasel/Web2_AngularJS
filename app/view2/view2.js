@@ -2,130 +2,130 @@
 
 angular.module('myApp.view2', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
-  });
-}])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/view2', {
+            templateUrl: 'view2/view2.html',
+            controller: 'View2Ctrl'
+        });
+    }])
 
-.controller('View2Ctrl', [  '$scope',
-                            'myEmployees',
-                            'testService',
-                            function($scope, myEmployees, testService) {
-                                
-        //employee list in app.js
-        $scope.employees = myEmployees.data;//initializing factory
+    .controller('View2Ctrl', ['$scope',
+        'myEmployees',
+        'testService',
+        function($scope, myEmployees, testService) {
 
-//var getSpecificEmpData = function(id){
-//                  
-//};     
-$scope.anEmployeeData = "NOTHIIIIIING";
+            //employee list in app.js
+            $scope.employees = myEmployees.data; //initializing factory
 
-$scope.getAnEmpData = function(ID){
-            //var myEmp = "nothing";
-            var str1 = "1000";
-            var str2 = ID + 1;
-                  
-            var anID = str1.concat(str2);      
-                  
-                  testService.getEmp(anID)
-                    .then(function(response){
+            //var getSpecificEmpData = function(id){
+            //
+            //};
+            $scope.anEmployeeData = "NOTHIIIIIING";
+
+            $scope.getAnEmpData = function(ID) {
+                //var myEmp = "nothing";
+                var str1 = "1000";
+                var str2 = ID + 1;
+
+                var anID = str1.concat(str2);
+
+                testService.getEmp(anID)
+                    .then(function(response) {
                         $scope.anEmployeeData = response.data.firstName;
-                    },function(error){
+                    }, function(error) {
                         console.log(error);
-                    }); 
-                    
-                    console.log("You're in the function");
-           // return myEmp; 
-};        
-//        
-//        $scope.departments = [];
-//        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
-//            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
-//        }
+                    });
 
-                                
-                                
-        //4.6 LOOK in app.js
-                //Made it so a Department is assigned RANDOMLY (on every view2 refresh)
-//                for (var i = 0; i < $scope.employees.length; i++) {
-//                    var randomNumber = Math.floor(Math.random()*$scope.departments.length);
-//                    $scope.employees[i]['Department'] = $scope.departments[randomNumber];
-//                }
-        
-        
-        
-        $scope.AddToList = function(){
-            
-            if ($scope.inpName && $scope.inpBirthDate && $scope.inpGender){
-                var today = new Date();
-                var dd = today.getDay() + 1;
+                console.log("You're in the function");
+                // return myEmp;
+            };
+            //
+            //        $scope.departments = [];
+            //        for (var i = 0; i < RelationshipEmpDep.data.length; i++){
+            //            $scope.departments.push(RelationshipEmpDep.data[i].Name);    //Adding only the name of each department
+            //        }
 
-                var mm = today.getMonth() + 1; 
-                var yyyy = today.getFullYear();
-                
-                if(dd<10)
-                {
-                    dd='0'+dd;
-                } 
 
-                if(mm<10) 
-                {
-                    mm='0'+mm;
-                } 
-                
-                var todayString = yyyy + '-' + mm + '-' + dd;
-                
-                $scope.employees.push({
+
+            //4.6 LOOK in app.js
+            //Made it so a Department is assigned RANDOMLY (on every view2 refresh)
+            //                for (var i = 0; i < $scope.employees.length; i++) {
+            //                    var randomNumber = Math.floor(Math.random()*$scope.departments.length);
+            //                    $scope.employees[i]['Department'] = $scope.departments[randomNumber];
+            //                }
+
+
+
+            $scope.AddToList = function() {
+
+                if ($scope.inpName && $scope.inpBirthDate && $scope.inpGender) {
+                    var today = new Date();
+                    var dd = today.getDay() + 1;
+
+                    var mm = today.getMonth() + 1;
+                    var yyyy = today.getFullYear();
+
+                    if (dd < 10) {
+                        dd = '0' + dd;
+                    }
+
+                    if (mm < 10) {
+                        mm = '0' + mm;
+                    }
+
+                    var todayString = yyyy + '-' + mm + '-' + dd;
+
+                    $scope.employees.push({
                         "no": $scope.employees[$scope.employees.length - 1].no + 1,
                         "Name": $scope.inpName,
                         "birthDate": $scope.inpBirthDate,
                         "gender": $scope.inpGender
-                        //,                        "Department": $scope.departments[$scope.selectedDepartment]
-                        ,"hireDate": todayString
-                });
-            }
-            
-        };
-        
-        $scope.ComboBoxRemove = function() {
-           var index = $scope.selectedEmployeeIndex1;
-           
-            if (index > -1) {
-               $scope.employees.splice(index, 1);
-            }
-        };
+                            //,                        "Department": $scope.departments[$scope.selectedDepartment]
+                            ,
+                        "hireDate": todayString
+                    });
+                }
 
-        $scope.UpdateEmployees = function(){
+            };
 
-           var index = $scope.selectedEmployeeIndex2;
+            $scope.ComboBoxRemove = function() {
+                var index = $scope.selectedEmployeeIndex1;
 
-          $scope.employees[index].birthDate = $scope.updateBirthDate;
-          $scope.employees[index].gender = $scope.updateGender;
-//          $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
-        };
-        
-//        for (var i = 0; i <= $scope.employees.length; i++){
-//            if ($scope.employees[i].Occupation === "CEO"){
-//                
-//            }
-//        }
-        
-}])
+                if (index > -1) {
+                    $scope.employees.splice(index, 1);
+                }
+            };
 
-.directive('employeeDataModule', function(){
-    return{
-        template: '<span>\n\
+            $scope.UpdateEmployees = function() {
+
+                var index = $scope.selectedEmployeeIndex2;
+
+                $scope.employees[index].birthDate = $scope.updateBirthDate;
+                $scope.employees[index].gender = $scope.updateGender;
+                //          $scope.employees[index].Department = $scope.departments[$scope.updatedDepartment];
+            };
+
+            //        for (var i = 0; i <= $scope.employees.length; i++){
+            //            if ($scope.employees[i].Occupation === "CEO"){
+            //
+            //            }
+            //        }
+
+        }
+    ])
+
+    .directive('employeeDataModule', function() {
+        return {
+            template: '<span>\n\
             {{anEmployeeData}}\n\
     </span>'
-    };
-})
+        };
+    })
 
-//the Employee listing is a directive
-.directive('myEmployeesList', function(){
-    return{
-        template: '<table class="table table-bordered table-hover" id="alexTable">\n\
+    //the Employee listing is a directive
+    .directive('myEmployeesList', function() {
+        return {
+            template: '<table class="table table-bordered table-hover" id="alexTable">\n\
                     <thead>\n\
                         <tr>\n\
                             <th ng-show="alexDetails">No</th>\n\
@@ -149,8 +149,5 @@ $scope.getAnEmpData = function(ID){
                         </tr>\n\
                     </tbody>\n\
                     </table>'
-    };
-});
-
-
-        
+        };
+    });

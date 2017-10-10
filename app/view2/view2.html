@@ -6,74 +6,60 @@
 <div class="container">
 
 
-<button class="btn btn-default disabled">Hello</button>
-<employee-data-module></employee-data-module>
+    <button class="btn btn-default disabled">Hello</button>
+    <employee-data-module></employee-data-module>
 
-<div id="alexSearch">
-    <p>
-        <label for="nameSearch"> Search for Employee</label>
-        <input type="text" id="nameSearch" ng-model="filterValue" />
-    </p>
-</div>
-
-<div id="EmployeeList">
-    <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
-    <my-employees-list></my-employees-list>
-</div>
-<br/>
-
-<div id="AlexForms">
-    <div id="AlexAddEmployees" class="col-sm-4">
-        <h3>To Add <small>{{inpName}} : {{inpBirthDate}} : {{inpGender}}</small></h3>
-    <form name="employeeForm">  <!--ng-submit="submitForm()">-->
+    <div id="alexSearch">
         <p>
-            <label for="Name">Name:</label>
-            <input id="Name" type="text" name="Name" ng-model="inpName" required/>
-            <abbr title="required">*</abbr>
+            <label for="nameSearch"> Search for Employee</label>
+            <input type="text" id="nameSearch" ng-model="filterValue" />
         </p>
+    </div>
 
-        <p>
-            <label for="BirthDate">
+    <div id="EmployeeList">
+        <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
+        <my-employees-list></my-employees-list>
+    </div>
+    <br/>
+
+    <div id="AlexForms">
+        <div id="AlexAddEmployees" class="col-sm-4">
+            <h3>To Add <small>{{inpName}} : {{inpBirthDate}} : {{inpGender}}</small></h3>
+            <form name="employeeForm">
+                <!--ng-submit="submitForm()">-->
+                <p>
+                    <label for="Name">Name:</label>
+                    <input id="Name" type="text" name="Name" ng-model="inpName" required/>
+                    <abbr title="required">*</abbr>
+                </p>
+
+                <p>
+                    <label for="BirthDate">
             Birth Date:
             </label>
-            <input id="BirthDate" type="text" name="BirthDate" ng-model="inpBirthDate" required/>
-            <abbr title="required">*</abbr>
-        </p>
+                    <input id="BirthDate" type="text" name="BirthDate" ng-model="inpBirthDate" required/>
+                    <abbr title="required">*</abbr>
+                </p>
 
-        <p>
-            <label for="Gender">
+                <p>
+                    <label for="Gender">
             Gender
             </label>
-            <input id="Gender" type="text" name="Gender" ng-model="inpGender" required/>
-            <abbr title="required">*</abbr>
-        </p>
-
-<!--        <p>
-            <label for="Department">
-            Department:
-            </label>
-            <select ng-model="selectedDepartment" id="Department">
-                <option value="">No department</option>
-                <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
-            </select>
-        </p>-->
-
-        <button ng-click="AddToList()" class="btn btn-primary">Add</button>
-  <!--      <button ng-click="RemoveFromList()">Remove</button>-->
-    </form>
-
+                    <input id="Gender" type="text" name="Gender" ng-model="inpGender" required/>
+                    <abbr title="required">*</abbr>
+                </p>
+                <button ng-click="AddToList()" class="btn btn-primary">Add</button>
+                <!--      <button ng-click="RemoveFromList()">Remove</button>-->
+            </form>
         </div>
 
-
         <div id="AlexRemoveEmployees" class="col-sm-4">
-        <h3>To Remove</h3>
+            <h3>To Remove</h3>
             <select ng-model="selectedEmployeeIndex1">
                 <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
             </select>
-
             <button ng-click="ComboBoxRemove()" class="btn btn-danger">Remove</button>
         </div>
-
 
         <div id="AlexUpdateEmployees" class="col-sm-4">
             <h3>To Update</h3>
@@ -86,7 +72,6 @@
                         <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
                     </select>
                 </p>
-
                 <p>
                     <label for="updateBirthDate">
                     Birth Date:
@@ -102,37 +87,15 @@
                     <input id="updateGender" type="text" name="updateGender" ng-model="updateGender" required/>
                     <abbr title="required">*</abbr>
                 </p>
-
-<!--                <p>
-                    <label for="Department">
-                    Department:
-                    </label>
-                    <select ng-model="updatedDepartment" id="Department">
-                        <option value="">No department</option>
-                        <option ng-repeat="department in departments" value="{{$index}}">{{department}}</option>
-                    </select>
-                </p>-->
                 <button ng-click="UpdateEmployees()" class="btn btn-warning">Update</button>
             </form>
         </div>
+
+    </div>
+    <hr/>
+    <br/>
 </div>
-<hr/>
-<!--<input type="radio" name="comboBoxAction">Remove-->
-<!--<input type="radio" name="comboBoxAction" ng-model="my.radioAction" ng-value="action">Update-->
-
-
-<br/>
-
-
-
-
-</div>
-
-
-
-
 <hr/>
 <p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
+    Showing of 'interpolate' filter: {{ 'Current version is v%VERSION%.' | interpolate }}
 </p>

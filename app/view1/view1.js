@@ -1,69 +1,67 @@
-
 'use strict';
 
-var myApp1 = angular.module('myApp.view1', ['ui.bootstrap','ngRoute'])
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
-  });
-}])
-                                                    //, 'myEmployees'               , myEmployees
+var myApp1 = angular.module('myApp.view1', ['ui.bootstrap', 'ngRoute'])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.when('/view1', {
+            templateUrl: 'view1/view1.html',
+            controller: 'View1Ctrl'
+        });
+    }])
+//, 'myEmployees'               , myEmployees
 myApp1.controller('View1Ctrl', ['$scope', 'myDepartments', function($scope, myDepartments) {
 
-		
-		
-                $scope.departments = myDepartments.data;
-//      departmentService.getDepartments()
-//		.then(function(response){
-//		$scope.departments = response.data;
-//		},function(error){
-//		$scope.error = error;
-//		}); 
-                
-                
-                
 
-        
-        $scope.AddDepartmentToList = function() {
-        if($scope.inputName && $scope.inputCode && $scope.inputId) {
-        $scope.departments.push({
-        				"no" : $scope.inputId,
-                        "name": $scope.inputName,
-                        "code": $scope.inputCode
-                        });
-                    };
+
+    $scope.departments = myDepartments.data;
+    //      departmentService.getDepartments()
+    //		.then(function(response){
+    //		$scope.departments = response.data;
+    //		},function(error){
+    //		$scope.error = error;
+    //		});
+
+
+
+
+    $scope.AddDepartmentToList = function() {
+        if ($scope.inputName && $scope.inputCode && $scope.inputId) {
+            $scope.departments.push({
+                "no": $scope.inputId,
+                "name": $scope.inputName,
+                "code": $scope.inputCode
+            });
         };
-        
-        $scope.CBRemove = function() {
-           var index = $scope.selectedDepartmentIndex;
-           
-            if (index > -1) {
-               $scope.departments.splice(index, 1);
-            }
-        };
-        
-        $scope.UpdateDepartment = function(){
+    };
 
-          var index = $scope.SelectedDepartmentUpdate;
+    $scope.CBRemove = function() {
+        var index = $scope.selectedDepartmentIndex;
 
-		  $scope.departments[index].no = $scope.updateId;
-          $scope.departments[index].name = $scope.updatedInputName;
-          $scope.departments[index].code = $scope.updatedCode;
-        };
+        if (index > -1) {
+            $scope.departments.splice(index, 1);
+        }
+    };
 
-        $scope.ViewDepartment = function() {
-            var index = $scope.SelectedDepartmentView;
+    $scope.UpdateDepartment = function() {
 
-            $scope.viewId = $scope.departments[index].no;
-            $scope.viewHeadquarters = $scope.departments[index].code;
-        };
-        
-  			
+        var index = $scope.SelectedDepartmentUpdate;
+
+        $scope.departments[index].no = $scope.updateId;
+        $scope.departments[index].name = $scope.updatedInputName;
+        $scope.departments[index].code = $scope.updatedCode;
+    };
+
+    $scope.ViewDepartment = function() {
+        var index = $scope.SelectedDepartmentView;
+
+        $scope.viewId = $scope.departments[index].no;
+        $scope.viewHeadquarters = $scope.departments[index].code;
+    };
+
+
 }]);
 
-myApp1.directive('departmentsTable', function(){
-    return{
+myApp1.directive('departmentsTable', function() {
+    return {
         template: '<div ng-init="checked = true"> \n\
   <label> \n\
     <input type="checkbox" ng-model="checked" /> \n\
@@ -84,10 +82,9 @@ myApp1.directive('departmentsTable', function(){
                 </table> \n\
   </div> \n\
 </div>'
-        
-        
-        
-        
-      
+
+
+
+
     };
 });
