@@ -35,7 +35,7 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 	$scope.ShowTaskInfo = function(task) {
 		var myEl = angular.element(document.querySelector('#showTask'));
 		$scope.TaskVisible = true;
-		myEl.html("Task info -> Number: " + task.no + " | Description: " + task.title + " | Completed: " + task.description + " | Start date: " + task.creatioDate.toString());
+		myEl.html("Task info -> Number: " + task.no + " | Description: " + task.title + " | Completed: " + task.description + " | Start date: " + task.creatioDate);
 	};
 
 	$scope.ShowEmployeeInfo = function(employee) {

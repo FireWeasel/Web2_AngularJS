@@ -11,10 +11,13 @@
                             <input id="Number" type="text" name="Number" ng-model="inputNumber" placeholder="Number" style="width: 100%;" required/>
                         </div>
                         <div class="col col-xs-2">
-                            <input id="Description" type="text" name="Description" ng-model="inputDescription" placeholder="Description" style="width: 100%;" required/>
+                            <input id="Description" type="text" name="Description" ng-model="inputDescription" placeholder="Title" style="width: 100%;" required/>
                         </div>
                         <div class="col col-xs-2">
-                            <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" placeholder="Completed" style="width: 100%;" required/>
+                            <input id="Completed" type="text" name="Completed" ng-model="inputCompleted" placeholder="Description" style="width: 100%;" required/>
+                        </div>
+                         <div class="col col-xs-2">
+                            <input id="Status" type="text" name="Status" ng-model="inputStatus" placeholder="Status" style="width: 100%;" required/>
                         </div>
                         <div class="col col-xs-2">
                             <input id="Start" type="text" name="Start" ng-model="inputStart" placeholder="Start" style="width: 100%;" required/>
@@ -40,6 +43,7 @@
                             <th class="hidden-xs">ID</th>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Status</th>
                             <th>Start date</th>
                             <th>End date</th>
                         </tr>
@@ -53,6 +57,7 @@
                         <td class="hidden-xs">{{task.no}}</td>
                         <td>{{task.title}}</td>
                         <td>{{task.description}}</td>
+                        <td>{{task.status}}</td>
                         <td>{{task.creatioDate.toString()}}</td>
                         <td>{{task.finishedDate.toString()}}</td>
                       </tr>
@@ -75,14 +80,14 @@
                     <input id="updateTaskNumber" type="text" name="Number" ng-model="updatedInputNumber" hidden="true">
                     <p>
                         <label for="Description">
-                          <span>Description:</span>
+                          <span>Title:</span>
                           <input id="updatedDescription" type="text" name="Description" ng-model="updatedInputDescription" required/>
                         </label>
                     </p>
 
                     <p>
                         <label for="completed">
-                          <span>Completed:</span>
+                          <span>Description</span>
                           <input id="updatedCompleted" type="text" name="Completed" ng-model="updatedInputCompleted" required/>
                         </label>
                     </p>

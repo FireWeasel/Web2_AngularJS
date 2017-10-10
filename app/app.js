@@ -35,6 +35,7 @@ module.factory('myTasks', ['taskService', function(taskService) {
  		taskService.getTasks()
 		.then(function(response){
 		obj.data = response.data;
+		console.log(obj.data);
 		},function(error){
 		console.log(error);
 		}); 

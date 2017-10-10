@@ -30,11 +30,11 @@ angular.module('myApp.view3', ['ngRoute'])
   $scope.AddTaskToList = function(){
     if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){
         $scope.tasks.push({
-                "number": $scope.inputNumber,
+                "no": $scope.inputNumber,
                 "title": $scope.inputDescription,
-                "completed": $scope.inputCompleted,
-                "start": $("#Start").datepicker('getDate'),
-                "end": $("#End").datepicker('getDate')
+                "description": $scope.inputCompleted,
+                "creatioDate": $("#Start").datepicker('getDate'),
+                "finishedDate": $("#End").datepicker('getDate')
         });
     }
     $scope.inputNumber = "";
@@ -55,19 +55,19 @@ angular.module('myApp.view3', ['ngRoute'])
       return task.number == index;
     }
 
-    $scope.tasks.find(checkNumber).description = $scope.updatedInputDescription;
-    $scope.tasks.find(checkNumber).completed = $scope.updatedInputCompleted;
-    $scope.tasks.find(checkNumber).start = $("#updatedStart").datepicker('getDate');
-    $scope.tasks.find(checkNumber).end = $("#updatedEnd").datepicker('getDate');
+    $scope.tasks.find(checkNumber).title = $scope.updatedInputDescription;
+    $scope.tasks.find(checkNumber).description = $scope.updatedInputCompleted;
+    $scope.tasks.find(checkNumber).creatioDate = $("#updatedStart").datepicker('getDate');
+    $scope.tasks.find(checkNumber).finishedDate = $("#updatedEnd").datepicker('getDate');
     $scope.UpdateTaskVisible = false;
   };
 
   $scope.EditTask = function(task) {
-    $scope.updatedInputNumber = task.number;
+    $scope.updatedInputNumber = task.no;
     $scope.updatedInputDescription = task.title;
-    $scope.updatedInputCompleted = task.completed;
-    $("#updatedStart").datepicker('setDate', task.start);
-    $("#updatedEnd").datepicker('setDate', task.end);
+    $scope.updatedInputCompleted = task.description;
+    $("#updatedStart").datepicker('setDate', task.creatioDate);
+    $("#updatedEnd").datepicker('setDate', task.finishedDate);
   }
 
 }]);

@@ -8,7 +8,7 @@
         <label for="nameSearch"> Search for Employee</label>
         <input type="text" id="nameSearch" ng-model="filterValue[selectedFilter]" ng-init="selectedFilter='Name'" />-->
         <div class="col-sm-4">
-        <label class="label label-info" for="taskSearch"> Filter by Taks: </label>
+        <label class="label label-info" for="taskSearch"> Filter by Task: </label>
         <input type="te" id="taskSearch" ng-model="filterTask"/>
         </div>
         <div class="col-sm-4">
@@ -27,7 +27,7 @@ tempstring2 = {{filterDepartment}}-->
 <div class="col-sm-4">
 <h3>Tasks</h3>
 <ul class="list-group-item" ng-repeat="task in tasks| filter: {title: filterTask}">
-  <li>Task number: {{task.number}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>
+  <li>Task number: {{task.no}} <a href="" ng-click="ShowTaskInfo(task)">View</a></li>
 </ul>
 <div id="showTask" ng-show="TaskVisible" class="alert alert-info"></div>
 </div>
