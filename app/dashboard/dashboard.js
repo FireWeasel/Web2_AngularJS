@@ -23,6 +23,7 @@ angular.module('myApp.dashboard', ['ngRoute', 'ui.calendar'])
 		}); */
                 $scope.tasks = myTasks.data;
                 $scope.employees = myEmployees.data;
+                $scope.quantity = 10;   //amount of displayed employees
                 $scope.departments = myDepartments.data;
                 
               

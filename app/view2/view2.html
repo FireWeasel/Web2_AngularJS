@@ -1,13 +1,18 @@
 <p style="margin-top: 75px;">This is the partial for view 2 (Employees).</p>
 <h4> done by Alex </h4>
+
+<!--<ul>
+    <li>Here are listed the titles:</li>
+    <li ng-repeat="title in titles">hi: {{title}}</li>
+</ul>-->
 <hr/>
 
 
 <div class="container">
-
+<detail-modal></detail-modal>
 
     <button class="btn btn-default disabled">Hello</button>
-    <employee-data-module></employee-data-module>
+<!--    <employee-data-module></employee-data-module>-->
 
     <div id="alexSearch">
         <p>
@@ -17,7 +22,7 @@
     </div>
 
     <div id="EmployeeList">
-        <input type="checkbox" ng-model="alexDetails" /> Show Details (index & department)<br/><br/>
+        <input type="checkbox" ng-model="alexDetails" /> Show Details (index)<br/><br/>
         <my-employees-list></my-employees-list>
     </div>
     <br/>

@@ -33,6 +33,12 @@ module.service('taskService', ['$http', function($http) {
     };
 }]);
 
+module.service('getTask', ['$http', function($http) {
+    this.getHisTask = function(no) {
+        return $http.get('http://i874156.iris.fhict.nl/WEB2/tasks/' + no);
+    };
+}]);
+
 module.factory('myTasks', ['taskService', function(taskService) {
     var obj = {};
 
@@ -111,36 +117,53 @@ module.service('employeesService', ['$http', function($http) {
 
 }]);
 
-module.service('testService', ['$http', function($http) {
-    this.getEmp = function(id) {
-        return $http.get('http://i874156.iris.fhict.nl/WEB2/employees/' + id);
-    };
+module.service('getAnEmployee', ['$http', function($http) {
+        this.getEmp = function(id) {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/employees/' + id);
+        };
 }]);
 
 
 module.factory('myEmployees', ['employeesService', function(employeesService) {
-    var obj = {};
+        var obj = {};
+        
+        //var employees = [];
+        obj.data = [];  
+        
+                employeesService.getEmployees()
+                    .then(
+                        function(response){
+                            var tempEmployees = response.data;
 
-    //var employees = [];
-    obj.data = [];
+                            //loop to limit $scope.employees.length to 6
+                            for (var i = 0; i < tempEmployees.length; i++){
 
-    employeesService.getEmployees().then(function(response) {
-        var tempEmployees = response.data;
-        //loop to limit $scope.employees.length to 6
-        for (var i = 0; i < 8; i++) {
-            var temp = tempEmployees[i];
-            temp.Name = temp.firstName + " " + temp.lastName;
+                                var temp = tempEmployees[i];
+                                temp.Name = temp.firstName + " " + temp.lastName;
+                                obj.data.push(temp);                            
+                            }
+                        },function(error){
+                            console.log(error);
+                        }
+                    );        
+             
+              
+        
+        return obj;
+}]);
 
-            // var randomNumber = Math.floor(Math.random()*myDepartments.data.length);
-            //  temp.Department = myDepartments.data[randomNumber].Name;
 
-            obj.data.push(temp);
-        }
-    }, function(error) {
-        console.log(error);
-    });
-    return obj;
-}])
+module.service('getDepartment', ['$http', function($http) {
+        this.getHisDep = function(no) {
+            return $http.get('http://i874156.iris.fhict.nl/WEB2/departments/' + no);
+        };
+}]);
+
+module.service('getTitles', ['$http', function($http) {
+    this.getTheTitles = function() {
+        return $http.get('http://i874156.iris.fhict.nl/WEB2/titles');
+    };
+}]);
 
 //Marina                'myEmployees',      myEmployees
 
