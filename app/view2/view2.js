@@ -29,11 +29,15 @@ $scope.DepartmentOfEmp = "none";
 $scope.TitlesOfEmp = [];
 $scope.TaskOfEmp = "none";
 
-$scope.giveEmp = function(empID){
-    $scope.TitlesOfEmp = []; //resets variable if initialized by previous Employee
-    var empNo = 10000 + empID;
-  
-    getAnEmployee.getEmp(empNo)
+$scope.giveEmp = function(empName){
+    var empNo;
+    for (var i = 0; i < $scope.employees.length; i++){
+        if (empName === $scope.employees[i].Name){
+            empNo = $scope.employees[i].no;
+        }
+    }
+  if (empNo){
+      getAnEmployee.getEmp(empNo)
         .then(function(response){         
                 $scope.anEmployeeData = response.data;
                 $scope.anEmployeeData.Name = response.data.firstName + " " + response.data.lastName;
@@ -62,7 +66,11 @@ $scope.giveEmp = function(empID){
                 }
         },function(error){
                         $scope.anEmployeeData = "Error happened in getAnEmployee service calling:<br/>" + error;
-        });   
+        }); 
+  }else{
+      alert("No employee with such name");
+  }
+      
 };
 
 function giveDep(depID){
@@ -153,6 +161,12 @@ $scope.displayEndDate = function(date){
                 $scope.employees[index].birthDate = $scope.updateBirthDate;
                 $scope.employees[index].gender = $scope.updateGender;
             };
+            
+            $scope.resetVariables = function(){
+                $scope.DepartmentOfEmp = "none";//resets variable if initialized by previous Employee
+                $scope.TitlesOfEmp = []; //resets variable if initialized by previous Employee
+                $scope.TaskOfEmp = "none";
+            };
         
 }])
 
@@ -197,7 +211,7 @@ $scope.displayEndDate = function(date){
                             <p><employee-data-module></employee-data-module></p>\n\
                           </div>\n\
                           <div class="modal-footer">\n\
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n\
+                            <button ng-click="resetVariables()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n\
                           </div>\n\
                         </div>\n\
 \n\
@@ -227,7 +241,7 @@ $scope.displayEndDate = function(date){
                             <td>{{employee.birthDate}}</td>\n\
                             <td>{{employee.gender}}</td>\n\
                             <td ng-show="alexDetails">{{employee.hireDate}}</td>\n\
-                            <td><button class="btn btn-warning" ng-click="giveEmp($index + 1)" data-toggle="modal" data-target="#myModal">Click Me: {{employee.no}}</button></td>\n\
+                            <td><button class="btn btn-warning" ng-click="giveEmp(employee.Name)" data-toggle="modal" data-target="#myModal">Click Me: {{employee.no}}</button></td>\n\
                         </tr>\n\
                     </tbody>\n\
                     </table>'
