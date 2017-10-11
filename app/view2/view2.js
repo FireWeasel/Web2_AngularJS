@@ -16,14 +16,14 @@ angular.module('myApp.view2', ['ngRoute'])
                             'getTask',
                             'getTitles',
                             function($scope, myEmployees, getAnEmployee, getDepartment, getTask, getTitles) {
-                                
+
         //employee list in app.js
         $scope.employees = myEmployees.data;//initializing factory
         $scope.quantity = 10;   //amount of displayed employees
-        
+
         $scope.titles = [];
         getAllTitles();
-   
+
 $scope.anEmployeeData = "NOTHIIIIIING";
 $scope.DepartmentOfEmp = "none";
 $scope.TitlesOfEmp = [];
@@ -38,20 +38,20 @@ $scope.giveEmp = function(empName){
     }
   if (empNo){
       getAnEmployee.getEmp(empNo)
-        .then(function(response){         
+        .then(function(response){
                 $scope.anEmployeeData = response.data;
                 $scope.anEmployeeData.Name = response.data.firstName + " " + response.data.lastName;
-                
+
                 if (!$scope.anEmployeeData.departments.length !== 0){   //if is empty
                     giveDep($scope.anEmployeeData.departments[0].no);
                 }
-                
+
                 if ($scope.anEmployeeData.tasks.length !== 0){   //if is empty
                     giveTask($scope.anEmployeeData.tasks[0].no);
                 }else{
                     delete $scope.TaskOfEmp;
                 }
-                
+
                 if ($scope.anEmployeeData.titles.length !== 0){   //if is empty
                     for (var i = 0; i < $scope.anEmployeeData.titles.length; i++){
                         for (var j = 0; j < $scope.titles.length; j++){
@@ -66,26 +66,26 @@ $scope.giveEmp = function(empName){
                 }
         },function(error){
                         $scope.anEmployeeData = "Error happened in getAnEmployee service calling:<br/>" + error;
-        }); 
+        });
   }else{
       alert("No employee with such name");
   }
-      
+
 };
 
 function giveDep(depID){
-    
+
     getDepartment.getHisDep(depID)
-        .then(function(response){         
+        .then(function(response){
                 $scope.DepartmentOfEmp = response.data.name;
         },function(error){
                         alert("Error happened in getAnEmployee service calling:     " + error);
     });
-};     
+};
 
 function giveTask(taskId){
     getTask.getHisTask(taskId)
-        .then(function(response){         
+        .then(function(response){
                 $scope.TaskOfEmp = response.data.title;
         },function(error){
                         alert("Error happened in getTask service calling:     " + error);
@@ -93,7 +93,7 @@ function giveTask(taskId){
 };
 
 function getAllTitles(){
-   
+
     getTitles.getTheTitles()
         .then(function(response){
                 $scope.titles = response.data;
@@ -101,35 +101,35 @@ function getAllTitles(){
                         alert("Error happened in getTask service calling:     " + error);
     });
 };
-       
+
 $scope.displayEndDate = function(date){
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth() + 1; 
+    var mm = today.getMonth() + 1;
     var yyyy = today.getFullYear();
-    
+
     var todayString = yyyy + '-' + mm + '-' + dd;
-    return date === "9999-01-01" ? "including today( " + todayString +" )": date;  
+    return date === "9999-01-01" ? "including today( " + todayString +" )": date;
 };
 
             $scope.AddToList = function(){
-            
+
                 if ($scope.inpName && $scope.inpBirthDate && $scope.inpGender){
                     var today = new Date();
                     var dd = today.getDay() + 1;
 
-                    var mm = today.getMonth() + 1; 
+                    var mm = today.getMonth() + 1;
                     var yyyy = today.getFullYear();
 
                     if(dd<10)
                     {
                         dd='0'+dd;
-                    } 
+                    }
 
-                    if(mm<10) 
+                    if(mm<10)
                     {
                         mm='0'+mm;
-                    } 
+                    }
 
                     var todayString = yyyy + '-' + mm + '-' + dd;
 
@@ -161,13 +161,13 @@ $scope.displayEndDate = function(date){
                 $scope.employees[index].birthDate = $scope.updateBirthDate;
                 $scope.employees[index].gender = $scope.updateGender;
             };
-            
+
             $scope.resetVariables = function(){
                 $scope.DepartmentOfEmp = "none";//resets variable if initialized by previous Employee
                 $scope.TitlesOfEmp = []; //resets variable if initialized by previous Employee
                 $scope.TaskOfEmp = "none";
             };
-        
+
 }])
 
 .directive('employeeDataModule', function(){
@@ -247,9 +247,3 @@ $scope.displayEndDate = function(date){
                     </table>'
     };
 });
-
-
-
-
-
-        

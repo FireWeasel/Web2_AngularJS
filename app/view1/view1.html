@@ -3,6 +3,7 @@
 <p>APIs are buggy, change tabs until Departments are listed</p>
 <hr/>
 <div class="container">
+  <department-Detail></department-Detail>
     <div id="searchM">
         <p>
             <label for="nameSearch"> Search
@@ -12,10 +13,8 @@
     </div>
 
     <div id="DepartmentsTable">
-
+      <input id="view-checkbox" type="checkbox" ng-model="checked"/>View<br/><br/>
         <departments-Table></departments-Table>
-
-
     </div>
 
     <hr/>
