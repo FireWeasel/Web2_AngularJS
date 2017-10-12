@@ -1,116 +1,114 @@
 <p style="margin-top: 75px;">This is the partial for view 1.</p>
 <p>done by Marina </p>
-<p>APIs are buggy, change tabs until Departments are listed</p>
+<p>Limited employees in department to 10</p>
 <hr/>
 <div class="container">
-  <department-Detail></department-Detail>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse1">
+        Add</a>
+      </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p class="col-md-3">
+                        <label for="No">
+                            <span>Id:</span>
+                            <input id="Id" type="text" name="Id" ng-model="inputId" required/>
+                            <abbr title="required">*</abbr>
+                        </label>
+                    </p>
+                    <p class="col-md-3">
+                        <label for="Name">
+                            <span>Name:</span>
+                            <input id="Name" type="text" name="Name" ng-model="inputName" required/>
+                            <abbr title="required">*</abbr>
+                        </label>
+                    </p>
+                    <p class="col-md-3">
+                        <label for="Code">
+                            <span>Code:</span>
+                            <input id="Headquarters" type="text" name="Headquarters" ng-model="inputCode" required/>
+                            <abbr title="required">*</abbr>
+                        </label>
+                    </p>
+                    <p class="col-md-3">
+                        <button class="btn btn-default" ng-click="AddDepartmentToList()"><em class="fa fa-pencil-square-o"></em></button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse3">
+        Update</a>
+      </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>
+                        <form name="departmentForm">
+                            <p class="col-md-3">
+                                <label for="Name">
+                                    <span>Name:</span>
+                                    <select ng-model="SelectedDepartmentUpdate">
+                                        <option ng-repeat="department in departments" value="{{$index}}">{{department.name}}</option>
+                                    </select>
+                                </label>
+                            </p>
+
+                            <p class="col-md-3">
+                                <label for="Id">
+                                    <span>No:</span>
+                                    <input id="updateId" type="text" name="Id" ng-model="updateId" required/>
+                                    <abbr title="required">*</abbr>
+                                </label>
+                            </p>
+
+                            <p class="col-md-3">
+                                <label for="name">
+                                    <span>Name:</span>
+                                    <input id="updateName" type="text" name="Name" ng-model="updatedInputName" required/>
+                                    <abbr title="required">*</abbr>
+                                </label>
+                            </p>
+
+                            <p class="col-md-3">
+                                <label for="headquarters">
+                                    <span>Code:</span>
+                                    <input id="updateHeadquarters" type="text" name="Headquarters" ng-model="updatedCode" required/>
+                                    <abbr title="required">*</abbr>
+                                </label>
+                            </p>
+                            <div align="center">
+                                <button class="btn btn-info" ng-click="UpdateDepartment()">Update</button>
+                            </div>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <department-Detail></department-Detail>
     <div id="searchM">
-        <p>
+        <p class="col-md-4">
             <label for="nameSearch"> Search
-        <input type="text" id="nameSearch" ng-model="filterValue" />
-        </label>
+                <input type="text" id="nameSearch" ng-model="filterValue" />
+            </label>
         </p>
     </div>
-
+<p class="col-md-4">
     <div id="DepartmentsTable">
-      <input id="view-checkbox" type="checkbox" ng-model="checked"/>View<br/><br/>
+      <label for="viewMore"> View
+        <input id="view-checkbox" type="checkbox" ng-model="checked" />
+      </label>
+        <br/>
+        <br/>
         <departments-Table></departments-Table>
     </div>
-
+</p>
     <hr/>
-
-    <div ng-init="checked = true" class="col-sm-4">
-        <label>
-    <input type="checkbox" ng-model="checkedAdd" />
-    Add
-  </label>
-        <div class="show-add">
-            <div id="AddWeek3">
-                <form ng-show="checkedAdd" name="departmentForm">
-                    <p>
-                        <label for="No">
-            <span>Id:</span>
-            <input id="Id" type="text" name="Id" ng-model="inputId" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                    </p>
-
-                    <p>
-                        <label for="Name">
-            <span>Name:</span>
-            <input id="Name" type="text" name="Name" ng-model="inputName" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                    </p>
-
-                    <p>
-                        <label for="Code">
-            <span>Code:</span>
-            <input id="Headquarters" type="text" name="Headquarters" ng-model="inputCode" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                    </p>
-                    <button class="btn btn-default" ng-click="AddDepartmentToList()">Add</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-
-    <div ng-init="checked = true" class="col-sm-4">
-        <label>
-    <input type="checkbox" ng-model="checkedRemove" />
-    Remove
-  </label>
-        <div ng-show="checkedRemove" class="show-add">
-            <select ng-model="selectedDepartmentIndex">
-        <option ng-repeat="department in departments" value="{{$index}}">{{department.name}}</option>
-    </select>
-
-            <button class="btn btn-warning" ng-click="CBRemove()">Remove</button>
-        </div>
-    </div>
-    <div ng-init="checked = true" class="col-sm-4">
-        <label>
-    <input type="checkbox" ng-model="checkedUpdate" />
-    Update
-  </label>
-        <div ng-show="checkedUpdate" id="UpdateDepartment" class="col-sm-4">
-            <form name="departmentForm">
-                <p>
-                    <label for="Name">
-            <span>Name:</span>
-            <select ng-model="SelectedDepartmentUpdate">
-             <option ng-repeat="department in departments" value="{{$index}}">{{department.name}}</option>
-            </select>
-            </label>
-                </p>
-
-                <p>
-                    <label for="Id">
-            <span>No:</span>
-            <input id="updateId" type="text" name="Id" ng-model="updateId" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                </p>
-
-                <p>
-                    <label for="name">
-            <span>Name:</span>
-            <input id="updateName" type="text" name="Name" ng-model="updatedInputName" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                </p>
-
-                <p>
-                    <label for="headquarters">
-            <span>Code:</span>
-            <input id="updateHeadquarters" type="text" name="Headquarters" ng-model="updatedCode" required/>
-            <abbr title="required">*</abbr>
-            </label>
-                </p>
-                <button class="btn btn-info" ng-click="UpdateDepartment()">Update</button>
-            </form>
-        </div>
-    </div>
 </div>
