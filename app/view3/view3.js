@@ -9,7 +9,7 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', [ '$scope', 'myTasks', 'getTask','myEmployees', function($scope, myTasks, getTask,myEmployees) {
+.controller('View3Ctrl', [ '$scope', 'myTasks', 'getTask','myEmployees','myDepartments', function($scope, myTasks, getTask,myEmployees,myDepartments) {
 
   $("#Start").datepicker();
   $("#End").datepicker();
@@ -18,14 +18,21 @@ angular.module('myApp.view3', ['ngRoute'])
   $scope.UpdateTaskVisible = false;
   $scope.employees = myEmployees.data;
   $scope.tasks = myTasks.data;
+  $scope.departments = myDepartments.data;
   $scope.taskEmp = "none";
   $scope.taskEmpName = [];
+  $scope.taskDep = "none";
+  $scope.taskDepName = [];
 
   $scope.getEmployeeNames = function(taskNo){
     $scope.taskEmpName = [];
+    $scope.taskDepName = [];
+
     getTask.getHisTask(taskNo)
     .then(function(response){
+
             $scope.taskEmp = response.data.employees;
+            $scope.taskDep = response.data.deptNo;
 
             for(var i = 0; i < $scope.taskEmp.length; i++)
             {
@@ -37,13 +44,13 @@ angular.module('myApp.view3', ['ngRoute'])
                 }
               }
             }
-              /*for(var k = 0; k < $scope.TaskOfDep.length; k++)
+            /*  for(var k = 0; k < $scope.taskDep.length; k++)
               {
-                for(var j = 0; j < $scope.tasks.length; j++)
+                for(var j = 0; j < $scope.departments.length; j++)
                 {
-                  if($scope.TaskOfDep[k] == $scope.tasks[j].no)
+                  if($scope.taskDep[k] == $scope.departments[j].no)
                   {
-                    $scope.TaskOfDepName.push($scope.tasks[j].title);
+                    $scope.taskDepName.push($scope.departments[j].name);
                   }
                 }
               }*/
