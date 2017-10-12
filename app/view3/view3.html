@@ -46,6 +46,7 @@
                             <th>Status</th>
                             <th>Start date</th>
                             <th>End date</th>
+                            <th>Employees</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,7 @@
                         <td>{{task.status}}</td>
                         <td>{{task.start.toString()}}</td>
                         <td>{{task.end.toString()}}</td>
+                        <td><button class="btn btn-default" ng-click="getEmployeeNames(task.no)" data-toggle="modal" data-target="#tasksModal">Employees</button></td>
                       </tr>
                     </tbody>
                 </table>
@@ -68,6 +70,28 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div id="tasksModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              Employees: <ul>
+                        <li ng-repeat="employee in taskEmpName | limitTo: 10 "><b> {{employee}} </b></li>
+                    </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade edit_task" id="edit_task">
     <div class="modal-dialog">
         <div class="modal-content">

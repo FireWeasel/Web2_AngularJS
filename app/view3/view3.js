@@ -9,15 +9,49 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
 
-.controller('View3Ctrl', [ '$scope', 'myTasks', 'TaskDepartmentEmployees', function($scope, myTasks, TaskDepartmentEmployees) {
+.controller('View3Ctrl', [ '$scope', 'myTasks', 'getTask','myEmployees', function($scope, myTasks, getTask,myEmployees) {
 
   $("#Start").datepicker();
   $("#End").datepicker();
   $("#updatedStart").datepicker();
   $("#updatedEnd").datepicker();
   $scope.UpdateTaskVisible = false;
-
+  $scope.employees = myEmployees.data;
   $scope.tasks = myTasks.data;
+  $scope.taskEmp = "none";
+  $scope.taskEmpName = [];
+
+  $scope.getEmployeeNames = function(taskNo){
+    $scope.taskEmpName = [];
+    getTask.getHisTask(taskNo)
+    .then(function(response){
+            $scope.taskEmp = response.data.employees;
+
+            for(var i = 0; i < $scope.taskEmp.length; i++)
+            {
+              for(var j = 0; j < $scope.employees.length; j++)
+              {
+                if($scope.taskEmp[i].no == $scope.employees[j].no)
+                {
+                  $scope.taskEmpName.push($scope.employees[j].Name);
+                }
+              }
+            }
+              /*for(var k = 0; k < $scope.TaskOfDep.length; k++)
+              {
+                for(var j = 0; j < $scope.tasks.length; j++)
+                {
+                  if($scope.TaskOfDep[k] == $scope.tasks[j].no)
+                  {
+                    $scope.TaskOfDepName.push($scope.tasks[j].title);
+                  }
+                }
+              }*/
+    },function(error){
+                    alert("Error happened in getAnEmployee service calling:     " + error);
+});
+
+  }
 
   $scope.AddTaskToList = function(){
     if ($scope.inputNumber && $scope.inputDescription && $scope.inputCompleted){

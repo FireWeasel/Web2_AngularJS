@@ -39,52 +39,33 @@ module.service('getTask', ['$http', function($http) {
     };
 }]);
 
-module.factory('myTasks', ['taskService', function(taskService) {
+module.factory('myTasks', ['employeesService', function(employeesService) {
     var obj = {};
+    obj.data = [];
+    employeesService.getTasks()
+    .then(function(response)
+  {
+    var tasks = response.data;
 
-    //  		taskService.getTasks().then(function(response){
-    obj.data = [{
-        "no": 1,
-        "deptNo": 5,
-        "title": "Implement webservice for clients",
-        "description": "Create an API as a webservice for our clients to access their order information.",
-        "status": "In progress",
-        "end": null,
-        "modificationDate": null,
-        "start": new Date("2016-04-15T11:08:33")
-    }, {
-        "no": 2,
-        "deptNo": 1,
-        "title": "Send invoice to client",
-        "description": "Draft an invoice and when it's approved send it to the client.\r\n\r\nNote: Check with Kyoichi if the content of the invoice is correct!",
-        "status": "In progress",
-        "end": null,
-        "modificationDate": null,
-        "start": new Date("2016-06-09T11:59:00")
-    }, {
-        "no": 3,
-        "deptNo": 6,
-        "title": "Test application Sigma",
-        "description": "Do alpha testing for the application Sigma. There is a precompiled test plan that should be followed and filled in.\r\n\r\nPlease send the test report to the development department after the tests are finished.",
-        "status": "Finished",
-        "end": new Date("2016-06-07T16:15:00"),
-        "modificationDate": "2016-06-07 16:15:00",
-        "start": new Date("2016-05-07T18:12:00")
-    }, {
-        "no": 4,
-        "deptNo": 3,
-        "title": "Meeting employee Patricio Bridgland",
-        "description": "Patricio Bridgland requested a meeting to talk about the new position as Technique Leader within the company.",
-        "status": "Paused",
-        "end": null,
-        "modificationDate": "2016-05-31 12:10:00",
-        "start": new Date("2016-03-16T06:42:00")
-    }];
-    console.log(obj.data);
-    // 		},function(error){
-    // 			console.log(error);
-    // 		});
+    //hardcoding this part because there are some complications with the serilization from json data format to uiCalendar format
+    tasks[0].start = new Date("2016-04-15T11:08:33");
+    tasks[1].start = new Date("2016-06-09T11:59:00");
+    tasks[2].start = new Date("2016-05-07T18:12:00");
+    tasks[3].start = new Date("2016-03-16T06:42:00");
+    tasks[0].end = new Date("2016-04-15T11:08:33");
+    tasks[2].end = new Date("2016-06-07T16:15:00");
 
+      for(var i = 0; i < tasks.length; i++)
+      {
+        var temp  = tasks[i];
+        temp.start = new Date(temp.creatioDate);
+        temp.end = new Date(temp.finishedDate);
+        console.log(temp.creatioDate);
+        obj.data.push(temp);
+      }
+  },function(error){
+    		console.log(error);
+  });
     return obj;
 }])
 
@@ -113,7 +94,13 @@ module.service('employeesService', ['$http', function($http) {
         return $http.get('http://i874156.iris.fhict.nl/WEB2/employees');
     };
 
+    this.getDepartments = function() {
+      return $http.get('http://i874156.iris.fhict.nl/WEB2/departments');
+    };
 
+    this.getTasks = function(){
+      return $http.get('http://i874156.iris.fhict.nl/WEB2/tasks');
+    };
 
 }]);
 
@@ -126,10 +113,10 @@ module.service('getAnEmployee', ['$http', function($http) {
 
 module.factory('myEmployees', ['employeesService', function(employeesService) {
         var obj = {};
-        
+
         //var employees = [];
-        obj.data = [];  
-        
+        obj.data = [];
+
                 employeesService.getEmployees()
                     .then(
                         function(response){
@@ -140,15 +127,15 @@ module.factory('myEmployees', ['employeesService', function(employeesService) {
 
                                 var temp = tempEmployees[i];
                                 temp.Name = temp.firstName + " " + temp.lastName;
-                                obj.data.push(temp);                            
+                                obj.data.push(temp);
                             }
                         },function(error){
                             console.log(error);
                         }
-                    );        
-             
-              
-        
+                    );
+
+
+
         return obj;
 }]);
 
@@ -173,51 +160,21 @@ module.service('departmentService', ['$http', function($http) {
     };
 }]);
 
-module.factory('myDepartments', ['departmentService', function(departmentService) {
+module.factory('myDepartments', ['employeesService', function(employeesService) {
     var obj = {};
-
-    //         departmentService.getDepartments()
-    // 		.then(function(response){
-    obj.data = [{
-        "no": 1,
-        "code": "d001",
-        "name": "Marketing"
-    }, {
-        "no": 2,
-        "code": "d002",
-        "name": "Finance"
-    }, {
-        "no": 3,
-        "code": "d003",
-        "name": "Human Resources"
-    }, {
-        "no": 4,
-        "code": "d004",
-        "name": "Production"
-    }, {
-        "no": 5,
-        "code": "d005",
-        "name": "Development"
-    }, {
-        "no": 6,
-        "code": "d006",
-        "name": "Quality Management"
-    }, {
-        "no": 7,
-        "code": "d007",
-        "name": "Sales"
-    }, {
-        "no": 8,
-        "code": "d008",
-        "name": "Research"
-    }, {
-        "no": 9,
-        "code": "d009",
-        "name": "Customer Service"
-    }];
-    // 		},function(error){
-    // 			console.log(error);
-    // 		});
+    obj.data = [];
+    employeesService.getDepartments()
+    .then(function(response)
+  {
+    var departments = response.data;
+      for(var i = 0; i < departments.length; i++)
+      {
+        var temp  = departments[i];
+        obj.data.push(temp);
+      }
+  },function(error){
+    		console.log(error);
+  });
 
     return obj;
 }]);
