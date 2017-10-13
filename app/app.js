@@ -22,7 +22,7 @@ var y = date.getFullYear();
 module.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     $routeProvider.otherwise({
-        redirectTo: '/dashboard'
+        redirectTo: '/view1'
     });
 }])
 
@@ -42,30 +42,27 @@ module.service('getTask', ['$http', function($http) {
 module.factory('myTasks', ['employeesService', function(employeesService) {
     var obj = {};
     obj.data = [];
-    employeesService.getTasks()
-    .then(function(response)
-  {
-    var tasks = response.data;
-
-    //hardcoding this part because there are some complications with the serilization from json data format to uiCalendar format
-    tasks[0].start = new Date("2016-04-15T11:08:33");
-    tasks[1].start = new Date("2016-06-09T11:59:00");
-    tasks[2].start = new Date("2016-05-07T18:12:00");
-    tasks[3].start = new Date("2016-03-16T06:42:00");
-    tasks[0].end = new Date("2016-04-15T11:08:33");
-    tasks[2].end = new Date("2016-06-07T16:15:00");
+    employeesService.getTasks().then(function(response)
+    {
+      var tasks = response.data;
 
       for(var i = 0; i < tasks.length; i++)
       {
         var temp  = tasks[i];
-        temp.start = new Date(temp.creatioDate);
-        temp.end = new Date(temp.finishedDate);
-        console.log(temp.creatioDate);
+        if(temp.creatioDate != null) {
+            temp.start = new Date(temp.creatioDate.replace(" ", "T"));
+        }
+        if(temp.finishedDate != null) {
+          temp.end = new Date(temp.finishedDate.replace(" ", "T"));
+        }
+        delete temp.creatioDate;
+        delete temp.finishedDate;
         obj.data.push(temp);
       }
   },function(error){
     		console.log(error);
   });
+    console.log(obj);
     return obj;
 }])
 
