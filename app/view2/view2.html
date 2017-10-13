@@ -9,10 +9,9 @@
 
 
 <div class="container">
+    <h4><u>Number of employees:<small> {{employees.length}}</small></u></h4>
 <detail-modal></detail-modal>
 
-    <button class="btn btn-default disabled">Hello</button>
-<!--    <employee-data-module></employee-data-module>-->
 
     <div id="alexSearch">
         <p>
@@ -30,11 +29,11 @@
     <div id="AlexForms">
         <div id="AlexAddEmployees" class="col-sm-4">
             <h3>To Add <small>{{inpName}} : {{inpBirthDate}} : {{inpGender}}</small></h3>
-            <form name="employeeForm">
+            <form name="AddEmployeeForm">
                 <!--ng-submit="submitForm()">-->
                 <p>
                     <label for="Name">Name:</label>
-                    <input id="Name" type="text" name="Name" ng-model="inpName" required/>
+                    <input id="Name" type="text" name="Name" ng-model="inpName"  ng-required="true"/>
                     <abbr title="required">*</abbr>
                 </p>
 
@@ -42,7 +41,7 @@
                     <label for="BirthDate">
             Birth Date:
             </label>
-                    <input id="BirthDate" type="text" name="BirthDate" ng-model="inpBirthDate" required/>
+                    <input id="BirthDate" type="text" name="BirthDate" ng-model="inpBirthDate"  ng-required="true"/>
                     <abbr title="required">*</abbr>
                 </p>
 
@@ -50,38 +49,61 @@
                     <label for="Gender">
             Gender
             </label>
-                    <input id="Gender" type="text" name="Gender" ng-model="inpGender" required/>
+                    <input id="Gender" type="text" name="Gender" ng-model="inpGender"  ng-required="true"/>
                     <abbr title="required">*</abbr>
                 </p>
-                <button ng-click="AddToList()" class="btn btn-primary">Add</button>
+                <!--selectedAddDepartmentIndex-->
+                <p>
+                    <label for="insertDepartment">
+                    Department: 
+                    </label>
+                    <select ng-model="selectedAddDepartmentIndex" id="insertDepartment" ng-required="true">
+                        <option ng-repeat="department in theDepartments" value="{{$index}}">{{department.name}}</option>
+                    </select>
+                    <abbr title="required">*</abbr>
+                </p>
+                
+                <button ng-disabled="AddEmployeeForm.$invalid" ng-click="AddToList()" class="btn btn-primary">Add</button>
                 <!--      <button ng-click="RemoveFromList()">Remove</button>-->
             </form>
         </div>
 
         <div id="AlexRemoveEmployees" class="col-sm-4">
-            <h3>To Remove</h3>
-            <select ng-model="selectedEmployeeIndex1">
-                <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
-            </select>
-            <button ng-click="ComboBoxRemove()" class="btn btn-danger">Remove</button>
+            <form name="removeEmployeeForm">
+                <h3>To Remove</h3>
+                <select ng-model="selectedEmployeeIndex1" ng-required="true">
+                    <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
+                </select>
+                <button ng-disabled="removeEmployeeForm.$invalid" ng-click="ComboBoxRemove()" class="btn btn-danger">Remove</button>
+            </form>
         </div>
 
         <div id="AlexUpdateEmployees" class="col-sm-4">
             <h3>To Update</h3>
-            <form name="employeeForm">
+            <form name="updateForm">
                 <p>
                     <label for="updatedName">
                     Name:
                     </label>
-                    <select ng-model="selectedEmployeeIndex2" id="updatedName">
-                        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.Name}}</option>
+                    <select ng-model="selectedEmployeeIndex2" id="updatedName" ng-required="true">
+                        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.no}} - {{employee.Name}}</option>
                     </select>
+                    <abbr title="required">*</abbr>
                 </p>
+<!--                <p>
+                    <label for="IDtoUpdate">
+                    ID:
+                    </label>
+                    <select ng-model="selectedEmployeeIndex3" id="IDtoUpdate">
+                        <option ng-repeat="employee in employees" value="{{$index}}">{{employee.no}}</option>
+                    </select>
+                </p>-->
+
                 <p>
                     <label for="updateBirthDate">
                     Birth Date:
                     </label>
-                    <input id="updateBirthDate" type="text" name="updateBirthDate" ng-model="updateBirthDate" required/>
+                    <input id="updateBirthDate" type="text" name="updateBirthDate" ng-model="updateBirthDate"  ng-required="true"/>
                     <abbr title="required">*</abbr>
                 </p>
 
@@ -89,10 +111,19 @@
                     <label for="updateGender">
                     Gender:
                     </label>
-                    <input id="updateGender" type="text" name="updateGender" ng-model="updateGender" required/>
+                    <input id="updateGender" type="text" name="updateGender" ng-model="updateGender"  ng-required="true"/>
                     <abbr title="required">*</abbr>
                 </p>
-                <button ng-click="UpdateEmployees()" class="btn btn-warning">Update</button>
+                <p>
+                    <label for="updateDepartment">
+                    New department: 
+                    </label>
+                    <select ng-model="selectedUpdateDepartmentIndex" id="updatedName" ng-required="true">
+                        <option ng-repeat="department in theDepartments" value="{{$index}}">{{department.name}}</option>
+                    </select>
+                    <abbr title="required">*</abbr>
+                </p>
+                <button ng-disabled="updateForm.$invalid" ng-click="UpdateEmployees()" class="btn btn-warning">Update</button>
             </form>
         </div>
 

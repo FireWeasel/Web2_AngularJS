@@ -124,6 +124,7 @@ module.factory('myEmployees', ['employeesService', function(employeesService) {
 
                                 var temp = tempEmployees[i];
                                 temp.Name = temp.firstName + " " + temp.lastName;
+                                temp.newDepartment = [];
                                 obj.data.push(temp);
                             }
                         },function(error){
